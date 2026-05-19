@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psych Screening Form · PGH 2026</title>
+<meta name="description" content="Filipino/Taglish psychiatric screening interview form for UP-PGH Batch Masikhay 2026. Type during interview, copy assembled SOAP note in PGH template format.">
+<meta name="theme-color" content="#1a1816">
+<meta property="og:title" content="Psych Screening Form · PGH 2026">
+<meta property="og:description" content="Filipino/Taglish interview form with auto-assembled SOAP note. Built for Batch Masikhay 2026.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1816'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' font-weight='600' text-anchor='middle' fill='%23f6f2ea'%3E%CF%88%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f2ea;
+    --surface: #fffdf7;
+    --surface-2: #f0ebe0;
+    --ink: #1a1816;
+    --muted: #6b665e;
+    --border: #d8d3c5;
+    --border-strong: #aaa494;
+    --accent: #6b1f1f;
+    --accent-soft: #efe2e2;
+    --warning: #a85a1f;
+    --success: #2d4a3e;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.5;
+    padding-bottom: 100px;
+  }
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--ink);
+    color: var(--surface);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #000;
+  }
+  .topbar h1 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 16px;
+    margin: 0;
+    margin-right: auto;
+    letter-spacing: 0.2px;
+  }
+  .topbar h1 .sub {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 11px;
+    opacity: 0.6;
+    margin-left: 8px;
+  }
+  .btn {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 7px 14px;
+    border: 1px solid currentColor;
+    background: transparent;
+    color: var(--surface);
+    cursor: pointer;
+    border-radius: 3px;
+    letter-spacing: 0.3px;
+    transition: all 0.15s;
+  }
+  .btn:hover { background: var(--surface); color: var(--ink); }
+  .btn-primary { background: var(--surface); color: var(--ink); border-color: var(--surface); font-weight: 600; }
+  .btn-primary:hover { background: #fff; }
+  .btn-danger { color: #f4a98c; border-color: #f4a98c; }
+  .btn-danger:hover { background: #f4a98c; color: var(--ink); }
+  .save-status {
+    font-size: 11px;
+    opacity: 0.6;
+    font-family: var(--font-mono);
+    letter-spacing: 0.3px;
+  }
+  .save-status.saved { color: #8fbfa6; opacity: 1; }
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 24px 20px 40px;
+  }
+  .doc-header {
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .doc-header h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 26px;
+    margin: 0 0 6px 0;
+    letter-spacing: -0.3px;
+  }
+  .doc-header p {
+    margin: 4px 0;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .meta-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 14px;
+  }
+  section.sx {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  section.sx > h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0;
+    padding: 10px 16px;
+    background: var(--ink);
+    color: var(--surface);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section.sx > h3 .num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    opacity: 0.6;
+    font-weight: 400;
+  }
+  section.sx > h3 .badge {
+    margin-left: auto;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border: 1px solid currentColor;
+    border-radius: 10px;
+    text-transform: none;
+    letter-spacing: 0.2px;
+    opacity: 0.7;
+  }
+  section.sx .body {
+    padding: 14px 16px 16px;
+  }
+  .ask {
+    background: var(--surface-2);
+    border-left: 2px solid var(--accent);
+    padding: 8px 12px;
+    margin: 8px 0 12px;
+    font-style: italic;
+    font-size: 12.5px;
+    color: var(--muted);
+    border-radius: 0 3px 3px 0;
+  }
+  .ask ul { margin: 4px 0; padding-left: 16px; }
+  .ask li { margin: 2px 0; }
+  .ask strong { color: var(--accent); font-style: normal; font-weight: 600; }
+  label {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+    margin-top: 10px;
+  }
+  label.inline { display: inline; text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--ink); }
+  input[type="text"], input[type="number"], input[type="date"], textarea, select {
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid var(--border);
+    background: #fffefa;
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    color: var(--ink);
+    border-radius: 3px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: #fff;
+  }
+  textarea { resize: vertical; min-height: 60px; font-family: var(--font-body); line-height: 1.5; }
+  textarea.paragraph { min-height: 140px; }
+  .row {
+    display: grid;
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .row.cols-2 { grid-template-columns: 1fr 1fr; }
+  .row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .row.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 700px) {
+    .row.cols-2, .row.cols-3, .row.cols-4 { grid-template-columns: 1fr; }
+    .meta-row { grid-template-columns: 1fr; }
+  }
+  .ros-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 10px;
+    align-items: start;
+    padding: 6px 0;
+    border-bottom: 1px dotted var(--border);
+  }
+  .ros-row:last-child { border-bottom: none; }
+  .ros-label { font-size: 12.5px; padding-top: 6px; line-height: 1.3; }
+  .ros-label strong { display: block; font-weight: 600; }
+  .ros-label small { color: var(--muted); font-size: 10.5px; }
+  .toggle-group {
+    display: inline-flex;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fff;
+    margin-bottom: 4px;
+  }
+  .toggle-group label {
+    margin: 0;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+    cursor: pointer;
+    color: var(--muted);
+    border-right: 1px solid var(--border);
+    background: #fff;
+    transition: background 0.1s, color 0.1s;
+    user-select: none;
+  }
+  .toggle-group label:last-child { border-right: none; }
+  .toggle-group input[type="radio"] { display: none; }
+  .toggle-group input[type="radio"]:checked + label { background: var(--ink); color: var(--surface); font-weight: 600; }
+  .toggle-group .pos:has(input:checked) { background: var(--success); color: white; }
+  .toggle-group .neg:has(input:checked) { background: var(--muted); color: white; }
+  .toggle-group .na:has(input:checked) { background: var(--surface-2); color: var(--muted); }
+  .ros-input { width: 100%; font-size: 12.5px; padding: 5px 8px; }
+  .help {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 2px;
+    font-style: italic;
+  }
+  .checklist-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+  }
+  .checklist-tab {
+    padding: 8px 14px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .checklist-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .checklist-pane { display: none; }
+  .checklist-pane.active { display: block; }
+  .core-criterion {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border-radius: 0 3px 3px 0;
+  }
+  .core-criterion strong { color: var(--accent); }
+  .mse-line {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .mse-line > label { margin: 0; }
+  .mse-inline {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .mse-inline select { width: auto; min-width: 100px; flex: 0 0 auto; }
+  .mse-inline input[type="text"] { flex: 1 1 120px; }
+  .checkboxes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  .checkboxes label {
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    color: var(--ink);
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 6px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: #fff;
+  }
+  .checkboxes input { margin: 0; }
+  .si-warning {
+    background: #fce6d8;
+    border-left: 3px solid var(--warning);
+    padding: 8px 12px;
+    margin: 10px 0;
+    border-radius: 0 3px 3px 0;
+    font-size: 12.5px;
+    color: var(--ink);
+    display: none;
+  }
+  .si-warning.active { display: block; }
+  .si-warning strong { color: var(--warning); }
+  /* Modal */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: var(--surface);
+    border-radius: 6px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .modal-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .modal-header h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .modal-header .actions { margin-left: auto; display: flex; gap: 8px; }
+  .modal-body {
+    padding: 18px;
+    overflow-y: auto;
+    flex: 1;
+  }
+  .modal-body pre {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    line-height: 1.55;
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 3px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0;
+  }
+  .modal .btn { color: var(--ink); border-color: var(--border-strong); }
+  .modal .btn:hover { background: var(--ink); color: var(--surface); }
+  .modal .btn-primary { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  .modal .btn-primary:hover { background: #000; }
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--success);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 500;
+    z-index: 300;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .ob-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+  .si-ladder ol { padding-left: 20px; margin: 6px 0; }
+  .si-ladder li { margin: 6px 0; }
+  .si-ladder li > div { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 3px; }
+  .si-ladder li > div input { flex: 1 1 200px; }
+  .dx-list textarea { min-height: 50px; }
+  .diag-list label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 4px 0;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    color: var(--ink);
+    font-size: 12.5px;
+  }
+  .diag-list input[type="checkbox"] { margin: 0; }
+  hr.soft { border: none; border-top: 1px dashed var(--border); margin: 12px 0; }
+  details { margin: 6px 0; }
+  details summary {
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 2px 0;
+  }
+  details summary:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Psych Screening Form <span class="sub">PGH 2026 · Filipino/Taglish</span></h1>
+  <span id="saveStatus" class="save-status">— ready</span>
+  <button class="btn" onclick="previewNote()">Preview Note</button>
+  <button class="btn btn-danger" onclick="clearAll()">Clear (New Patient)</button>
+  <button class="btn btn-primary" onclick="copyNote()">Copy Final Note</button>
+</div>
+
+<main>
+
+<div class="doc-header">
+  <h2>Psychiatric Screening Interview</h2>
+  <p>Type into each field. Autosaves to your browser. Click <strong>Copy Final Note</strong> to assemble the SOAP note in PGH template format.</p>
+  <p style="font-size:12px;color:var(--accent)"><strong>Disclaimer to patient:</strong> "Magandang araw po. Ito po ay screening interview na 20–30 minutes. Magiging tanong-sagot, may checklist ng symptoms. May time po sa dulo para ma-elaborate. Lahat confidential maliban kung may safety concern. Pwede po tayong magsimula?"</p>
+  <div class="meta-row">
+    <div>
+      <label>Date of Interview</label>
+      <input type="date" data-field="meta.date">
+    </div>
+    <div>
+      <label>Time</label>
+      <input type="text" data-field="meta.time" placeholder="e.g., 2:30 PM">
+    </div>
+    <div>
+      <label>Examiner / Intern</label>
+      <input type="text" data-field="meta.examiner" placeholder="Dr. ___">
+    </div>
+  </div>
+</div>
+
+<!-- §1 ID DATA -->
+<section class="sx">
+  <h3><span class="num">§1</span> Identifying Data</h3>
+  <div class="body">
+    <div class="row cols-2">
+      <div><label>Case Number</label><input type="text" data-field="id.caseNumber"></div>
+      <div><label>Name</label><input type="text" data-field="id.name"></div>
+      <div><label>Age</label><input type="text" data-field="id.age"></div>
+      <div><label>Handedness</label>
+        <select data-field="id.handedness">
+          <option value="">—</option>
+          <option>right</option><option>left</option><option>ambidextrous</option>
+        </select>
+      </div>
+      <div><label>Civil Status</label>
+        <select data-field="id.civil">
+          <option value="">—</option>
+          <option>single</option><option>in a relationship</option><option>married</option>
+          <option>separated</option><option>widowed</option>
+        </select>
+      </div>
+      <div><label>Religion</label><input type="text" data-field="id.religion"></div>
+      <div><label>Highest Educational Attainment</label><input type="text" data-field="id.education"></div>
+      <div><label>Employment</label><input type="text" data-field="id.employment"></div>
+      <div><label>Current residence</label><input type="text" data-field="id.currentResidence"></div>
+      <div><label>Permanent residence</label><input type="text" data-field="id.permanentResidence"></div>
+      <div><label>Contact No.</label><input type="text" data-field="id.contact"></div>
+      <div><label>Emergency Contact (family)</label><input type="text" data-field="id.emergency" placeholder="Name (relationship) — number"></div>
+    </div>
+  </div>
+</section>
+
+<!-- §2 CC -->
+<section class="sx">
+  <h3><span class="num">§2</span> Chief Complaint</h3>
+  <div class="body">
+    <div class="ask">"Ano po 'yung pangunahing dahilan kung bakit kayo nagpa-konsulta? Sa sarili niyong words po."</div>
+    <label>Patient's verbatim CC</label>
+    <input type="text" data-field="cc.patient" placeholder="Patient's exact words">
+    <div class="row cols-2">
+      <div><label>Patient Reliability</label>
+        <select data-field="cc.patientReliability"><option value="">—</option><option>poor</option><option>fair</option><option>good</option></select>
+      </div>
+      <div><label>Informant relationship</label>
+        <input type="text" data-field="cc.informantRelation" placeholder="e.g., mother, partner — or leave blank if none">
+      </div>
+    </div>
+    <label>Informant's verbatim CC (if any)</label>
+    <input type="text" data-field="cc.informant">
+    <label>Informant Reliability</label>
+    <select data-field="cc.informantReliability" style="max-width:200px"><option value="">—</option><option>poor</option><option>fair</option><option>good</option></select>
+  </div>
+</section>
+
+<!-- §3 PREMORBID -->
+<section class="sx">
+  <h3><span class="num">§3</span> Premorbid Personality</h3>
+  <div class="body">
+    <div class="ask">"Bago po nangyari ang mga problema na ito — paano niyo idi-describe ang sarili niyo dati? Anong klaseng tao kayo?"</div>
+    <label>Patient described self as… (1 sentence)</label>
+    <textarea data-field="premorbid" placeholder="e.g., introverted, family-oriented, hardworking but quick to worry…"></textarea>
+  </div>
+</section>
+
+<!-- §4 HPI -->
+<section class="sx">
+  <h3><span class="num">§4</span> History of Present Illness</h3>
+  <div class="body">
+    <div class="ask">
+      <strong>Ask:</strong>
+      <ul>
+        <li>"Kailan po unang nakaramdam na may hindi tama? Anong nag-trigger?"</li>
+        <li>"Paano niyo idi-describe ang mga sintomas? Gaano kadalas, katagal?"</li>
+        <li>"Paano naapektuhan ang araw-araw — trabaho/eskwela/relasyon?"</li>
+        <li>"Paano niyo kinakaya? May ginagawa kahit alam niyong hindi maganda?"</li>
+        <li>"Tuloy-tuloy ba ang symptoms, o may panahong nawawala?"</li>
+        <li>"Bakit po ngayon kayo nagpasyang magpa-konsulta?"</li>
+      </ul>
+    </div>
+
+    <p style="font-size:11.5px;color:var(--muted);margin:8px 0">Jot working notes below — synthesize into the HPI paragraph at the bottom of this section.</p>
+
+    <div class="row cols-2">
+      <div><label>Onset (anchor in PTC)</label><input type="text" data-field="hpi.onset" placeholder="e.g., 5 years PTC"></div>
+      <div><label>Trigger / Precipitating event</label><input type="text" data-field="hpi.trigger"></div>
+    </div>
+    <label>Core symptom</label>
+    <input type="text" data-field="hpi.core" placeholder="e.g., depressed mood, auditory hallucinations">
+    <label>Associated symptoms (frequency, duration, severity)</label>
+    <textarea data-field="hpi.associated"></textarea>
+    <label>Effect on functioning (work/school/relationships)</label>
+    <textarea data-field="hpi.functioning"></textarea>
+    <label>Coping (incl. maladaptive)</label>
+    <textarea data-field="hpi.coping"></textarea>
+    <label>Interim (persistence, recurrence, return to baseline)</label>
+    <textarea data-field="hpi.interim"></textarea>
+    <label>Recent precipitant for today's consult</label>
+    <textarea data-field="hpi.recent"></textarea>
+
+    <hr class="soft">
+
+    <h4 style="margin:10px 0 4px;font-family:var(--font-display);font-size:14px;font-weight:600">SI Ladder (C-SSRS)</h4>
+    <div class="si-ladder">
+      <ol>
+        <li>
+          <em>Passive:</em> "Naisip niyo na po ba na sana hindi na lang kayo magising?"
+          <div>
+            <div class="toggle-group">
+              <input type="radio" name="si-passive" id="si-passive-na" value="" data-field="hpi.si.passive" checked><label class="na" for="si-passive-na">—</label>
+              <input type="radio" name="si-passive" id="si-passive-no" value="no" data-field="hpi.si.passive"><label class="neg" for="si-passive-no">denied</label>
+              <input type="radio" name="si-passive" id="si-passive-yes" value="yes" data-field="hpi.si.passive"><label class="pos" for="si-passive-yes">present</label>
+            </div>
+            <input type="text" placeholder="details" data-field="hpi.si.passiveNote">
+          </div>
+        </li>
+        <li>
+          <em>Active:</em> "Naisip niyo na po ba na saktan ang sarili o tapusin ang buhay?"
+          <div>
+            <div class="toggle-group">
+              <input type="radio" name="si-active" id="si-active-na" value="" data-field="hpi.si.active" checked><label class="na" for="si-active-na">—</label>
+              <input type="radio" name="si-active" id="si-active-no" value="no" data-field="hpi.si.active"><label class="neg" for="si-active-no">denied</label>
+              <input type="radio" name="si-active" id="si-active-yes" value="yes" data-field="hpi.si.active"><label class="pos" for="si-active-yes">present</label>
+            </div>
+            <input type="text" placeholder="details" data-field="hpi.si.activeNote">
+          </div>
+        </li>
+        <li>
+          <em>Method:</em> "Naisip niyo na kung paano?"
+          <div>
+            <div class="toggle-group">
+              <input type="radio" name="si-method" id="si-method-na" value="" data-field="hpi.si.method" checked><label class="na" for="si-method-na">—</label>
+              <input type="radio" name="si-method" id="si-method-no" value="no" data-field="hpi.si.method"><label class="neg" for="si-method-no">denied</label>
+              <input type="radio" name="si-method" id="si-method-yes" value="yes" data-field="hpi.si.method"><label class="pos" for="si-method-yes">present</label>
+            </div>
+          </div>
+        </li>
+        <li>
+          <em>Intent:</em> "May balak po ba kayong gawin?"
+          <div>
+            <div class="toggle-group">
+              <input type="radio" name="si-intent" id="si-intent-na" value="" data-field="hpi.si.intent" checked><label class="na" for="si-intent-na">—</label>
+              <input type="radio" name="si-intent" id="si-intent-no" value="no" data-field="hpi.si.intent"><label class="neg" for="si-intent-no">denied</label>
+              <input type="radio" name="si-intent" id="si-intent-yes" value="yes" data-field="hpi.si.intent"><label class="pos" for="si-intent-yes">present</label>
+            </div>
+          </div>
+        </li>
+        <li>
+          <em>Plan:</em> "May plano na po ba — kailan, saan, paano?"
+          <div>
+            <div class="toggle-group">
+              <input type="radio" name="si-plan" id="si-plan-na" value="" data-field="hpi.si.plan" checked><label class="na" for="si-plan-na">—</label>
+              <input type="radio" name="si-plan" id="si-plan-no" value="no" data-field="hpi.si.plan"><label class="neg" for="si-plan-no">denied</label>
+              <input type="radio" name="si-plan" id="si-plan-yes" value="yes" data-field="hpi.si.plan"><label class="pos" for="si-plan-yes">present</label>
+            </div>
+            <input type="text" placeholder="plan details" data-field="hpi.si.planNote">
+          </div>
+        </li>
+        <li>
+          <em>Past attempts:</em> "May previous attempt na po ba?"
+          <div>
+            <div class="toggle-group">
+              <input type="radio" name="si-past" id="si-past-na" value="" data-field="hpi.si.past" checked><label class="na" for="si-past-na">—</label>
+              <input type="radio" name="si-past" id="si-past-no" value="no" data-field="hpi.si.past"><label class="neg" for="si-past-no">denied</label>
+              <input type="radio" name="si-past" id="si-past-yes" value="yes" data-field="hpi.si.past"><label class="pos" for="si-past-yes">present</label>
+            </div>
+            <input type="text" placeholder="when, how, outcome, hospitalized?" data-field="hpi.si.pastNote">
+          </div>
+        </li>
+      </ol>
+      <div id="siWarning" class="si-warning">
+        <strong>⚠ Active SI detected.</strong> Ensure safety planning is done before patient leaves. Consider involving family/emergency contact.
+      </div>
+    </div>
+
+    <hr class="soft">
+
+    <label>HPI Paragraph (synthesize from working notes above)</label>
+    <div class="help">Template: ___ PTC, after [trigger], patient began experiencing [core sx]. Patient would report [associated sx]. Episodes lasted [duration], leading to [functional impact]. Initially coped by [coping]. In the interim, [persistence]. ___ PTC, [recent events] leading to consult.</div>
+    <textarea class="paragraph" data-field="hpi.paragraph" placeholder="Compose the full HPI paragraph here…"></textarea>
+  </div>
+</section>
+
+<!-- §5 PAST PSYCH HX -->
+<section class="sx">
+  <h3><span class="num">§5</span> Past Psychiatric History <span class="badge">prior / separate episodes</span></h3>
+  <div class="body">
+    <p class="help" style="margin-bottom:8px">Skip what was already covered in HPI. This is for separate / prior episodes only. Mark each as denied or present; positives become "(+) …", negatives are auto-grouped as "Denies …" in the final note.</p>
+
+    <div class="ros-row">
+      <div class="ros-label"><strong>Depressive sx</strong><small>Enduring depressed mood, anhedonia</small></div>
+      <div>
+        <div class="toggle-group">
+          <input type="radio" name="ros-dep" id="ros-dep-na" value="" data-field="ros.dep.state" checked><label class="na" for="ros-dep-na">—</label>
+          <input type="radio" name="ros-dep" id="ros-dep-no" value="no" data-field="ros.dep.state"><label class="neg" for="ros-dep-no">denied</label>
+          <input type="radio" name="ros-dep" id="ros-dep-yes" value="yes" data-field="ros.dep.state"><label class="pos" for="ros-dep-yes">present</label>
+        </div>
+        <input type="text" class="ros-input" placeholder="if present: when, duration, severity" data-field="ros.dep.note">
+      </div>
+    </div>
+
+    <div class="ros-row">
+      <div class="ros-label"><strong>Anxiety sx</strong><small>Anxiety difficult to control</small></div>
+      <div>
+        <div class="toggle-group">
+          <input type="radio" name="ros-anx" id="ros-anx-na" value="" data-field="ros.anx.state" checked><label class="na" for="ros-anx-na">—</label>
+          <input type="radio" name="ros-anx" id="ros-anx-no" value="no" data-field="ros.anx.state"><label class="neg" for="ros-anx-no">denied</label>
+          <input type="radio" name="ros-anx" id="ros-anx-yes" value="yes" data-field="ros.anx.state"><label class="pos" for="ros-anx-yes">present</label>
+        </div>
+        <input type="text" class="ros-input" placeholder="if present: when, duration" data-field="ros.anx.note">
+      </div>
+    </div>
+
+    <div class="ros-row">
+      <div class="ros-label"><strong>Manic / Hypomanic</strong><small>Elevated or irritable mood, 4d–1wk</small></div>
+      <div>
+        <div class="toggle-group">
+          <input type="radio" name="ros-mania" id="ros-mania-na" value="" data-field="ros.mania.state" checked><label class="na" for="ros-mania-na">—</label>
+          <input type="radio" name="ros-mania" id="ros-mania-no" value="no" data-field="ros.mania.state"><label class="neg" for="ros-mania-no">denied</label>
+          <input type="radio" name="ros-mania" id="ros-mania-yes" value="yes" data-field="ros.mania.state"><label class="pos" for="ros-mania-yes">present</label>
+        </div>
+        <input type="text" class="ros-input" placeholder="if present: when, duration, sx" data-field="ros.mania.note">
+      </div>
+    </div>
+
+    <div class="ros-row">
+      <div class="ros-label"><strong>Psychotic sx</strong><small>Hallucinations, delusions</small></div>
+      <div>
+        <div class="toggle-group">
+          <input type="radio" name="ros-psy" id="ros-psy-na" value="" data-field="ros.psy.state" checked><label class="na" for="ros-psy-na">—</label>
+          <input type="radio" name="ros-psy" id="ros-psy-no" value="no" data-field="ros.psy.state"><label class="neg" for="ros-psy-no">denied</label>
+          <input type="radio" name="ros-psy" id="ros-psy-yes" value="yes" data-field="ros.psy.state"><label class="pos" for="ros-psy-yes">present</label>
+        </div>
+        <input type="text" class="ros-input" placeholder="if present: type, content" data-field="ros.psy.note">
+      </div>
+    </div>
+
+    <div class="ros-row">
+      <div class="ros-label"><strong>Trauma sx</strong><small>Experienced or witnessed</small></div>
+      <div>
+        <div class="toggle-group">
+          <input type="radio" name="ros-tr" id="ros-tr-na" value="" data-field="ros.tr.state" checked><label class="na" for="ros-tr-na">—</label>
+          <input type="radio" name="ros-tr" id="ros-tr-no" value="no" data-field="ros.tr.state"><label class="neg" for="ros-tr-no">denied</label>
+          <input type="radio" name="ros-tr" id="ros-tr-yes" value="yes" data-field="ros.tr.state"><label class="pos" for="ros-tr-yes">present</label>
+        </div>
+        <input type="text" class="ros-input" placeholder="if present: type, when" data-field="ros.tr.note">
+      </div>
+    </div>
+
+    <div class="ros-row">
+      <div class="ros-label"><strong>Previous dx / consults / meds</strong></div>
+      <div>
+        <div class="toggle-group">
+          <input type="radio" name="ros-prev" id="ros-prev-na" value="" data-field="ros.prev.state" checked><label class="na" for="ros-prev-na">—</label>
+          <input type="radio" name="ros-prev" id="ros-prev-no" value="no" data-field="ros.prev.state"><label class="neg" for="ros-prev-no">denied</label>
+          <input type="radio" name="ros-prev" id="ros-prev-yes" value="yes" data-field="ros.prev.state"><label class="pos" for="ros-prev-yes">present</label>
+        </div>
+        <input type="text" class="ros-input" placeholder="dx, meds, reason for D/C" data-field="ros.prev.note">
+      </div>
+    </div>
+
+    <div class="ros-row">
+      <div class="ros-label"><strong>Previous suicide attempts</strong></div>
+      <div>
+        <div class="toggle-group">
+          <input type="radio" name="ros-sa" id="ros-sa-na" value="" data-field="ros.sa.state" checked><label class="na" for="ros-sa-na">—</label>
+          <input type="radio" name="ros-sa" id="ros-sa-no" value="no" data-field="ros.sa.state"><label class="neg" for="ros-sa-no">denied</label>
+          <input type="radio" name="ros-sa" id="ros-sa-yes" value="yes" data-field="ros.sa.state"><label class="pos" for="ros-sa-yes">present</label>
+        </div>
+        <input type="text" class="ros-input" placeholder="when, how, outcome, hospitalized?" data-field="ros.sa.note">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §6 PMH -->
+<section class="sx">
+  <h3><span class="num">§6</span> Past Medical History</h3>
+  <div class="body">
+    <div class="ask">"May mga sakit po ba kayo — DM, HTN, <strong>asthma, thyroid</strong>, puso? Naospital? Naopera? Allergy sa pagkain o gamot?"</div>
+    <label>Comorbidities</label>
+    <input type="text" data-field="pmh.comorbid" placeholder="e.g., HTN, T2DM, asthma — or 'denies'">
+    <div class="row cols-2">
+      <div><label>Previous hospitalizations</label><input type="text" data-field="pmh.hosp" placeholder="year, reason"></div>
+      <div><label>Previous surgeries</label><input type="text" data-field="pmh.surg"></div>
+    </div>
+    <label>Allergies (food / medications)</label>
+    <input type="text" data-field="pmh.allergy" placeholder="or NKA">
+  </div>
+</section>
+
+<!-- §7 FMH -->
+<section class="sx">
+  <h3><span class="num">§7</span> Family Medical History</h3>
+  <div class="body">
+    <div class="ask">"Sa pamilya niyo po — may HTN, DM, sakit sa puso, kanino? May depression, schizophrenia, bipolar? Sinubukang magpakamatay?"</div>
+    <label>Medical (with relations)</label>
+    <input type="text" data-field="fmh.medical" placeholder="e.g., HTN — mother; T2DM — paternal grandfather">
+    <label>Psychiatric (dx, relation)</label>
+    <input type="text" data-field="fmh.psych">
+    <label>Family suicide attempts</label>
+    <input type="text" data-field="fmh.suicide">
+  </div>
+</section>
+
+<!-- §8 OB-GYN -->
+<section class="sx">
+  <h3><span class="num">§8</span> OB-GYN History <span class="badge">if applicable</span></h3>
+  <div class="body">
+    <div class="ob-toggle">
+      <label class="inline" style="margin:0"><input type="checkbox" data-field="ob.na"> Not applicable (skip in final note)</label>
+    </div>
+    <div class="row cols-2">
+      <div><label>LMP</label><input type="text" data-field="ob.lmp"></div>
+      <div><label>OB Score</label><input type="text" data-field="ob.score" placeholder="G__P__ (__-__-__-__)"></div>
+    </div>
+    <label>MIDAS</label>
+    <input type="text" data-field="ob.midas" placeholder="Menarche __; Interval __; Duration __; Amount __; Symptoms __">
+    <label>Premenstrual mood changes</label>
+    <input type="text" data-field="ob.pms" placeholder="(+/−) details">
+  </div>
+</section>
+
+<!-- §9 SUBSTANCE -->
+<section class="sx">
+  <h3><span class="num">§9</span> Substance Use History</h3>
+  <div class="body">
+    <label>Alcohol</label>
+    <input type="text" data-field="sub.alcohol" placeholder="frequency, amount, last intake, intoxication? — or 'denies'">
+    <label>Smoking</label>
+    <input type="text" data-field="sub.smoking" placeholder="sticks/day × years; pack-years — or 'denies'">
+    <label>Illicit drugs</label>
+    <input type="text" data-field="sub.illicit" placeholder="substance, route, frequency, last use — or 'denies'">
+  </div>
+</section>
+
+<!-- §10 ANAMNESIS -->
+<section class="sx">
+  <h3><span class="num">§10</span> Anamnesis</h3>
+  <div class="body">
+    <div class="ask">
+      <strong>Ask:</strong>
+      <ul>
+        <li>"Pang-ilang anak po kayo sa magkakapatid?"</li>
+        <li>"Normal delivery o CS? Komplikasyon? Delays sa paglaki?"</li>
+        <li>"Sino ang nag-alaga sa inyo nu'ng bata pa? Relasyon sa pamilya?"</li>
+        <li>"Anong klaseng bata? Mabully ba kayo, naabuso (pisikal, verbal, sexual)?"</li>
+        <li>"Kumusta ang eskwela? SOGIE? Previous romantic relationships?"</li>
+        <li>"Sino kasama sa bahay? Sino takbuhan? Hobbies? Religion?"</li>
+      </ul>
+    </div>
+
+    <div class="row cols-2">
+      <div><label>Birth order</label><input type="text" data-field="anam.order" placeholder="e.g., eldest of 3, only child"></div>
+      <div><label>Delivery</label>
+        <select data-field="anam.delivery">
+          <option value="">—</option>
+          <option>normal spontaneous vaginal delivery (SVD)</option>
+          <option>caesarean section (CS)</option>
+        </select>
+      </div>
+    </div>
+    <div class="row cols-2">
+      <div><label>Fetomaternal complications</label><input type="text" data-field="anam.complications" placeholder="or 'no'"></div>
+      <div><label>Developmental delays</label><input type="text" data-field="anam.delays" placeholder="or 'no'"></div>
+    </div>
+    <label>Primary caregiver during formative years</label>
+    <input type="text" data-field="anam.caregiver">
+    <label>Family description (relationship to parents/siblings)</label>
+    <textarea data-field="anam.family"></textarea>
+    <label>Childhood temperament</label>
+    <input type="text" data-field="anam.temperament">
+    <label>Bullying / abuse / neglect</label>
+    <input type="text" data-field="anam.abuse" placeholder="(+/−) physical, verbal, sexual, neglect details">
+    <label>Scholastic performance</label>
+    <select data-field="anam.scholastic">
+      <option value="">—</option>
+      <option>poor</option><option>average</option><option>above-average</option>
+    </select>
+    <div class="row cols-2">
+      <div><label>SOGIE</label><input type="text" data-field="anam.sogie" placeholder="e.g., heterosexual male attracted to women"></div>
+      <div><label>Previous relationships</label><input type="text" data-field="anam.relationships" placeholder="number, quality"></div>
+    </div>
+    <label>Current living arrangement</label>
+    <input type="text" data-field="anam.living" placeholder="who, where">
+    <label>Primary social supports</label>
+    <input type="text" data-field="anam.supports">
+    <label>Coping mechanisms</label>
+    <input type="text" data-field="anam.coping">
+    <label>Hobbies</label>
+    <input type="text" data-field="anam.hobbies">
+    <label>Religion (practicing or nominal)</label>
+    <input type="text" data-field="anam.religion" placeholder="e.g., Roman Catholic, does not consider self particularly religious">
+
+    <hr class="soft">
+
+    <label>Anamnesis Paragraph (synthesize from above)</label>
+    <textarea class="paragraph" data-field="anam.paragraph" placeholder="Compose the anamnesis paragraph here, mirroring the PGH template structure…"></textarea>
+  </div>
+</section>
+
+<!-- §11 SYMPTOM CHECKLISTS -->
+<section class="sx">
+  <h3><span class="num">§11</span> Symptom Checklists <span class="badge">feeds into HPI / Past Psych</span></h3>
+  <div class="body">
+    <p class="help">Use whichever applies to the core symptom. Findings feed into the HPI paragraph or Past Psych Hx — not output as a separate section.</p>
+    <div class="checklist-tabs">
+      <button class="checklist-tab active" onclick="switchTab(event,'mdd')">SIGECAPS · MDD</button>
+      <button class="checklist-tab" onclick="switchTab(event,'mania')">DIGFAST · Mania</button>
+      <button class="checklist-tab" onclick="switchTab(event,'gad')">I CANT REST · GAD</button>
+      <button class="checklist-tab" onclick="switchTab(event,'ptsd')">Trauma+IANA · PTSD</button>
+      <button class="checklist-tab" onclick="switchTab(event,'scz')">SCZ Spectrum</button>
+    </div>
+
+    <!-- SIGECAPS -->
+    <div class="checklist-pane active" id="pane-mdd">
+      <div class="core-criterion"><strong>CORE:</strong> "Kalungkutan / kawalan ng hilig sa mga dating gusto — halos buong araw, halos araw-araw, mahigit dalawang linggo?" — ≥5/9, ≥2 wks.</div>
+      <textarea data-field="cl.mdd.notes" placeholder="Findings (any details — feeds into HPI)"></textarea>
+      <div class="checkboxes" style="margin-top:8px">
+        <label><input type="checkbox" data-field="cl.mdd.core">Core: depressed mood / anhedonia</label>
+        <label><input type="checkbox" data-field="cl.mdd.s">Sleep disturbance</label>
+        <label><input type="checkbox" data-field="cl.mdd.i">Interest loss</label>
+        <label><input type="checkbox" data-field="cl.mdd.g">Guilt</label>
+        <label><input type="checkbox" data-field="cl.mdd.e">Energy ↓</label>
+        <label><input type="checkbox" data-field="cl.mdd.c">Concentration ↓</label>
+        <label><input type="checkbox" data-field="cl.mdd.a">Appetite Δ</label>
+        <label><input type="checkbox" data-field="cl.mdd.p">Psychomotor agi/ret</label>
+        <label><input type="checkbox" data-field="cl.mdd.si">Suicidality</label>
+        <label><input type="checkbox" data-field="cl.mdd.psy">Psychotic features</label>
+      </div>
+    </div>
+
+    <!-- DIGFAST -->
+    <div class="checklist-pane" id="pane-mania">
+      <div class="core-criterion"><strong>CORE:</strong> "Sobrang saya o irita halos buong araw, halos araw-araw, umabot ng 4 araw / 1 linggo, hindi karaniwan sayo? May sobrang taas na energy? Kahit mag-isa sa bahay?" — Need 3 sx if euphoric, 4 if irritable only.</div>
+      <textarea data-field="cl.mania.notes" placeholder="Findings (duration, severity, functional impact)"></textarea>
+      <div class="checkboxes" style="margin-top:8px">
+        <label><input type="checkbox" data-field="cl.mania.core">Core: elevated/irritable + ↑energy</label>
+        <label><input type="checkbox" data-field="cl.mania.d">Distractibility</label>
+        <label><input type="checkbox" data-field="cl.mania.i">Impulsivity</label>
+        <label><input type="checkbox" data-field="cl.mania.g">Grandiosity</label>
+        <label><input type="checkbox" data-field="cl.mania.f">Flight of ideas</label>
+        <label><input type="checkbox" data-field="cl.mania.a">Activity ↑</label>
+        <label><input type="checkbox" data-field="cl.mania.s">Sleep ↓ need</label>
+        <label><input type="checkbox" data-field="cl.mania.t">Talkativeness</label>
+        <label><input type="checkbox" data-field="cl.mania.psy">Psychotic features</label>
+      </div>
+    </div>
+
+    <!-- I CANT REST -->
+    <div class="checklist-pane" id="pane-gad">
+      <div class="core-criterion"><strong>CORE:</strong> "Matinding pag-aalala na mahirap kontrolin, umabot ng 6 buwan?" — ≥3 sx, ≥6 mo.</div>
+      <textarea data-field="cl.gad.notes" placeholder="Findings"></textarea>
+      <div class="checkboxes" style="margin-top:8px">
+        <label><input type="checkbox" data-field="cl.gad.core">Excessive worry, hard to control</label>
+        <label><input type="checkbox" data-field="cl.gad.i">Irritability</label>
+        <label><input type="checkbox" data-field="cl.gad.c">Concentration ↓</label>
+        <label><input type="checkbox" data-field="cl.gad.t">Tension (somatic)</label>
+        <label><input type="checkbox" data-field="cl.gad.r">Restlessness</label>
+        <label><input type="checkbox" data-field="cl.gad.e">Energy ↓ / fatigue</label>
+        <label><input type="checkbox" data-field="cl.gad.s">Sleep disturbance</label>
+        <label><input type="checkbox" data-field="cl.gad.time">≥6 mo duration</label>
+      </div>
+    </div>
+
+    <!-- PTSD -->
+    <div class="checklist-pane" id="pane-ptsd">
+      <div class="core-criterion"><strong>TRAUMA:</strong> "Naranasan o nasaksihan na matinding pananakit, banta sa buhay, o sexual abuse?" — All 4 clusters, ≥1 mo.</div>
+      <label>Trauma event(s)</label>
+      <input type="text" data-field="cl.ptsd.event" placeholder="type, when">
+      <textarea data-field="cl.ptsd.notes" placeholder="Cluster findings"></textarea>
+      <div class="checkboxes" style="margin-top:8px">
+        <label><input type="checkbox" data-field="cl.ptsd.intrusion">Intrusion (≥1)</label>
+        <label><input type="checkbox" data-field="cl.ptsd.avoid">Avoidance (≥1)</label>
+        <label><input type="checkbox" data-field="cl.ptsd.negcog">Neg cog/mood (≥2)</label>
+        <label><input type="checkbox" data-field="cl.ptsd.arousal">Arousal (≥2)</label>
+        <label><input type="checkbox" data-field="cl.ptsd.duration">≥1 mo duration</label>
+      </div>
+    </div>
+
+    <!-- SCZ -->
+    <div class="checklist-pane" id="pane-scz">
+      <div class="core-criterion"><strong>CORE:</strong> ≥1 of hallucinations, delusions, disorganized speech.</div>
+      <textarea data-field="cl.scz.notes" placeholder="Hallucination details (modality, content, ego-dystonic vs syntonic), delusion type/content"></textarea>
+      <div class="checkboxes" style="margin-top:8px">
+        <label><input type="checkbox" data-field="cl.scz.hall">Hallucinations</label>
+        <label><input type="checkbox" data-field="cl.scz.del">Delusions</label>
+        <label><input type="checkbox" data-field="cl.scz.dspeech">Disorganized speech</label>
+        <label><input type="checkbox" data-field="cl.scz.dbehav">Disorganized behavior</label>
+        <label><input type="checkbox" data-field="cl.scz.neg">Negative sx (5 A's)</label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §12 MSE -->
+<section class="sx">
+  <h3><span class="num">§12</span> Mental Status Examination</h3>
+  <div class="body">
+    <p class="help">Pick from dropdowns — assembled into a standard MSE paragraph in the final note.</p>
+
+    <div class="mse-line">
+      <label>Sex / Build</label>
+      <div class="mse-inline">
+        <select data-field="mse.sex"><option value="">—</option><option>male</option><option>female</option></select>
+        <select data-field="mse.stature"><option value="">stature</option><option>small</option><option>average</option><option>tall</option></select>
+        <select data-field="mse.build"><option value="">build</option><option>slim</option><option>average</option><option>large</option></select>
+      </div>
+    </div>
+    <div class="mse-line">
+      <label>Grooming / Dress</label>
+      <div class="mse-inline">
+        <select data-field="mse.kempt"><option value="">grooming</option><option>poorly</option><option>fairly</option><option>well</option></select>
+        <select data-field="mse.dress"><option value="">dress</option><option>appropriately</option><option>inappropriately</option></select>
+      </div>
+    </div>
+    <div class="mse-line">
+      <label>Behavior</label>
+      <div class="mse-inline">
+        <select data-field="mse.behavior"><option value="">—</option><option>calm</option><option>distressed</option><option>agitated</option></select>
+        <select data-field="mse.coop"><option value="">—</option><option>cooperative</option><option>uncooperative</option></select>
+        <select data-field="mse.eye"><option value="">eye contact</option><option>poor</option><option>fair</option><option>good</option></select>
+      </div>
+    </div>
+    <div class="mse-line">
+      <label>Psychomotor</label>
+      <div class="mse-inline">
+        <select data-field="mse.pm"><option value="">—</option><option>no psychomotor abnormalities</option><option>psychomotor agitation</option><option>psychomotor retardation</option></select>
+      </div>
+    </div>
+    <div class="mse-line">
+      <label>Speech</label>
+      <div class="mse-inline">
+        <select data-field="mse.speechProd"><option value="">productivity</option><option>hypoproductive</option><option>normoproductive</option><option>hyperproductive</option></select>
+        <select data-field="mse.speechRate"><option value="">rate</option><option>slow</option><option>normal</option><option>fast</option></select>
+        <select data-field="mse.speechVol"><option value="">volume</option><option>low</option><option>normal</option><option>loud</option></select>
+        <select data-field="mse.speechTone"><option value="">tone</option><option>soft</option><option>normal</option><option>pointed</option></select>
+      </div>
+    </div>
+    <div class="mse-line">
+      <label>Mood</label>
+      <div class="mse-inline">
+        <select data-field="mse.mood"><option value="">—</option><option>euthymic</option><option>depressed</option><option>anxious</option><option>irritable</option><option>labile</option><option>elevated</option></select>
+      </div>
+    </div>
+    <div class="mse-line">
+      <label>Affect</label>
+      <div class="mse-inline">
+        <select data-field="mse.affectCong"><option value="">congruency</option><option>mood-congruent</option><option>mood-incongruent</option></select>
+        <select data-field="mse.affectRange"><option value="">range</option><option>full</option><option>restricted</option><option>blunted</option><option>flat</option></select>
+      </div>
+    </div>
+    <div class="mse-line">
+      <label>Thought Process</label>
+      <div class="mse-inline">
+        <select data-field="mse.tp"><option value="">—</option><option>goal-directed</option><option>circumstantial</option><option>tangential</option></select>
+      </div>
+    </div>
+    <div class="mse-line">
+      <label>Process abnormalities</label>
+      <div class="checkboxes">
+        <label><input type="checkbox" data-field="mse.tpBlocking">thought blocking</label>
+        <label><input type="checkbox" data-field="mse.tpFOI">flight of ideas</label>
+        <label><input type="checkbox" data-field="mse.tpPerseveration">perseveration</label>
+      </div>
+    </div>
+    <div class="mse-line">
+      <label>Suicidal Ideation</label>
+      <div class="mse-inline">
+        <select data-field="mse.siType"><option value="">—</option><option>none</option><option>passive</option><option>active</option></select>
+      </div>
+    </div>
+    <div class="mse-line">
+      <label>Homicidal Ideation</label>
+      <div class="mse-inline">
+        <select data-field="mse.hi"><option value="">—</option><option>denied</option><option>present</option></select>
+      </div>
+    </div>
+    <div class="mse-line">
+      <label>Delusions</label>
+      <div class="checkboxes">
+        <label><input type="checkbox" data-field="mse.delNone">none</label>
+        <label><input type="checkbox" data-field="mse.delParanoid">paranoid</label>
+        <label><input type="checkbox" data-field="mse.delGrand">grandiose</label>
+        <label><input type="checkbox" data-field="mse.delEroto">erotomanic</label>
+        <label><input type="checkbox" data-field="mse.delJealous">jealous</label>
+        <label><input type="checkbox" data-field="mse.delSomatic">somatic</label>
+        <label><input type="checkbox" data-field="mse.delControl">control</label>
+        <label><input type="checkbox" data-field="mse.delInsertion">thought insertion/withdrawal</label>
+      </div>
+    </div>
+    <div class="mse-line">
+      <label>Perceptual Disturbances</label>
+      <div class="checkboxes">
+        <label><input type="checkbox" data-field="mse.percNone">none</label>
+        <label><input type="checkbox" data-field="mse.percAud">auditory</label>
+        <label><input type="checkbox" data-field="mse.percVis">visual</label>
+        <label><input type="checkbox" data-field="mse.percTact">tactile</label>
+        <label><input type="checkbox" data-field="mse.percOlf">olfactory</label>
+      </div>
+    </div>
+    <div class="mse-line">
+      <label>Insight</label>
+      <div class="mse-inline">
+        <select data-field="mse.insight"><option value="">—</option><option>poor</option><option>fair</option><option>good</option></select>
+      </div>
+    </div>
+
+    <details>
+      <summary>+ NCD assessment (orientation, memory, cognition)</summary>
+      <div style="margin-top:8px">
+        <label class="inline"><input type="checkbox" data-field="mse.ncdInclude"> Include NCD assessment in final note</label>
+        <div class="row cols-2" style="margin-top:8px">
+          <div><label>Orientation to</label>
+            <div class="checkboxes">
+              <label><input type="checkbox" data-field="mse.orPerson">person</label>
+              <label><input type="checkbox" data-field="mse.orPlace">place</label>
+              <label><input type="checkbox" data-field="mse.orTime">time</label>
+            </div>
+          </div>
+          <div><label>Concentration</label>
+            <select data-field="mse.concentration"><option value="">—</option><option>poor</option><option>fair</option><option>good</option></select>
+          </div>
+          <div><label>Memory</label>
+            <select data-field="mse.memory"><option value="">—</option><option>intact</option><option>poor</option></select>
+          </div>
+          <div><label>Fund of knowledge</label>
+            <select data-field="mse.fund"><option value="">—</option><option>poor</option><option>fair</option><option>good</option></select>
+          </div>
+          <div><label>Abstract thinking</label>
+            <select data-field="mse.abstract"><option value="">—</option><option>poor</option><option>fair</option><option>good</option></select>
+          </div>
+          <div><label>Judgment</label>
+            <select data-field="mse.judgment"><option value="">—</option><option>poor</option><option>fair</option><option>good</option></select>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <hr class="soft">
+
+    <h4 style="margin:10px 0 6px;font-family:var(--font-display);font-size:14px;font-weight:600">Scales</h4>
+    <div class="row cols-4">
+      <div><label>PHQ-9 (/27)</label><input type="text" data-field="scale.phq9" placeholder="score · severity"></div>
+      <div><label>GAD-7 (/21)</label><input type="text" data-field="scale.gad7" placeholder="score · severity"></div>
+      <div><label>BSDS</label><input type="text" data-field="scale.bsds" placeholder="score · probability"></div>
+      <div><label>MDQ</label><input type="text" data-field="scale.mdq" placeholder="pos/neg"></div>
+    </div>
+    <div class="row cols-2">
+      <div><label>PCL-C</label><input type="text" data-field="scale.pclc"></div>
+      <div><label>Other</label><input type="text" data-field="scale.other"></div>
+    </div>
+  </div>
+</section>
+
+<!-- §13 ASSESSMENT -->
+<section class="sx">
+  <h3><span class="num">§13</span> Assessment</h3>
+  <div class="body">
+    <div class="ask">DSM-5 diagnosis with appropriate specifiers. Include medical comorbidities if relevant.</div>
+    <label>Primary Diagnosis</label>
+    <input type="text" data-field="dx.primary" placeholder="e.g., Major Depressive Disorder, recurrent episode, moderate">
+    <label>Secondary / Comorbid Diagnoses</label>
+    <textarea data-field="dx.secondary" placeholder="One per line"></textarea>
+  </div>
+</section>
+
+<!-- §14 PLAN -->
+<section class="sx">
+  <h3><span class="num">§14</span> Plan</h3>
+  <div class="body">
+    <h4 style="margin:0 0 6px;font-family:var(--font-display);font-size:14px;font-weight:600">Diagnostics</h4>
+    <div class="diag-list">
+      <label><input type="checkbox" data-field="plan.cbc">CBC</label>
+      <label><input type="checkbox" data-field="plan.bunCrea">BUN, Crea</label>
+      <label><input type="checkbox" data-field="plan.lft">AST, ALT</label>
+      <label><input type="checkbox" data-field="plan.fbs">FBS</label>
+      <label><input type="checkbox" data-field="plan.tsh">TSH, FT4</label>
+      <label><input type="checkbox" data-field="plan.ecg">12L ECG</label>
+    </div>
+    <label>Other diagnostics</label>
+    <input type="text" data-field="plan.otherDx" placeholder="e.g., urine drug screen, neuroimaging">
+
+    <hr class="soft">
+
+    <h4 style="margin:6px 0;font-family:var(--font-display);font-size:14px;font-weight:600">Therapeutics — Pharmacologic</h4>
+    <label>Start / Continue meds</label>
+    <textarea data-field="plan.meds" placeholder="e.g., Escitalopram 10 mg/tab, ½ tab OD × 4 days, then 1 tab OD thereafter"></textarea>
+
+    <h4 style="margin:10px 0 6px;font-family:var(--font-display);font-size:14px;font-weight:600">Non-Pharmacologic</h4>
+    <div class="diag-list">
+      <label><input type="checkbox" data-field="plan.safety" checked>Safety planning done</label>
+      <label><input type="checkbox" data-field="plan.psychoed" checked>Psychoeducation done</label>
+      <label><input type="checkbox" data-field="plan.supportive" checked>Supportive techniques rendered</label>
+    </div>
+
+    <hr class="soft">
+
+    <div class="row cols-3">
+      <div><label>Follow-up with Dr.</label><input type="text" data-field="plan.fuDoctor"></div>
+      <div><label>F/U Date</label><input type="text" data-field="plan.fuDate" placeholder="e.g., February 24, 2026"></div>
+      <div><label>F/U Time</label><input type="text" data-field="plan.fuTime" placeholder="e.g., 3 PM"></div>
+    </div>
+
+    <div class="row cols-2">
+      <div><label>RIC</label><input type="text" data-field="plan.ric"></div>
+      <div><label>Intern</label><input type="text" data-field="plan.intern"></div>
+    </div>
+  </div>
+</section>
+
+<footer style="max-width:920px;margin:32px auto 0;padding:20px;border-top:1px solid var(--border);color:var(--muted);font-size:11.5px;line-height:1.6">
+  <p style="margin:0 0 6px"><strong style="color:var(--ink)">Privacy:</strong> All data stays in your browser's local storage. Nothing is sent to any server. Clearing browser data wipes the form.</p>
+  <p style="margin:0 0 6px"><strong style="color:var(--ink)">Disclaimer:</strong> A working tool to speed up note-taking — not a substitute for clinical judgment, supervision, or the formal interview process.</p>
+  <p style="margin:0;opacity:0.7">Built for UP-PGH Batch Masikhay 2026.</p>
+</footer>
+
+</main>
+
+<!-- Preview Modal -->
+<div class="modal-overlay" id="modal" onclick="if(event.target.id==='modal')closeModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Final Note Preview</h3>
+      <div class="actions">
+        <button class="btn" onclick="closeModal()">Close</button>
+        <button class="btn btn-primary" onclick="copyFromPreview()">Copy to Clipboard</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <pre id="previewContent"></pre>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const STORAGE_KEY = 'pgh_psych_screening_v1';
+let saveTimer = null;
+
+// --- State management ---
+function getValue(field) {
+  const el = document.querySelector(`[data-field="${field}"]`);
+  if (!el) return '';
+  if (el.type === 'checkbox') return el.checked;
+  if (el.type === 'radio') {
+    const checked = document.querySelector(`[data-field="${field}"]:checked`);
+    return checked ? checked.value : '';
+  }
+  return el.value || '';
+}
+
+function setValue(field, val) {
+  const els = document.querySelectorAll(`[data-field="${field}"]`);
+  els.forEach(el => {
+    if (el.type === 'checkbox') el.checked = !!val;
+    else if (el.type === 'radio') el.checked = (el.value === val);
+    else el.value = val || '';
+  });
+}
+
+function collectData() {
+  const data = {};
+  document.querySelectorAll('[data-field]').forEach(el => {
+    const f = el.getAttribute('data-field');
+    if (el.type === 'checkbox') data[f] = el.checked;
+    else if (el.type === 'radio') { if (el.checked) data[f] = el.value; }
+    else data[f] = el.value;
+  });
+  return data;
+}
+
+function loadData() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    Object.keys(data).forEach(f => setValue(f, data[f]));
+  } catch (e) { console.error('Load failed', e); }
+}
+
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(collectData()));
+    const s = document.getElementById('saveStatus');
+    s.textContent = '✓ saved ' + new Date().toLocaleTimeString();
+    s.classList.add('saved');
+  } catch (e) {
+    document.getElementById('saveStatus').textContent = '✗ save error';
+  }
+}
+
+function debouncedSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(save, 400);
+}
+
+// Attach listeners
+document.querySelectorAll('[data-field]').forEach(el => {
+  el.addEventListener('input', debouncedSave);
+  el.addEventListener('change', () => { debouncedSave(); updateSIWarning(); });
+});
+
+function updateSIWarning() {
+  const active = getValue('hpi.si.active') === 'yes' || getValue('hpi.si.intent') === 'yes' || getValue('hpi.si.plan') === 'yes';
+  document.getElementById('siWarning').classList.toggle('active', active);
+}
+
+function switchTab(e, id) {
+  document.querySelectorAll('.checklist-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.checklist-pane').forEach(p => p.classList.remove('active'));
+  e.target.classList.add('active');
+  document.getElementById('pane-' + id).classList.add('active');
+}
+
+function clearAll() {
+  if (!confirm('Clear all fields for a new patient? This cannot be undone.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.querySelectorAll('[data-field]').forEach(el => {
+    if (el.type === 'checkbox') el.checked = ['plan.safety','plan.psychoed','plan.supportive'].includes(el.getAttribute('data-field'));
+    else if (el.type === 'radio') el.checked = (el.value === '');
+    else el.value = '';
+  });
+  updateSIWarning();
+  showToast('Cleared. Ready for next patient.');
+}
+
+// --- Final Note Assembly ---
+function v(f) { return getValue(f) || ''; }
+function chk(f) { return getValue(f) === true; }
+
+function assembleNote() {
+  const d = collectData();
+  const lines = [];
+
+  // === S> ===
+  lines.push('S>');
+  lines.push('Identifying Data:');
+  lines.push(`Case Number: ${v('id.caseNumber')}`);
+  lines.push(`Name: ${v('id.name')}`);
+  lines.push(`Age: ${v('id.age')}`);
+  lines.push(`Handedness: ${v('id.handedness')}`);
+  lines.push(`Civil Status: ${v('id.civil')}`);
+  lines.push(`Religion: ${v('id.religion')}`);
+  lines.push(`Highest Educational Attainment: ${v('id.education')}`);
+  lines.push(`Employment: ${v('id.employment')}`);
+  lines.push(`Current residence: ${v('id.currentResidence')}`);
+  lines.push(`Permanent residence: ${v('id.permanentResidence')}`);
+  lines.push(`Contact no.: ${v('id.contact')}`);
+  lines.push(`Emergency Contact No.: ${v('id.emergency')}`);
+  lines.push('');
+
+  lines.push('CHIEF COMPLAINT');
+  if (v('cc.patient')) lines.push(`"${v('cc.patient')}" — patient, ${v('cc.patientReliability') || '___'} reliability`);
+  if (v('cc.informant')) lines.push(`"${v('cc.informant')}" — informant${v('cc.informantRelation') ? ' (' + v('cc.informantRelation') + ')' : ''}, ${v('cc.informantReliability') || '___'} reliability`);
+  lines.push('');
+
+  if (v('premorbid')) {
+    lines.push('PREMORBID PERSONALITY');
+    const pm = v('premorbid').trim();
+    lines.push(pm.toLowerCase().startsWith('patient') ? pm : `Patient described self as ${pm}.`);
+    lines.push('');
+  }
+
+  lines.push('HISTORY OF PRESENT ILLNESS');
+  if (v('hpi.paragraph')) {
+    lines.push(v('hpi.paragraph'));
+  } else {
+    // Fallback: build from working notes if paragraph not composed
+    const parts = [];
+    if (v('hpi.onset') || v('hpi.trigger')) parts.push(`${v('hpi.onset') || '___ PTC'}, after ${v('hpi.trigger') || '___'}, patient began experiencing ${v('hpi.core') || '___'}.`);
+    if (v('hpi.associated')) parts.push(`Patient would report ${v('hpi.associated')}.`);
+    if (v('hpi.functioning')) parts.push(`Effects on functioning: ${v('hpi.functioning')}.`);
+    if (v('hpi.coping')) parts.push(`Patient coped by ${v('hpi.coping')}.`);
+    if (v('hpi.interim')) parts.push(`In the interim, ${v('hpi.interim')}.`);
+    if (v('hpi.recent')) parts.push(`Recently, ${v('hpi.recent')}.`);
+    if (parts.length) lines.push(parts.join(' '));
+    else lines.push('[HPI not yet composed]');
+  }
+  // SI summary
+  const siParts = [];
+  if (v('hpi.si.passive') === 'yes') siParts.push('passive SI' + (v('hpi.si.passiveNote') ? ' (' + v('hpi.si.passiveNote') + ')' : ''));
+  if (v('hpi.si.active') === 'yes') siParts.push('active SI' + (v('hpi.si.activeNote') ? ' (' + v('hpi.si.activeNote') + ')' : ''));
+  if (v('hpi.si.method') === 'yes') siParts.push('with identified method');
+  if (v('hpi.si.intent') === 'yes') siParts.push('with intent');
+  if (v('hpi.si.plan') === 'yes') siParts.push('with plan' + (v('hpi.si.planNote') ? ' (' + v('hpi.si.planNote') + ')' : ''));
+  if (v('hpi.si.past') === 'yes') siParts.push('with previous attempt' + (v('hpi.si.pastNote') ? ' (' + v('hpi.si.pastNote') + ')' : ''));
+  const allSiDenied = ['passive','active','method','intent','plan','past'].every(k => v('hpi.si.' + k) === 'no');
+  if (siParts.length) lines.push('Currently with ' + siParts.join(', ') + '.');
+  else if (allSiDenied) lines.push('Currently denies suicidal ideation.');
+  lines.push('');
+
+  // ROS
+  lines.push('PAST PSYCHIATRIC HISTORY');
+  const rosMap = [
+    {key:'dep', pos:'Enduring depressed mood, anhedonia', neg:'depressive'},
+    {key:'anx', pos:'Anxiety difficult to control', neg:'anxiety'},
+    {key:'mania', pos:'Enduring elevated or irritable mood', neg:'manic'},
+    {key:'psy', pos:'Hallucinations, delusions', neg:'psychotic'},
+    {key:'tr', pos:'Trauma experienced or witnessed', neg:'trauma'},
+    {key:'prev', pos:'Previous diagnosis / consults / medications', neg:''},
+    {key:'sa', pos:'Previous suicide attempts', neg:''},
+  ];
+  const negatives = [];
+  rosMap.forEach(r => {
+    const state = v(`ros.${r.key}.state`);
+    const note = v(`ros.${r.key}.note`);
+    if (state === 'yes') {
+      lines.push(`(+) ${r.pos}${note ? ' — ' + note : ''}`);
+    } else if (state === 'no' && r.neg) {
+      negatives.push(r.neg);
+    }
+  });
+  if (negatives.length) lines.push(`Denies ${negatives.join(', ')} symptoms.`);
+  lines.push('');
+
+  lines.push('PAST MEDICAL HISTORY');
+  if (v('pmh.comorbid')) lines.push(v('pmh.comorbid'));
+  if (v('pmh.hosp')) lines.push(`Previous hospitalizations: ${v('pmh.hosp')}`);
+  if (v('pmh.surg')) lines.push(`Previous surgeries: ${v('pmh.surg')}`);
+  lines.push(`Allergies: ${v('pmh.allergy') || 'NKA'}`);
+  lines.push('');
+
+  lines.push('FAMILY MEDICAL HISTORY');
+  if (v('fmh.medical')) lines.push(`(+) ${v('fmh.medical')}`);
+  if (v('fmh.psych')) lines.push(`Psychiatric: ${v('fmh.psych')}`);
+  if (v('fmh.suicide')) lines.push(`Family suicide attempts: ${v('fmh.suicide')}`);
+  lines.push('');
+
+  if (!chk('ob.na') && (v('ob.lmp') || v('ob.score') || v('ob.midas'))) {
+    lines.push('OB-GYN HISTORY');
+    if (v('ob.lmp')) lines.push(`LMP: ${v('ob.lmp')}`);
+    if (v('ob.score')) lines.push(`OB score: ${v('ob.score')}`);
+    if (v('ob.midas')) lines.push(`MIDAS: ${v('ob.midas')}`);
+    if (v('ob.pms')) lines.push(`Premenstrual mood: ${v('ob.pms')}`);
+    lines.push('');
+  }
+
+  lines.push('SUBSTANCE USE HISTORY');
+  lines.push(`Alcohol: ${v('sub.alcohol') || 'denies'}`);
+  lines.push(`Smoking: ${v('sub.smoking') || 'denies'}`);
+  lines.push(`Illicit drugs: ${v('sub.illicit') || 'denies'}`);
+  lines.push('');
+
+  lines.push('ANAMNESIS');
+  if (v('anam.paragraph')) {
+    lines.push(v('anam.paragraph'));
+  } else {
+    // Auto-build from fields
+    let p = '';
+    if (v('anam.order')) p += `The patient is the ${v('anam.order')}, `;
+    if (v('anam.delivery')) p += `born via ${v('anam.delivery')}, `;
+    p += `with ${v('anam.complications') || 'no'} fetomaternal complications and ${v('anam.delays') || 'no'} developmental delays noted. `;
+    if (v('anam.caregiver')) p += `The primary caregiver during the formative years was the ${v('anam.caregiver')}. `;
+    if (v('anam.family')) p += `${v('anam.family')} `;
+    if (v('anam.abuse')) p += `With ${v('anam.abuse')}. `;
+    if (v('anam.scholastic')) p += `The patient had ${v('anam.scholastic')} scholastic performance. `;
+    if (v('anam.sogie')) p += `Patient identifies as ${v('anam.sogie')}`;
+    if (v('anam.relationships')) p += `, with ${v('anam.relationships')} previous romantic relationship/s`;
+    if (v('anam.sogie') || v('anam.relationships')) p += '. ';
+    if (v('anam.living')) p += `Currently lives ${v('anam.living')}. `;
+    if (v('anam.supports')) p += `Identifies ${v('anam.supports')} as primary social support/s. `;
+    if (v('anam.coping')) p += `When faced with stressful situations, copes by ${v('anam.coping')}. `;
+    if (v('anam.hobbies')) p += `Hobbies include ${v('anam.hobbies')}. `;
+    if (v('anam.religion')) p += `Identifies as ${v('anam.religion')}.`;
+    lines.push(p || '[Anamnesis not yet composed]');
+  }
+  lines.push('');
+
+  // === O> MSE ===
+  lines.push('O>');
+  lines.push('MSE');
+  const mse = [];
+  const sex = v('mse.sex'), stat = v('mse.stature'), bld = v('mse.build');
+  if (sex || stat || bld) mse.push(`Adult Filipino ${sex || '___'} of ${stat || '___'} stature and ${bld || '___'} build.`);
+  const kempt = v('mse.kempt'), dress = v('mse.dress');
+  if (kempt || dress) mse.push(`${cap(kempt) || '___'}-kempt, ${dress || '___'} dressed.`);
+  const beh = v('mse.behavior'), coop = v('mse.coop'), eye = v('mse.eye');
+  if (beh || coop || eye) {
+    const ec = eye ? `${eye} eye contact` : '___ eye contact';
+    mse.push(`${cap(beh) || '___'}, ${coop || '___'}, and with ${ec}.`);
+  }
+  if (v('mse.pm')) mse.push(`${cap(v('mse.pm'))}.`);
+  const sp = [v('mse.speechProd'), v('mse.speechRate') ? v('mse.speechRate') + ' rate' : '', v('mse.speechVol') ? v('mse.speechVol') + ' volume' : '', v('mse.speechTone') ? v('mse.speechTone') + ' tone' : ''].filter(Boolean);
+  if (sp.length) mse.push(`${cap(sp[0])} speech${sp.length > 1 ? ' with ' + sp.slice(1).join(', ') : ''}.`);
+  const mood = v('mse.mood'), aCong = v('mse.affectCong'), aRng = v('mse.affectRange');
+  if (mood || aCong || aRng) {
+    let s = `${cap(mood) || '___'} mood`;
+    if (aCong || aRng) s += ` with ${aCong || '___'} ${aRng || '___'} affect`;
+    mse.push(s + '.');
+  }
+  if (v('mse.tp')) mse.push(`${cap(v('mse.tp'))} responses.`);
+  const tpAbs = [];
+  if (chk('mse.tpBlocking')) tpAbs.push('thought blocking');
+  if (chk('mse.tpFOI')) tpAbs.push('flight of ideas');
+  if (chk('mse.tpPerseveration')) tpAbs.push('perseverations');
+  if (tpAbs.length) mse.push(`(+) ${tpAbs.join(', ')}.`);
+  else if (v('mse.tp')) mse.push('(−) thought blocking, flight of ideas, perseverations.');
+  // SI
+  const siType = v('mse.siType');
+  if (siType === 'none') mse.push('(−) Current suicidal, self-harm ideations.');
+  else if (siType) mse.push(`(+) Current ${siType} suicidal ideations.`);
+  if (v('mse.hi') === 'present') mse.push('(+) Current homicidal ideations.');
+  else if (v('mse.hi') === 'denied') mse.push('(−) Current homicidal ideations.');
+  // Delusions
+  const delTypes = [];
+  if (chk('mse.delParanoid')) delTypes.push('paranoid');
+  if (chk('mse.delGrand')) delTypes.push('grandiose');
+  if (chk('mse.delEroto')) delTypes.push('erotomanic');
+  if (chk('mse.delJealous')) delTypes.push('jealous');
+  if (chk('mse.delSomatic')) delTypes.push('somatic');
+  if (chk('mse.delControl')) delTypes.push('control');
+  if (chk('mse.delInsertion')) delTypes.push('thought insertion/withdrawal');
+  if (delTypes.length) mse.push(`(+) delusions (${delTypes.join(', ')}).`);
+  else if (chk('mse.delNone')) mse.push('(−) delusions.');
+  // Perceptual
+  const percTypes = [];
+  if (chk('mse.percAud')) percTypes.push('auditory');
+  if (chk('mse.percVis')) percTypes.push('visual');
+  if (chk('mse.percTact')) percTypes.push('tactile');
+  if (chk('mse.percOlf')) percTypes.push('olfactory');
+  if (percTypes.length) mse.push(`(+) perceptual disturbances (${percTypes.join(', ')}).`);
+  else if (chk('mse.percNone')) mse.push('(−) perceptual disturbances.');
+  if (v('mse.insight')) mse.push(`${cap(v('mse.insight'))} insight.`);
+  lines.push(mse.join(' '));
+
+  if (chk('mse.ncdInclude')) {
+    const ncd = [];
+    const orParts = [];
+    if (chk('mse.orPerson')) orParts.push('person');
+    if (chk('mse.orPlace')) orParts.push('place');
+    if (chk('mse.orTime')) orParts.push('time');
+    if (orParts.length) ncd.push(`Oriented to ${orParts.join(', ')}.`);
+    if (v('mse.concentration')) ncd.push(`${cap(v('mse.concentration'))} concentration.`);
+    if (v('mse.memory')) ncd.push(`${cap(v('mse.memory'))} immediate, recent, and remote memory.`);
+    if (v('mse.fund')) ncd.push(`${cap(v('mse.fund'))} fund of knowledge.`);
+    if (v('mse.abstract')) ncd.push(`${cap(v('mse.abstract'))} abstract thinking.`);
+    if (v('mse.judgment')) ncd.push(`${cap(v('mse.judgment'))} judgment.`);
+    if (ncd.length) lines.push(ncd.join(' '));
+  }
+  lines.push('');
+
+  // Scales
+  const scales = [];
+  if (v('scale.phq9')) scales.push(`PHQ-9: ${v('scale.phq9')}`);
+  if (v('scale.gad7')) scales.push(`GAD-7: ${v('scale.gad7')}`);
+  if (v('scale.bsds')) scales.push(`BSDS: ${v('scale.bsds')}`);
+  if (v('scale.mdq')) scales.push(`MDQ: ${v('scale.mdq')}`);
+  if (v('scale.pclc')) scales.push(`PCL-C: ${v('scale.pclc')}`);
+  if (v('scale.other')) scales.push(v('scale.other'));
+  if (scales.length) {
+    lines.push(scales.join('\n'));
+    lines.push('');
+  }
+
+  // === A> ===
+  lines.push('A>');
+  if (v('dx.primary')) lines.push(v('dx.primary'));
+  if (v('dx.secondary')) {
+    v('dx.secondary').split('\n').filter(s => s.trim()).forEach(s => lines.push(s.trim()));
+  }
+  lines.push('');
+
+  // === P> ===
+  lines.push('P>');
+  lines.push('DIAGNOSTICS');
+  const dx = [];
+  if (chk('plan.cbc')) dx.push('CBC');
+  if (chk('plan.bunCrea')) dx.push('BUN, Crea');
+  if (chk('plan.lft')) dx.push('AST, ALT');
+  if (chk('plan.fbs')) dx.push('FBS');
+  if (chk('plan.tsh')) dx.push('TSH, FT4');
+  if (chk('plan.ecg')) dx.push('12L ECG');
+  dx.forEach(d => lines.push(`[ ] ${d}`));
+  if (v('plan.otherDx')) lines.push(`[ ] ${v('plan.otherDx')}`);
+  lines.push('');
+
+  lines.push('THERAPEUTICS');
+  if (v('plan.meds')) {
+    lines.push('START');
+    lines.push(v('plan.meds'));
+  }
+  lines.push('');
+
+  lines.push('NON-PHARMACOLOGIC');
+  if (chk('plan.safety')) lines.push('Safety planning done');
+  if (chk('plan.psychoed')) lines.push('Psychoeducation done');
+  if (chk('plan.supportive')) lines.push('Supportive techniques rendered');
+  lines.push('');
+
+  if (v('plan.fuDoctor') || v('plan.fuDate')) {
+    let fu = 'Follow up';
+    if (v('plan.fuDoctor')) fu += ` with Dr. ${v('plan.fuDoctor')}`;
+    if (v('plan.fuDate')) fu += ` on ${v('plan.fuDate')}`;
+    if (v('plan.fuTime')) fu += `, ${v('plan.fuTime')}`;
+    fu += '.';
+    lines.push(fu);
+    lines.push('');
+  }
+
+  if (v('plan.ric') || v('plan.intern')) {
+    if (v('plan.ric')) lines.push(`RIC: ${v('plan.ric')}`);
+    if (v('plan.intern')) lines.push(`Intern: ${v('plan.intern')}`);
+  } else {
+    lines.push('RIC / Intern');
+  }
+
+  return lines.join('\n');
+}
+
+function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+
+function previewNote() {
+  document.getElementById('previewContent').textContent = assembleNote();
+  document.getElementById('modal').classList.add('active');
+}
+function closeModal() { document.getElementById('modal').classList.remove('active'); }
+
+async function copyNote() {
+  const note = assembleNote();
+  try {
+    await navigator.clipboard.writeText(note);
+    showToast('✓ Final note copied to clipboard');
+  } catch (e) {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = note;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('✓ Copied (fallback method)');
+  }
+}
+
+async function copyFromPreview() {
+  try {
+    await navigator.clipboard.writeText(document.getElementById('previewContent').textContent);
+    showToast('✓ Copied to clipboard');
+    closeModal();
+  } catch (e) { showToast('Copy failed — select and copy manually'); }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// Init
+loadData();
+updateSIWarning();
+// Default examiner from memory? Leave blank — user fills.
+</script>
+
+</body>
+</html>
