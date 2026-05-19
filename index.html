@@ -7,7 +7,7 @@
 <meta name="description" content="Filipino/Taglish psychiatric screening interview form for UP-PGH Batch Masikhay 2026. Type during interview, copy assembled SOAP note in PGH template format.">
 <meta name="theme-color" content="#1a1816">
 <meta property="og:title" content="Psych Screening Form · PGH 2026">
-<meta property="og:description" content="Filipino/Taglish interview form with auto-assembled SOAP note. Built for PGH clinterns.">
+<meta property="og:description" content="Filipino/Taglish interview form with auto-assembled SOAP note. Built for Batch Masikhay 2026.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1816'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' font-weight='600' text-anchor='middle' fill='%23f6f2ea'%3E%CF%88%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -213,10 +213,6 @@
   .row.cols-2 { grid-template-columns: 1fr 1fr; }
   .row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
   .row.cols-4 { grid-template-columns: repeat(4, 1fr); }
-  @media (max-width: 700px) {
-    .row.cols-2, .row.cols-3, .row.cols-4 { grid-template-columns: 1fr; }
-    .meta-row { grid-template-columns: 1fr; }
-  }
   .ros-row {
     display: grid;
     grid-template-columns: 200px 1fr;
@@ -266,6 +262,24 @@
   .toggle-group .neg:has(input:checked) { background: var(--muted); color: white; }
   .toggle-group .na:has(input:checked) { background: var(--surface-2); color: var(--muted); }
   .ros-input { width: 100%; font-size: 12.5px; padding: 5px 8px; }
+  .field {
+    margin-top: 12px;
+  }
+  .field:first-child { margin-top: 0; }
+  .field-prompt {
+    font-style: italic;
+    color: var(--accent);
+    font-size: 12px;
+    line-height: 1.4;
+    margin: 2px 0 4px;
+    display: block;
+  }
+  .field-prompt::before {
+    content: "👤 ";
+    font-style: normal;
+    opacity: 0.7;
+    margin-right: 2px;
+  }
   .help {
     font-size: 11.5px;
     color: var(--muted);
@@ -296,6 +310,49 @@
   .checklist-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
   .checklist-pane { display: none; }
   .checklist-pane.active { display: block; }
+  .sx-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 10px;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: #fffefa;
+    margin-bottom: 6px;
+    align-items: start;
+  }
+  .sx-row > input[type="checkbox"] {
+    margin: 4px 0 0 0;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+  .sx-row .sx-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .sx-row .sx-name {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .sx-row .sx-prompt {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--accent);
+    line-height: 1.4;
+  }
+  .sx-row .sx-prompt::before {
+    content: "👤 ";
+    font-style: normal;
+    opacity: 0.7;
+    margin-right: 2px;
+  }
+  .sx-row .sx-note {
+    font-size: 11.5px;
+    color: var(--muted);
+  }
   .core-criterion {
     background: var(--accent-soft);
     border-left: 3px solid var(--accent);
@@ -463,6 +520,33 @@
     padding: 2px 0;
   }
   details summary:hover { color: var(--accent); }
+
+  /* === MOBILE BREAKPOINT === */
+  @media (max-width: 700px) {
+    body { font-size: 13.5px; }
+    main { padding: 16px 12px 40px; }
+    .topbar { padding: 8px 12px; gap: 8px; }
+    .topbar h1 { font-size: 14px; flex-basis: 100%; }
+    .topbar h1 .sub { display: block; margin-left: 0; margin-top: 2px; }
+    .btn { font-size: 11px; padding: 6px 10px; }
+    .save-status { font-size: 10px; flex-basis: 100%; order: 99; margin-top: 2px; }
+    section.sx > h3 { font-size: 13px; padding: 8px 12px; }
+    section.sx .body { padding: 12px 12px 14px; }
+    .row.cols-2, .row.cols-3, .row.cols-4 { grid-template-columns: 1fr; }
+    .meta-row { grid-template-columns: 1fr; }
+    .ros-row { grid-template-columns: 1fr; gap: 6px; padding: 10px 0; }
+    .ros-label { padding-top: 0; }
+    .mse-line { grid-template-columns: 1fr; gap: 4px; margin-bottom: 10px; }
+    .mse-line > label { margin: 0 0 2px 0; }
+    .mse-inline select, .mse-inline input[type="text"] { width: 100%; flex: none; }
+    .checklist-tabs { gap: 2px; }
+    .checklist-tab { padding: 7px 10px; font-size: 10.5px; }
+    .sx-row { grid-template-columns: auto 1fr; padding: 10px 8px; }
+    .sx-row .sx-prompt { font-size: 11.5px; }
+    .modal { max-height: 95vh; }
+    .modal-body pre { font-size: 10.5px; padding: 12px; }
+    .field-prompt { font-size: 11.5px; }
+  }
 </style>
 </head>
 <body>
@@ -501,45 +585,74 @@
 <section class="sx">
   <h3><span class="num">§1</span> Identifying Data</h3>
   <div class="body">
-    <div class="ask">
-      <em>Run through quickly — don't make it feel like a tax form.</em>
-      <ul>
-        <li>"Pakisabi po ulit ang buong pangalan niyo?"</li>
-        <li>"Ilang taon po kayo?"</li>
-        <li>"Kanang kamay po ba o kaliwa ang gamit niyo?"</li>
-        <li>"Civil status po? Single, may partner, kasal, separated?"</li>
-        <li>"Anong relihiyon po?"</li>
-        <li>"Hanggang saan po kayo nag-aral?"</li>
-        <li>"Trabaho po ngayon — ano ang ginagawa niyo araw-araw?"</li>
-        <li>"Saan po kayo nakatira ngayon? Saan po 'yung permanent address?"</li>
-        <li>"Pwede po bang humingi ng contact number niyo?"</li>
-        <li>"Sino po 'yung pwede naming tawagan sa emergency — ideally family member po sana — at ano pong number?"</li>
-      </ul>
-    </div>
+    <p class="help" style="margin-bottom:10px"><em>Run through quickly — don't make it feel like a tax form.</em></p>
     <div class="row cols-2">
-      <div><label>Case Number</label><input type="text" data-field="id.caseNumber"></div>
-      <div><label>Name</label><input type="text" data-field="id.name"></div>
-      <div><label>Age</label><input type="text" data-field="id.age"></div>
-      <div><label>Handedness</label>
+      <div>
+        <label>Case Number</label>
+        <input type="text" data-field="id.caseNumber">
+      </div>
+      <div>
+        <label>Name</label>
+        <span class="field-prompt">"Pakisabi po ulit ang buong pangalan niyo?"</span>
+        <input type="text" data-field="id.name">
+      </div>
+      <div>
+        <label>Age</label>
+        <span class="field-prompt">"Ilang taon po kayo?"</span>
+        <input type="text" data-field="id.age">
+      </div>
+      <div>
+        <label>Handedness</label>
+        <span class="field-prompt">"Kanang kamay po ba o kaliwa ang gamit niyo?"</span>
         <select data-field="id.handedness">
           <option value="">—</option>
           <option>right</option><option>left</option><option>ambidextrous</option>
         </select>
       </div>
-      <div><label>Civil Status</label>
+      <div>
+        <label>Civil Status</label>
+        <span class="field-prompt">"Civil status po? Single, may partner, kasal, separated?"</span>
         <select data-field="id.civil">
           <option value="">—</option>
           <option>single</option><option>in a relationship</option><option>married</option>
           <option>separated</option><option>widowed</option>
         </select>
       </div>
-      <div><label>Religion</label><input type="text" data-field="id.religion"></div>
-      <div><label>Highest Educational Attainment</label><input type="text" data-field="id.education"></div>
-      <div><label>Employment</label><input type="text" data-field="id.employment"></div>
-      <div><label>Current residence</label><input type="text" data-field="id.currentResidence"></div>
-      <div><label>Permanent residence</label><input type="text" data-field="id.permanentResidence"></div>
-      <div><label>Contact No.</label><input type="text" data-field="id.contact"></div>
-      <div><label>Emergency Contact (family)</label><input type="text" data-field="id.emergency" placeholder="Name (relationship) — number"></div>
+      <div>
+        <label>Religion</label>
+        <span class="field-prompt">"Anong relihiyon po?"</span>
+        <input type="text" data-field="id.religion">
+      </div>
+      <div>
+        <label>Highest Educational Attainment</label>
+        <span class="field-prompt">"Hanggang saan po kayo nag-aral?"</span>
+        <input type="text" data-field="id.education">
+      </div>
+      <div>
+        <label>Employment</label>
+        <span class="field-prompt">"Trabaho po ngayon — ano ang ginagawa niyo araw-araw?"</span>
+        <input type="text" data-field="id.employment">
+      </div>
+      <div>
+        <label>Current residence</label>
+        <span class="field-prompt">"Saan po kayo nakatira ngayon?"</span>
+        <input type="text" data-field="id.currentResidence">
+      </div>
+      <div>
+        <label>Permanent residence</label>
+        <span class="field-prompt">"Saan po 'yung permanent address?"</span>
+        <input type="text" data-field="id.permanentResidence">
+      </div>
+      <div>
+        <label>Contact No.</label>
+        <span class="field-prompt">"Pwede po bang humingi ng contact number niyo?"</span>
+        <input type="text" data-field="id.contact">
+      </div>
+      <div>
+        <label>Emergency Contact (family)</label>
+        <span class="field-prompt">"Sino po 'yung pwede naming tawagan sa emergency — ideally family member po sana — at ano pong number?"</span>
+        <input type="text" data-field="id.emergency" placeholder="Name (relationship) — number">
+      </div>
     </div>
   </div>
 </section>
@@ -589,54 +702,55 @@
 <section class="sx">
   <h3><span class="num">§4</span> History of Present Illness</h3>
   <div class="body">
-    <div class="ask">
-      <strong>Anchor (kailan nag-umpisa):</strong>
-      <ul>
-        <li>"Kailan po ba kayo unang nakaramdam na may hindi tama o nababagabag kayo? Ano pong nangyari noon — may pinagdaanan po ba kayo, may nag-trigger?"</li>
-      </ul>
-      <em>Anchor in time PTC — e.g., "5 years PTC", "7 months PTC". Trigger in 2–3 sentences.</em>
-
-      <br><br><strong>Effect on functioning:</strong>
-      <ul>
-        <li>"Paano po naapektuhan nito 'yung araw-araw niyo? Sa trabaho/eskwela? Sa relasyon niyo sa pamilya, partner, mga kaibigan?"</li>
-      </ul>
-
-      <strong>Coping:</strong>
-      <ul>
-        <li>"Ano po ang ginagawa niyo para makayanan ito? May mga bagay po bang nakakatulong — o may mga bagay po ba kayong ginagawa kahit alam niyong hindi maganda?"</li>
-      </ul>
-      <em>Include even maladaptive coping — alcohol, isolation, etc.</em>
-
-      <br><br><strong>Interim:</strong>
-      <ul>
-        <li>"Mula nu'ng nag-umpisa ito hanggang ngayon — tuloy-tuloy po ba 'yung symptoms, o may mga panahong nawawala at bumabalik kayo sa dating sarili niyo?"</li>
-        <li>"May pagkakataon po ba na sinubukan niyong saktan ang sarili niyo o tapusin ang buhay niyo?"</li>
-      </ul>
-
-      <strong>Most recent — bakit ngayon nagpa-konsulta:</strong>
-      <ul>
-        <li>"Ano po 'yung nangyari kamakailan na nagdala sa inyo dito ngayon? Bakit po ngayon kayo nagpasyang magpa-konsulta?"</li>
-      </ul>
-    </div>
-
-    <p style="font-size:11.5px;color:var(--muted);margin:8px 0">Jot working notes below — synthesize into the HPI paragraph at the bottom of this section.</p>
+    <p class="help" style="margin-bottom:10px">Jot working notes — synthesize into the HPI paragraph at the bottom.</p>
 
     <div class="row cols-2">
-      <div><label>Onset (anchor in PTC)</label><input type="text" data-field="hpi.onset" placeholder="e.g., 5 years PTC"></div>
-      <div><label>Trigger / Precipitating event</label><input type="text" data-field="hpi.trigger"></div>
+      <div>
+        <label>Onset (anchor in PTC)</label>
+        <span class="field-prompt">"Kailan po ba kayo unang nakaramdam na may hindi tama o nababagabag kayo?"</span>
+        <input type="text" data-field="hpi.onset" placeholder="e.g., 5 years PTC">
+      </div>
+      <div>
+        <label>Trigger / Precipitating event</label>
+        <span class="field-prompt">"Ano pong nangyari noon — may pinagdaanan po ba kayo, may nag-trigger?"</span>
+        <input type="text" data-field="hpi.trigger">
+      </div>
     </div>
-    <label>Core symptom</label>
-    <input type="text" data-field="hpi.core" placeholder="e.g., depressed mood, auditory hallucinations">
-    <label>Associated symptoms (frequency, duration, severity)</label>
-    <textarea data-field="hpi.associated"></textarea>
-    <label>Effect on functioning (work/school/relationships)</label>
-    <textarea data-field="hpi.functioning"></textarea>
-    <label>Coping (incl. maladaptive)</label>
-    <textarea data-field="hpi.coping"></textarea>
-    <label>Interim (persistence, recurrence, return to baseline)</label>
-    <textarea data-field="hpi.interim"></textarea>
-    <label>Recent precipitant for today's consult</label>
-    <textarea data-field="hpi.recent"></textarea>
+
+    <div class="field">
+      <label>Core symptom</label>
+      <span class="field-prompt">Listen for dominant complaint — branch to checklist in §11.</span>
+      <input type="text" data-field="hpi.core" placeholder="e.g., depressed mood, auditory hallucinations">
+    </div>
+
+    <div class="field">
+      <label>Associated symptoms (frequency, duration, severity)</label>
+      <textarea data-field="hpi.associated"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Effect on functioning (work/school/relationships)</label>
+      <span class="field-prompt">"Paano po naapektuhan nito 'yung araw-araw niyo? Sa trabaho/eskwela? Sa relasyon niyo sa pamilya, partner, mga kaibigan?"</span>
+      <textarea data-field="hpi.functioning"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Coping (incl. maladaptive)</label>
+      <span class="field-prompt">"Ano po ang ginagawa niyo para makayanan ito? May mga bagay po bang nakakatulong — o may mga bagay po ba kayong ginagawa kahit alam niyong hindi maganda?"</span>
+      <textarea data-field="hpi.coping"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Interim (persistence, recurrence, return to baseline)</label>
+      <span class="field-prompt">"Mula nu'ng nag-umpisa ito hanggang ngayon — tuloy-tuloy po ba 'yung symptoms, o may mga panahong nawawala at bumabalik kayo sa dating sarili niyo? May pagkakataon po ba na sinubukan niyong saktan ang sarili niyo o tapusin ang buhay niyo?"</span>
+      <textarea data-field="hpi.interim"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Recent precipitant for today's consult</label>
+      <span class="field-prompt">"Ano po 'yung nangyari kamakailan na nagdala sa inyo dito ngayon? Bakit po ngayon kayo nagpasyang magpa-konsulta?"</span>
+      <textarea data-field="hpi.recent"></textarea>
+    </div>
 
     <hr class="soft">
 
@@ -844,21 +958,28 @@
 <section class="sx">
   <h3><span class="num">§6</span> Past Medical History</h3>
   <div class="body">
-    <div class="ask">
-      <ul>
-        <li>"May mga sakit po ba kayo — diabetes, high blood, <strong>asthma, thyroid problem</strong>, sakit sa puso?"</li>
-        <li>"Na-ospital na po ba kayo dati? Na-opera?"</li>
-        <li>"May allergy po ba kayo sa pagkain o gamot?"</li>
-      </ul>
+    <div class="field">
+      <label>Comorbidities</label>
+      <span class="field-prompt">"May mga sakit po ba kayo — diabetes, high blood, asthma, thyroid problem, sakit sa puso?"</span>
+      <input type="text" data-field="pmh.comorbid" placeholder="e.g., HTN, T2DM, asthma — or 'denies'">
     </div>
-    <label>Comorbidities</label>
-    <input type="text" data-field="pmh.comorbid" placeholder="e.g., HTN, T2DM, asthma — or 'denies'">
     <div class="row cols-2">
-      <div><label>Previous hospitalizations</label><input type="text" data-field="pmh.hosp" placeholder="year, reason"></div>
-      <div><label>Previous surgeries</label><input type="text" data-field="pmh.surg"></div>
+      <div>
+        <label>Previous hospitalizations</label>
+        <span class="field-prompt">"Na-ospital na po ba kayo dati?"</span>
+        <input type="text" data-field="pmh.hosp" placeholder="year, reason">
+      </div>
+      <div>
+        <label>Previous surgeries</label>
+        <span class="field-prompt">"Na-opera na po ba kayo?"</span>
+        <input type="text" data-field="pmh.surg">
+      </div>
     </div>
-    <label>Allergies (food / medications)</label>
-    <input type="text" data-field="pmh.allergy" placeholder="or NKA">
+    <div class="field">
+      <label>Allergies (food / medications)</label>
+      <span class="field-prompt">"May allergy po ba kayo sa pagkain o gamot?"</span>
+      <input type="text" data-field="pmh.allergy" placeholder="or NKA">
+    </div>
   </div>
 </section>
 
@@ -866,19 +987,21 @@
 <section class="sx">
   <h3><span class="num">§7</span> Family Medical History</h3>
   <div class="body">
-    <div class="ask">
-      <ul>
-        <li>"Sa pamilya niyo po — may mga sakit po ba kayong alam? Hypertension, diabetes, sakit sa puso, kanino — Nanay? Tatay? Lolo/Lola? Mga kapatid?"</li>
-        <li>"May sakit po ba sa isip na alam niyo sa pamilya — depression, schizophrenia, bipolar?"</li>
-        <li>"May sinubukang magpakamatay po ba sa pamilya?"</li>
-      </ul>
+    <div class="field">
+      <label>Medical (with relations)</label>
+      <span class="field-prompt">"Sa pamilya niyo po — may mga sakit po ba kayong alam? Hypertension, diabetes, sakit sa puso, kanino — Nanay? Tatay? Lolo/Lola? Mga kapatid?"</span>
+      <input type="text" data-field="fmh.medical" placeholder="e.g., HTN — mother; T2DM — paternal grandfather">
     </div>
-    <label>Medical (with relations)</label>
-    <input type="text" data-field="fmh.medical" placeholder="e.g., HTN — mother; T2DM — paternal grandfather">
-    <label>Psychiatric (dx, relation)</label>
-    <input type="text" data-field="fmh.psych">
-    <label>Family suicide attempts</label>
-    <input type="text" data-field="fmh.suicide">
+    <div class="field">
+      <label>Psychiatric (dx, relation)</label>
+      <span class="field-prompt">"May sakit po ba sa isip na alam niyo sa pamilya — depression, schizophrenia, bipolar?"</span>
+      <input type="text" data-field="fmh.psych">
+    </div>
+    <div class="field">
+      <label>Family suicide attempts</label>
+      <span class="field-prompt">"May sinubukang magpakamatay po ba sa pamilya?"</span>
+      <input type="text" data-field="fmh.suicide">
+    </div>
   </div>
 </section>
 
@@ -886,26 +1009,31 @@
 <section class="sx">
   <h3><span class="num">§8</span> OB-GYN History <span class="badge">if applicable</span></h3>
   <div class="body">
-    <div class="ask">
-      <em>If female:</em>
-      <ul>
-        <li>"Kailan po 'yung huling regla niyo?"</li>
-        <li>"OB score po — ilang beses na po kayo nabuntis, nakapanganak?"</li>
-        <li>"MIDAS — menarche, interval, duration, amount, symptoms?"</li>
-        <li><em>(Optional)</em> "Napapansin niyo po ba ang pagbabago ng mood bago kayo magregla?"</li>
-      </ul>
-    </div>
     <div class="ob-toggle">
       <label class="inline" style="margin:0"><input type="checkbox" data-field="ob.na"> Not applicable (skip in final note)</label>
     </div>
     <div class="row cols-2">
-      <div><label>LMP</label><input type="text" data-field="ob.lmp"></div>
-      <div><label>OB Score</label><input type="text" data-field="ob.score" placeholder="G__P__ (__-__-__-__)"></div>
+      <div>
+        <label>LMP</label>
+        <span class="field-prompt">"Kailan po 'yung huling regla niyo?"</span>
+        <input type="text" data-field="ob.lmp">
+      </div>
+      <div>
+        <label>OB Score</label>
+        <span class="field-prompt">"OB score po — ilang beses na po kayo nabuntis, nakapanganak?"</span>
+        <input type="text" data-field="ob.score" placeholder="G__P__ (__-__-__-__)">
+      </div>
     </div>
-    <label>MIDAS</label>
-    <input type="text" data-field="ob.midas" placeholder="Menarche __; Interval __; Duration __; Amount __; Symptoms __">
-    <label>Premenstrual mood changes</label>
-    <input type="text" data-field="ob.pms" placeholder="(+/−) details">
+    <div class="field">
+      <label>MIDAS</label>
+      <span class="field-prompt">"MIDAS — menarche, interval, duration, amount, symptoms?"</span>
+      <input type="text" data-field="ob.midas" placeholder="Menarche __; Interval __; Duration __; Amount __; Symptoms __">
+    </div>
+    <div class="field">
+      <label>Premenstrual mood changes <em style="font-weight:400;color:var(--muted);font-size:11px">(optional)</em></label>
+      <span class="field-prompt">"Napapansin niyo po ba ang pagbabago ng mood bago kayo magregla?"</span>
+      <input type="text" data-field="ob.pms" placeholder="(+/−) details">
+    </div>
   </div>
 </section>
 
@@ -913,19 +1041,21 @@
 <section class="sx">
   <h3><span class="num">§9</span> Substance Use History</h3>
   <div class="body">
-    <div class="ask">
-      <ul>
-        <li>"Umiinom po ba kayo ng alak? Gaano kadalas? Hanggang lasing po ba?"</li>
-        <li>"Naninigarilyo po ba kayo? Ilang stick kada araw, ilang taon na?"</li>
-        <li>"Nakagamit na po ba kayo ng ipinagbabawal na gamot — marijuana, shabu, iba pa?"</li>
-      </ul>
+    <div class="field">
+      <label>Alcohol</label>
+      <span class="field-prompt">"Umiinom po ba kayo ng alak? Gaano kadalas? Hanggang lasing po ba?"</span>
+      <input type="text" data-field="sub.alcohol" placeholder="frequency, amount, last intake, intoxication? — or 'denies'">
     </div>
-    <label>Alcohol</label>
-    <input type="text" data-field="sub.alcohol" placeholder="frequency, amount, last intake, intoxication? — or 'denies'">
-    <label>Smoking</label>
-    <input type="text" data-field="sub.smoking" placeholder="sticks/day × years; pack-years — or 'denies'">
-    <label>Illicit drugs</label>
-    <input type="text" data-field="sub.illicit" placeholder="substance, route, frequency, last use — or 'denies'">
+    <div class="field">
+      <label>Smoking</label>
+      <span class="field-prompt">"Naninigarilyo po ba kayo? Ilang stick kada araw, ilang taon na?"</span>
+      <input type="text" data-field="sub.smoking" placeholder="sticks/day × years; pack-years — or 'denies'">
+    </div>
+    <div class="field">
+      <label>Illicit drugs</label>
+      <span class="field-prompt">"Nakagamit na po ba kayo ng ipinagbabawal na gamot — marijuana, shabu, iba pa?"</span>
+      <input type="text" data-field="sub.illicit" placeholder="substance, route, frequency, last use — or 'denies'">
+    </div>
   </div>
 </section>
 
@@ -933,28 +1063,17 @@
 <section class="sx">
   <h3><span class="num">§10</span> Anamnesis</h3>
   <div class="body">
-    <div class="ask">
-      "Konting questions na lang po tungkol sa paglaki niyo, para mas maintindihan ko 'yung background niyo."
-      <ul>
-        <li>"Pang-ilang anak po kayo sa magkakapatid?"</li>
-        <li>"Normal delivery po ba o CS? May komplikasyon po ba sa pagbubuntis o panganganak ng nanay niyo sa inyo?"</li>
-        <li>"May delays po ba sa paglaki — sa pagsasalita, paglalakad, pag-aaral?"</li>
-        <li>"Sino po ang nag-alaga sa inyo nu'ng bata pa kayo — mga magulang, lola, iba?"</li>
-        <li>"Paano niyo po idi-describe 'yung relasyon niyo sa magulang at mga kapatid noon?"</li>
-        <li>"Anong klaseng bata po kayo — masunurin, makulit, mahiyain, magulo?"</li>
-        <li>"Naranasan niyo po bang mabully, o naabuso — pisikal, verbal, sexual — bilang bata?"</li>
-        <li>"Kumusta po 'yung eskwela — average, mataas, mababa ang grades?"</li>
-        <li>"Saan po kayo nakatira ngayon? Sino ang kasama niyo sa bahay?"</li>
-        <li>"Sino po ang takbuhan niyo kapag may problema?"</li>
-        <li>"Sa SOGIE — paano niyo po i-identify ang sarili niyo? Sino ang naa-attract sa inyo? Ilan po 'yung previous relationships?"</li>
-        <li>"Ano po 'yung hobbies niyo? Ano ang ginagawa niyo pag may problema?"</li>
-        <li>"Sa relihiyon — practicing po ba kayo, o nominal lang?"</li>
-      </ul>
-    </div>
+    <p class="help" style="margin-bottom:10px">"Konting questions na lang po tungkol sa paglaki niyo, para mas maintindihan ko 'yung background niyo."</p>
 
     <div class="row cols-2">
-      <div><label>Birth order</label><input type="text" data-field="anam.order" placeholder="e.g., eldest of 3, only child"></div>
-      <div><label>Delivery</label>
+      <div>
+        <label>Birth order</label>
+        <span class="field-prompt">"Pang-ilang anak po kayo sa magkakapatid?"</span>
+        <input type="text" data-field="anam.order" placeholder="e.g., eldest of 3, only child">
+      </div>
+      <div>
+        <label>Delivery</label>
+        <span class="field-prompt">"Normal delivery po ba o CS?"</span>
         <select data-field="anam.delivery">
           <option value="">—</option>
           <option>normal spontaneous vaginal delivery (SVD)</option>
@@ -963,36 +1082,93 @@
       </div>
     </div>
     <div class="row cols-2">
-      <div><label>Fetomaternal complications</label><input type="text" data-field="anam.complications" placeholder="or 'no'"></div>
-      <div><label>Developmental delays</label><input type="text" data-field="anam.delays" placeholder="or 'no'"></div>
+      <div>
+        <label>Fetomaternal complications</label>
+        <span class="field-prompt">"May komplikasyon po ba sa pagbubuntis o panganganak ng nanay niyo sa inyo?"</span>
+        <input type="text" data-field="anam.complications" placeholder="or 'no'">
+      </div>
+      <div>
+        <label>Developmental delays</label>
+        <span class="field-prompt">"May delays po ba sa paglaki — sa pagsasalita, paglalakad, pag-aaral?"</span>
+        <input type="text" data-field="anam.delays" placeholder="or 'no'">
+      </div>
     </div>
-    <label>Primary caregiver during formative years</label>
-    <input type="text" data-field="anam.caregiver">
-    <label>Family description (relationship to parents/siblings)</label>
-    <textarea data-field="anam.family"></textarea>
-    <label>Childhood temperament</label>
-    <input type="text" data-field="anam.temperament">
-    <label>Bullying / abuse / neglect</label>
-    <input type="text" data-field="anam.abuse" placeholder="(+/−) physical, verbal, sexual, neglect details">
-    <label>Scholastic performance</label>
-    <select data-field="anam.scholastic">
-      <option value="">—</option>
-      <option>poor</option><option>average</option><option>above-average</option>
-    </select>
+
+    <div class="field">
+      <label>Primary caregiver during formative years</label>
+      <span class="field-prompt">"Sino po ang nag-alaga sa inyo nu'ng bata pa kayo — mga magulang, lola, iba?"</span>
+      <input type="text" data-field="anam.caregiver">
+    </div>
+
+    <div class="field">
+      <label>Family description (relationship to parents/siblings)</label>
+      <span class="field-prompt">"Paano niyo po idi-describe 'yung relasyon niyo sa magulang at mga kapatid noon?"</span>
+      <textarea data-field="anam.family"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Childhood temperament</label>
+      <span class="field-prompt">"Anong klaseng bata po kayo — masunurin, makulit, mahiyain, magulo?"</span>
+      <input type="text" data-field="anam.temperament">
+    </div>
+
+    <div class="field">
+      <label>Bullying / abuse / neglect</label>
+      <span class="field-prompt">"Naranasan niyo po bang mabully, o naabuso — pisikal, verbal, sexual — bilang bata?"</span>
+      <input type="text" data-field="anam.abuse" placeholder="(+/−) physical, verbal, sexual, neglect details">
+    </div>
+
+    <div class="field">
+      <label>Scholastic performance</label>
+      <span class="field-prompt">"Kumusta po 'yung eskwela — average, mataas, mababa ang grades?"</span>
+      <select data-field="anam.scholastic">
+        <option value="">—</option>
+        <option>poor</option><option>average</option><option>above-average</option>
+      </select>
+    </div>
+
     <div class="row cols-2">
-      <div><label>SOGIE</label><input type="text" data-field="anam.sogie" placeholder="e.g., heterosexual male attracted to women"></div>
-      <div><label>Previous relationships</label><input type="text" data-field="anam.relationships" placeholder="number, quality"></div>
+      <div>
+        <label>SOGIE</label>
+        <span class="field-prompt">"Sa SOGIE — paano niyo po i-identify ang sarili niyo? Sino ang naa-attract sa inyo?"</span>
+        <input type="text" data-field="anam.sogie" placeholder="e.g., heterosexual male attracted to women">
+      </div>
+      <div>
+        <label>Previous relationships</label>
+        <span class="field-prompt">"Ilan po 'yung previous relationships?"</span>
+        <input type="text" data-field="anam.relationships" placeholder="number, quality">
+      </div>
     </div>
-    <label>Current living arrangement</label>
-    <input type="text" data-field="anam.living" placeholder="who, where">
-    <label>Primary social supports</label>
-    <input type="text" data-field="anam.supports">
-    <label>Coping mechanisms</label>
-    <input type="text" data-field="anam.coping">
-    <label>Hobbies</label>
-    <input type="text" data-field="anam.hobbies">
-    <label>Religion (practicing or nominal)</label>
-    <input type="text" data-field="anam.religion" placeholder="e.g., Roman Catholic, does not consider self particularly religious">
+
+    <div class="field">
+      <label>Current living arrangement</label>
+      <span class="field-prompt">"Saan po kayo nakatira ngayon? Sino ang kasama niyo sa bahay?"</span>
+      <input type="text" data-field="anam.living" placeholder="who, where">
+    </div>
+
+    <div class="field">
+      <label>Primary social supports</label>
+      <span class="field-prompt">"Sino po ang takbuhan niyo kapag may problema?"</span>
+      <input type="text" data-field="anam.supports">
+    </div>
+
+    <div class="field">
+      <label>Coping mechanisms</label>
+      <span class="field-prompt">"Ano ang ginagawa niyo pag may problema?"</span>
+      <input type="text" data-field="anam.coping">
+    </div>
+
+    <div class="field">
+      <label>Hobbies</label>
+      <span class="field-prompt">"Ano po 'yung hobbies niyo?"</span>
+      <input type="text" data-field="anam.hobbies">
+    </div>
+
+    <div class="field">
+      <label>Religion (practicing or nominal)</label>
+      <span class="field-prompt">"Sa relihiyon — practicing po ba kayo, o nominal lang?"</span>
+      <input type="text" data-field="anam.religion" placeholder="e.g., Roman Catholic, does not consider self particularly religious">
+    </div>
 
     <hr class="soft">
 
@@ -1016,136 +1192,344 @@
 
     <!-- SIGECAPS -->
     <div class="checklist-pane active" id="pane-mdd">
-      <div class="core-criterion"><strong>CORE:</strong> "Nakaranas ka na ba ng kalungkutan / kawalan ng hilig sa mga bagay na nagpapasaya naman sayo dati — halos buong araw, halos araw-araw, umabot ng mahigit dalawang linggo?" — ≥5/9, ≥2 wks, must include core.</div>
-      <div class="ask">
-        <ul>
-          <li><strong>Sleep:</strong> "Kumusta po 'yung tulog niyo nu'ng panahon na 'yon — sobrang dami, sobrang konti, o mahirap matulog/magising?"</li>
-          <li><strong>Guilt:</strong> "May nararamdaman po ba kayong labis na pagsisisi o pakiramdam na kasalanan niyo lahat?"</li>
-          <li><strong>Energy:</strong> "Madalas po ba kayong pagod kahit hindi naman gumagawa ng matrabaho?"</li>
-          <li><strong>Concentration:</strong> "Nahihirapan po ba kayong mag-focus o magdesisyon — kahit sa simpleng bagay?"</li>
-          <li><strong>Appetite:</strong> "Kumusta po 'yung gana sa pagkain — sobrang dami, sobrang konti? May pagbabago po ba sa timbang?"</li>
-          <li><strong>Psychomotor:</strong> "Napansin niyo po ba — o may nagsabi po ba — na mas mabagal kayong gumalaw o magsalita? O balisa kayo, hindi mapakali?"</li>
-          <li><strong>SI / thoughts of death:</strong> see §4 SI ladder above</li>
-        </ul>
-        <em>Also screen for psychotic features in severe depression.</em>
+      <div class="core-criterion"><strong>CORE — ≥5/9, ≥2 wks, must include core:</strong></div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mdd.core" id="cl-mdd-core">
+        <div class="sx-meta">
+          <label for="cl-mdd-core" class="sx-name">Core: Depressed mood / Anhedonia</label>
+          <span class="sx-prompt">"Nakaranas ka na ba ng kalungkutan / kawalan ng hilig sa mga bagay na nagpapasaya naman sayo dati — halos buong araw, halos araw-araw, umabot ng mahigit dalawang linggo?"</span>
+        </div>
       </div>
-      <textarea data-field="cl.mdd.notes" placeholder="Findings (any details — feeds into HPI)"></textarea>
-      <div class="checkboxes" style="margin-top:8px">
-        <label><input type="checkbox" data-field="cl.mdd.core">Core: depressed mood / anhedonia</label>
-        <label><input type="checkbox" data-field="cl.mdd.s">Sleep disturbance</label>
-        <label><input type="checkbox" data-field="cl.mdd.i">Interest loss</label>
-        <label><input type="checkbox" data-field="cl.mdd.g">Guilt</label>
-        <label><input type="checkbox" data-field="cl.mdd.e">Energy ↓</label>
-        <label><input type="checkbox" data-field="cl.mdd.c">Concentration ↓</label>
-        <label><input type="checkbox" data-field="cl.mdd.a">Appetite Δ</label>
-        <label><input type="checkbox" data-field="cl.mdd.p">Psychomotor agi/ret</label>
-        <label><input type="checkbox" data-field="cl.mdd.si">Suicidality</label>
-        <label><input type="checkbox" data-field="cl.mdd.psy">Psychotic features</label>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mdd.s" id="cl-mdd-s">
+        <div class="sx-meta">
+          <label for="cl-mdd-s" class="sx-name">Sleep disturbance</label>
+          <span class="sx-prompt">"Kumusta po 'yung tulog niyo nu'ng panahon na 'yon — sobrang dami, sobrang konti, o mahirap matulog/magising?"</span>
+        </div>
       </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mdd.i" id="cl-mdd-i">
+        <div class="sx-meta">
+          <label for="cl-mdd-i" class="sx-name">Interest loss</label>
+          <span class="sx-note">Already covered if anhedonia (core)</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mdd.g" id="cl-mdd-g">
+        <div class="sx-meta">
+          <label for="cl-mdd-g" class="sx-name">Guilt</label>
+          <span class="sx-prompt">"May nararamdaman po ba kayong labis na pagsisisi o pakiramdam na kasalanan niyo lahat?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mdd.e" id="cl-mdd-e">
+        <div class="sx-meta">
+          <label for="cl-mdd-e" class="sx-name">Energy ↓</label>
+          <span class="sx-prompt">"Madalas po ba kayong pagod kahit hindi naman gumagawa ng matrabaho?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mdd.c" id="cl-mdd-c">
+        <div class="sx-meta">
+          <label for="cl-mdd-c" class="sx-name">Concentration ↓</label>
+          <span class="sx-prompt">"Nahihirapan po ba kayong mag-focus o magdesisyon — kahit sa simpleng bagay?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mdd.a" id="cl-mdd-a">
+        <div class="sx-meta">
+          <label for="cl-mdd-a" class="sx-name">Appetite / weight change</label>
+          <span class="sx-prompt">"Kumusta po 'yung gana sa pagkain — sobrang dami, sobrang konti? May pagbabago po ba sa timbang?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mdd.p" id="cl-mdd-p">
+        <div class="sx-meta">
+          <label for="cl-mdd-p" class="sx-name">Psychomotor agitation / retardation</label>
+          <span class="sx-prompt">"Napansin niyo po ba — o may nagsabi po ba — na mas mabagal kayong gumalaw o magsalita? O balisa kayo, hindi mapakali?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mdd.si" id="cl-mdd-si">
+        <div class="sx-meta">
+          <label for="cl-mdd-si" class="sx-name">Suicidality</label>
+          <span class="sx-note">See SI ladder in §4 above</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mdd.psy" id="cl-mdd-psy">
+        <div class="sx-meta">
+          <label for="cl-mdd-psy" class="sx-name">Psychotic features</label>
+          <span class="sx-note">Screen in severe depression</span>
+        </div>
+      </div>
+
+      <textarea data-field="cl.mdd.notes" placeholder="Additional findings (feeds into HPI)" style="margin-top:8px"></textarea>
     </div>
 
     <!-- DIGFAST -->
     <div class="checklist-pane" id="pane-mania">
-      <div class="core-criterion"><strong>CORE:</strong> "Nakaranas ka na ba ng sobrang kasiyahan o irita na halos buong araw, halos araw-araw na umabot ng 4 na araw o 1 linggo, na parang hindi karaniwan para sayo? May kasama ba 'tong sobrang taas na energy? Nangyayari ba 'to kahit nasa bahay ka lang at mag-isa?" — Need 3 sx if euphoric, 4 if irritable only.</div>
-      <div class="ask">
-        <ul>
-          <li><strong>Distractibility:</strong> "Madali ka bang ma-distract, hindi matapos ang ginagawa?"</li>
-          <li><strong>Impulsivity / Indiscretion:</strong> "Nakagawa ka ba ng mga bagay na hindi mo karaniwang gagawin — sobrang gastos, sobrang pagsusugal, risky na sex, biglaang travel?"</li>
-          <li><strong>Grandiosity:</strong> "Naramdaman mo ba na sobrang galing mo, may special na kakayahan ka na iba sa karaniwan?"</li>
-          <li><strong>Flight of ideas:</strong> "Parang nagrarace ba ang mga isip mo, hindi mahabol?"</li>
-          <li><strong>Activity ↑ goal-directed:</strong> "Sobrang dami mo bang ginawang projects nang sabay-sabay?"</li>
-          <li><strong>Sleep ↓ need:</strong> "Konti lang ang tulog mo pero hindi ka pagod — pakiramdam mo sapat na?" <em>(Hindi insomnia — distinction critical!)</em></li>
-          <li><strong>Talkativeness:</strong> "Sobra ka bang nagsasalita, mahirap pigilan?"</li>
-        </ul>
-        <em>Screen psychotic features. Check if mood-congruent grandiose delusions or mood-incongruent.</em>
+      <div class="core-criterion"><strong>CORE — ≥1 wk mania / ≥4 d hypo; need 3 sx if euphoric, 4 if irritable only:</strong></div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mania.core" id="cl-mania-core">
+        <div class="sx-meta">
+          <label for="cl-mania-core" class="sx-name">Core: Elevated / irritable mood + ↑ energy</label>
+          <span class="sx-prompt">"Nakaranas ka na ba ng sobrang kasiyahan o irita na halos buong araw, halos araw-araw na umabot ng 4 na araw o 1 linggo, na parang hindi karaniwan para sayo? May kasama ba 'tong sobrang taas na energy? Nangyayari ba 'to kahit nasa bahay ka lang at mag-isa?"</span>
+        </div>
       </div>
-      <textarea data-field="cl.mania.notes" placeholder="Findings (duration, severity, functional impact)"></textarea>
-      <div class="checkboxes" style="margin-top:8px">
-        <label><input type="checkbox" data-field="cl.mania.core">Core: elevated/irritable + ↑energy</label>
-        <label><input type="checkbox" data-field="cl.mania.d">Distractibility</label>
-        <label><input type="checkbox" data-field="cl.mania.i">Impulsivity</label>
-        <label><input type="checkbox" data-field="cl.mania.g">Grandiosity</label>
-        <label><input type="checkbox" data-field="cl.mania.f">Flight of ideas</label>
-        <label><input type="checkbox" data-field="cl.mania.a">Activity ↑</label>
-        <label><input type="checkbox" data-field="cl.mania.s">Sleep ↓ need</label>
-        <label><input type="checkbox" data-field="cl.mania.t">Talkativeness</label>
-        <label><input type="checkbox" data-field="cl.mania.psy">Psychotic features</label>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mania.d" id="cl-mania-d">
+        <div class="sx-meta">
+          <label for="cl-mania-d" class="sx-name">Distractibility</label>
+          <span class="sx-prompt">"Madali ka bang ma-distract, hindi matapos ang ginagawa?"</span>
+        </div>
       </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mania.i" id="cl-mania-i">
+        <div class="sx-meta">
+          <label for="cl-mania-i" class="sx-name">Impulsivity / Indiscretion</label>
+          <span class="sx-prompt">"Nakagawa ka ba ng mga bagay na hindi mo karaniwang gagawin — sobrang gastos, sobrang pagsusugal, risky na sex, biglaang travel?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mania.g" id="cl-mania-g">
+        <div class="sx-meta">
+          <label for="cl-mania-g" class="sx-name">Grandiosity</label>
+          <span class="sx-prompt">"Naramdaman mo ba na sobrang galing mo, may special na kakayahan ka na iba sa karaniwan?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mania.f" id="cl-mania-f">
+        <div class="sx-meta">
+          <label for="cl-mania-f" class="sx-name">Flight of ideas</label>
+          <span class="sx-prompt">"Parang nagrarace ba ang mga isip mo, hindi mahabol?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mania.a" id="cl-mania-a">
+        <div class="sx-meta">
+          <label for="cl-mania-a" class="sx-name">Activity ↑ goal-directed</label>
+          <span class="sx-prompt">"Sobrang dami mo bang ginawang projects nang sabay-sabay?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mania.s" id="cl-mania-s">
+        <div class="sx-meta">
+          <label for="cl-mania-s" class="sx-name">Sleep ↓ <em style="color:var(--accent)">need</em> (not insomnia!)</label>
+          <span class="sx-prompt">"Konti lang ang tulog mo pero hindi ka pagod — pakiramdam mo sapat na?"</span>
+          <span class="sx-note" style="color:var(--accent)">⚠ Distinction critical — patient feels rested despite minimal sleep.</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mania.t" id="cl-mania-t">
+        <div class="sx-meta">
+          <label for="cl-mania-t" class="sx-name">Talkativeness</label>
+          <span class="sx-prompt">"Sobra ka bang nagsasalita, mahirap pigilan?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.mania.psy" id="cl-mania-psy">
+        <div class="sx-meta">
+          <label for="cl-mania-psy" class="sx-name">Psychotic features</label>
+          <span class="sx-note">Check mood-congruent (grandiose) vs incongruent</span>
+        </div>
+      </div>
+
+      <textarea data-field="cl.mania.notes" placeholder="Findings (duration, severity, functional impact)" style="margin-top:8px"></textarea>
     </div>
 
     <!-- I CANT REST -->
     <div class="checklist-pane" id="pane-gad">
-      <div class="core-criterion"><strong>CORE:</strong> "Nakaranas ka na ba ng matinding pag-aalala na mahirap i-kontrol, sa maraming bagay o pangyayari, na umabot ng 6 na buwan o higit pa?" — ≥3 sx, ≥6 mo.</div>
-      <div class="ask">
-        <ul>
-          <li><strong>Irritability:</strong> "Madali ka bang ma-irita?"</li>
-          <li><strong>Concentration:</strong> "Nahihirapan ka bang mag-focus?"</li>
-          <li><strong>Tension:</strong> "Madalas ka bang sumakit ang ulo, leeg, balikat, likod?"</li>
-          <li><strong>Restlessness:</strong> "Hindi ka mapakali, kahit gusto mo magpahinga?"</li>
-          <li><strong>Energy loss:</strong> "Madali ka bang mapagod?"</li>
-          <li><strong>Sleep:</strong> "Mahirap ba matulog o panay gising sa gabi?"</li>
-        </ul>
+      <div class="core-criterion"><strong>CORE — ≥3 sx, ≥6 mo:</strong></div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.gad.core" id="cl-gad-core">
+        <div class="sx-meta">
+          <label for="cl-gad-core" class="sx-name">Core: Excessive worry, hard to control</label>
+          <span class="sx-prompt">"Nakaranas ka na ba ng matinding pag-aalala na mahirap i-kontrol, sa maraming bagay o pangyayari, na umabot ng 6 na buwan o higit pa?"</span>
+        </div>
       </div>
-      <textarea data-field="cl.gad.notes" placeholder="Findings"></textarea>
-      <div class="checkboxes" style="margin-top:8px">
-        <label><input type="checkbox" data-field="cl.gad.core">Excessive worry, hard to control</label>
-        <label><input type="checkbox" data-field="cl.gad.i">Irritability</label>
-        <label><input type="checkbox" data-field="cl.gad.c">Concentration ↓</label>
-        <label><input type="checkbox" data-field="cl.gad.t">Tension (somatic)</label>
-        <label><input type="checkbox" data-field="cl.gad.r">Restlessness</label>
-        <label><input type="checkbox" data-field="cl.gad.e">Energy ↓ / fatigue</label>
-        <label><input type="checkbox" data-field="cl.gad.s">Sleep disturbance</label>
-        <label><input type="checkbox" data-field="cl.gad.time">≥6 mo duration</label>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.gad.i" id="cl-gad-i">
+        <div class="sx-meta">
+          <label for="cl-gad-i" class="sx-name">Irritability</label>
+          <span class="sx-prompt">"Madali ka bang ma-irita?"</span>
+        </div>
       </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.gad.c" id="cl-gad-c">
+        <div class="sx-meta">
+          <label for="cl-gad-c" class="sx-name">Concentration ↓</label>
+          <span class="sx-prompt">"Nahihirapan ka bang mag-focus?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.gad.t" id="cl-gad-t">
+        <div class="sx-meta">
+          <label for="cl-gad-t" class="sx-name">Tension (somatic)</label>
+          <span class="sx-prompt">"Madalas ka bang sumakit ang ulo, leeg, balikat, likod?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.gad.r" id="cl-gad-r">
+        <div class="sx-meta">
+          <label for="cl-gad-r" class="sx-name">Restlessness</label>
+          <span class="sx-prompt">"Hindi ka mapakali, kahit gusto mo magpahinga?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.gad.e" id="cl-gad-e">
+        <div class="sx-meta">
+          <label for="cl-gad-e" class="sx-name">Energy ↓ / fatigue</label>
+          <span class="sx-prompt">"Madali ka bang mapagod?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.gad.s" id="cl-gad-s">
+        <div class="sx-meta">
+          <label for="cl-gad-s" class="sx-name">Sleep disturbance</label>
+          <span class="sx-prompt">"Mahirap ba matulog o panay gising sa gabi?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.gad.time" id="cl-gad-time">
+        <div class="sx-meta">
+          <label for="cl-gad-time" class="sx-name">≥6 mo duration</label>
+        </div>
+      </div>
+
+      <textarea data-field="cl.gad.notes" placeholder="Findings" style="margin-top:8px"></textarea>
     </div>
 
     <!-- PTSD -->
     <div class="checklist-pane" id="pane-ptsd">
-      <div class="core-criterion"><strong>TRAUMA EXPOSURE:</strong> "Nakaranas o nakasaksi ka na ba ng matinding pang-aabuso, pisikal, sexual, o banta sa buhay?" — All 4 clusters, ≥1 mo.</div>
-      <div class="ask">
-        <ul>
-          <li><strong>Intrusion (≥1):</strong> "Bumabalik ba 'yung alaala kahit ayaw mo? May nightmares? Flashbacks na parang nangyayari ulit?"</li>
-          <li><strong>Avoidance (≥1):</strong> "Iniiwasan mo ba 'yung mga bagay, lugar, tao, o kahit isipin lang 'yung nangyari?"</li>
-          <li><strong>Negative cognitions/mood (≥2):</strong> "May parts ba na hindi mo na maalala? Negatibo ang tingin mo sa sarili, sa mundo? Nawalan ka ng interes? Naging detached sa mga tao?"</li>
-          <li><strong>Hyperarousal (≥2):</strong> "Madali kang magulat? Laging alerto, parang may bantay? Iritable, paputok ang init ng ulo? Mahirap mag-focus? Mahirap matulog?"</li>
-        </ul>
-        <em>Use PCL-C scale for completeness.</em>
+      <div class="core-criterion"><strong>TRAUMA EXPOSURE — all 4 clusters required, ≥1 mo:</strong>
+        <br><br>"Nakaranas o nakasaksi ka na ba ng matinding pang-aabuso, pisikal, sexual, o banta sa buhay?"
       </div>
-      <label>Trauma event(s)</label>
-      <input type="text" data-field="cl.ptsd.event" placeholder="type, when">
-      <textarea data-field="cl.ptsd.notes" placeholder="Cluster findings"></textarea>
-      <div class="checkboxes" style="margin-top:8px">
-        <label><input type="checkbox" data-field="cl.ptsd.intrusion">Intrusion (≥1)</label>
-        <label><input type="checkbox" data-field="cl.ptsd.avoid">Avoidance (≥1)</label>
-        <label><input type="checkbox" data-field="cl.ptsd.negcog">Neg cog/mood (≥2)</label>
-        <label><input type="checkbox" data-field="cl.ptsd.arousal">Arousal (≥2)</label>
-        <label><input type="checkbox" data-field="cl.ptsd.duration">≥1 mo duration</label>
+
+      <div class="field">
+        <label>Trauma event(s)</label>
+        <input type="text" data-field="cl.ptsd.event" placeholder="type, when">
       </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.ptsd.intrusion" id="cl-ptsd-int">
+        <div class="sx-meta">
+          <label for="cl-ptsd-int" class="sx-name">Intrusion (≥1)</label>
+          <span class="sx-prompt">"Bumabalik ba 'yung alaala kahit ayaw mo? May nightmares? Flashbacks na parang nangyayari ulit?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.ptsd.avoid" id="cl-ptsd-av">
+        <div class="sx-meta">
+          <label for="cl-ptsd-av" class="sx-name">Avoidance (≥1)</label>
+          <span class="sx-prompt">"Iniiwasan mo ba 'yung mga bagay, lugar, tao, o kahit isipin lang 'yung nangyari?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.ptsd.negcog" id="cl-ptsd-neg">
+        <div class="sx-meta">
+          <label for="cl-ptsd-neg" class="sx-name">Negative cognitions / mood (≥2)</label>
+          <span class="sx-prompt">"May parts ba na hindi mo na maalala? Negatibo ang tingin mo sa sarili, sa mundo? Nawalan ka ng interes? Naging detached sa mga tao?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.ptsd.arousal" id="cl-ptsd-ar">
+        <div class="sx-meta">
+          <label for="cl-ptsd-ar" class="sx-name">Hyperarousal (≥2)</label>
+          <span class="sx-prompt">"Madali kang magulat? Laging alerto, parang may bantay? Iritable, paputok ang init ng ulo? Mahirap mag-focus? Mahirap matulog?"</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.ptsd.duration" id="cl-ptsd-dur">
+        <div class="sx-meta">
+          <label for="cl-ptsd-dur" class="sx-name">≥1 mo duration</label>
+          <span class="sx-note">Use PCL-C scale for completeness</span>
+        </div>
+      </div>
+
+      <textarea data-field="cl.ptsd.notes" placeholder="Cluster findings" style="margin-top:8px"></textarea>
     </div>
 
     <!-- SCZ -->
     <div class="checklist-pane" id="pane-scz">
-      <div class="core-criterion"><strong>CORE:</strong> ≥1 of hallucinations, delusions, disorganized speech.</div>
-      <div class="ask">
-        <ul>
-          <li><strong>Hallucinations:</strong> "May mga naririnig ba kayo na hindi naririnig ng iba — boses, ingay? May mga nakikita ba kayo na hindi nakikita ng iba?"
-            <br><em>If yes:</em> "Lumalabas ba sa tenga niyo o sa loob lang ng isip niyo? Anong sinasabi? Iisang boses o marami? Kilala niyo ba?"</li>
-          <li><strong>Delusions (paranoid):</strong> "Naniniwala ba kayo na may gustong manakit sa inyo — pero hindi paniwala ng ibang tao?"</li>
-          <li><strong>Delusions (referential):</strong> "Naniniwala ba kayo na kayo ang pinag-uusapan sa TV, radyo, o ng mga estranghero?"</li>
-          <li><strong>Delusions (grandiose):</strong> "May mga special power o mission ba kayo na ibinigay sa inyo ng higher being?"</li>
-          <li><strong>Delusions (thought insertion/withdrawal):</strong> "May iba bang nag-iinsert ng thoughts sa isip niyo, o kinukuha 'yung thoughts niyo?"</li>
-          <li><strong>Disorganized speech:</strong> <em>observe — derailment, word salad, tangentiality</em></li>
-          <li><strong>Negative symptoms (5 A's):</strong> <em>observe — anhedonia, avolition, asociality, alogia, affective flattening</em></li>
-        </ul>
+      <div class="core-criterion"><strong>CORE — ≥1 of hallucinations, delusions, disorganized speech:</strong></div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.scz.hall" id="cl-scz-hall">
+        <div class="sx-meta">
+          <label for="cl-scz-hall" class="sx-name">Hallucinations</label>
+          <span class="sx-prompt">"May mga naririnig ba kayo na hindi naririnig ng iba — boses, ingay? May mga nakikita ba kayo na hindi nakikita ng iba?"</span>
+          <span class="sx-prompt"><em>If yes:</em> "Lumalabas ba sa tenga niyo o sa loob lang ng isip niyo? Anong sinasabi? Iisang boses o marami? Kilala niyo ba?"</span>
+        </div>
       </div>
-      <textarea data-field="cl.scz.notes" placeholder="Hallucination details (modality, content, ego-dystonic vs syntonic), delusion type/content"></textarea>
-      <div class="checkboxes" style="margin-top:8px">
-        <label><input type="checkbox" data-field="cl.scz.hall">Hallucinations</label>
-        <label><input type="checkbox" data-field="cl.scz.del">Delusions</label>
-        <label><input type="checkbox" data-field="cl.scz.dspeech">Disorganized speech</label>
-        <label><input type="checkbox" data-field="cl.scz.dbehav">Disorganized behavior</label>
-        <label><input type="checkbox" data-field="cl.scz.neg">Negative sx (5 A's)</label>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.scz.del" id="cl-scz-del">
+        <div class="sx-meta">
+          <label for="cl-scz-del" class="sx-name">Delusions</label>
+          <span class="sx-prompt"><strong style="color:var(--ink);font-style:normal">Paranoid:</strong> "Naniniwala ba kayo na may gustong manakit sa inyo — pero hindi paniwala ng ibang tao?"</span>
+          <span class="sx-prompt"><strong style="color:var(--ink);font-style:normal">Referential:</strong> "Naniniwala ba kayo na kayo ang pinag-uusapan sa TV, radyo, o ng mga estranghero?"</span>
+          <span class="sx-prompt"><strong style="color:var(--ink);font-style:normal">Grandiose:</strong> "May mga special power o mission ba kayo na ibinigay sa inyo ng higher being?"</span>
+          <span class="sx-prompt"><strong style="color:var(--ink);font-style:normal">Thought insertion/withdrawal:</strong> "May iba bang nag-iinsert ng thoughts sa isip niyo, o kinukuha 'yung thoughts niyo?"</span>
+        </div>
       </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.scz.dspeech" id="cl-scz-dsp">
+        <div class="sx-meta">
+          <label for="cl-scz-dsp" class="sx-name">Disorganized speech</label>
+          <span class="sx-note">Observe — derailment, word salad, tangentiality</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.scz.dbehav" id="cl-scz-dbe">
+        <div class="sx-meta">
+          <label for="cl-scz-dbe" class="sx-name">Disorganized behavior</label>
+          <span class="sx-note">Observe</span>
+        </div>
+      </div>
+
+      <div class="sx-row">
+        <input type="checkbox" data-field="cl.scz.neg" id="cl-scz-neg">
+        <div class="sx-meta">
+          <label for="cl-scz-neg" class="sx-name">Negative symptoms (5 A's)</label>
+          <span class="sx-note">Anhedonia, Avolition, Asociality, Alogia, Affective flattening</span>
+        </div>
+      </div>
+
+      <textarea data-field="cl.scz.notes" placeholder="Hallucination details (modality, content, ego-dystonic vs syntonic), delusion type/content" style="margin-top:8px"></textarea>
     </div>
   </div>
 </section>
