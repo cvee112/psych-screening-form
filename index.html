@@ -219,16 +219,24 @@
   }
   .ros-row {
     display: grid;
-    grid-template-columns: 110px 1fr;
-    gap: 10px;
+    grid-template-columns: 200px 1fr;
+    gap: 12px;
     align-items: start;
-    padding: 6px 0;
+    padding: 8px 0;
     border-bottom: 1px dotted var(--border);
   }
   .ros-row:last-child { border-bottom: none; }
   .ros-label { font-size: 12.5px; padding-top: 6px; line-height: 1.3; }
   .ros-label strong { display: block; font-weight: 600; }
   .ros-label small { color: var(--muted); font-size: 10.5px; }
+  .ros-label .prompt {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    font-style: italic;
+    color: var(--accent);
+    line-height: 1.35;
+  }
   .toggle-group {
     display: inline-flex;
     border: 1px solid var(--border);
@@ -493,6 +501,21 @@
 <section class="sx">
   <h3><span class="num">§1</span> Identifying Data</h3>
   <div class="body">
+    <div class="ask">
+      <em>Run through quickly — don't make it feel like a tax form.</em>
+      <ul>
+        <li>"Pakisabi po ulit ang buong pangalan niyo?"</li>
+        <li>"Ilang taon po kayo?"</li>
+        <li>"Kanang kamay po ba o kaliwa ang gamit niyo?"</li>
+        <li>"Civil status po? Single, may partner, kasal, separated?"</li>
+        <li>"Anong relihiyon po?"</li>
+        <li>"Hanggang saan po kayo nag-aral?"</li>
+        <li>"Trabaho po ngayon — ano ang ginagawa niyo araw-araw?"</li>
+        <li>"Saan po kayo nakatira ngayon? Saan po 'yung permanent address?"</li>
+        <li>"Pwede po bang humingi ng contact number niyo?"</li>
+        <li>"Sino po 'yung pwede naming tawagan sa emergency — ideally family member po sana — at ano pong number?"</li>
+      </ul>
+    </div>
     <div class="row cols-2">
       <div><label>Case Number</label><input type="text" data-field="id.caseNumber"></div>
       <div><label>Name</label><input type="text" data-field="id.name"></div>
@@ -525,7 +548,13 @@
 <section class="sx">
   <h3><span class="num">§2</span> Chief Complaint</h3>
   <div class="body">
-    <div class="ask">"Ano po 'yung pangunahing dahilan kung bakit kayo nagpa-konsulta? Sa sarili niyong words po."</div>
+    <div class="ask">
+      <ul>
+        <li>"Ano po 'yung pangunahing dahilan kung bakit kayo nagpa-konsulta ngayon? Sa sarili niyong words po."</li>
+        <li><em>(If with informant)</em> "Ate/Kuya, sa inyo naman po — ano po 'yung napansin niyo kay [patient] na nagdala sa inyo dito?"</li>
+      </ul>
+      <em>Write verbatim. Assess reliability: poor / fair / good — based on coherence, internal consistency, alignment with informant.</em>
+    </div>
     <label>Patient's verbatim CC</label>
     <input type="text" data-field="cc.patient" placeholder="Patient's exact words">
     <div class="row cols-2">
@@ -547,7 +576,10 @@
 <section class="sx">
   <h3><span class="num">§3</span> Premorbid Personality</h3>
   <div class="body">
-    <div class="ask">"Bago po nangyari ang mga problema na ito — paano niyo idi-describe ang sarili niyo dati? Anong klaseng tao kayo?"</div>
+    <div class="ask">
+      "Bago po nangyari 'yung mga problema na ito — paano niyo po idi-describe ang sarili niyo dati? Anong klaseng tao kayo bago nagsimula 'to?"
+      <br><em>Listen for: introverted/extroverted, anxious baseline, sociable, perfectionist, etc.</em>
+    </div>
     <label>Patient described self as… (1 sentence)</label>
     <textarea data-field="premorbid" placeholder="e.g., introverted, family-oriented, hardworking but quick to worry…"></textarea>
   </div>
@@ -558,14 +590,32 @@
   <h3><span class="num">§4</span> History of Present Illness</h3>
   <div class="body">
     <div class="ask">
-      <strong>Ask:</strong>
+      <strong>Anchor (kailan nag-umpisa):</strong>
       <ul>
-        <li>"Kailan po unang nakaramdam na may hindi tama? Anong nag-trigger?"</li>
-        <li>"Paano niyo idi-describe ang mga sintomas? Gaano kadalas, katagal?"</li>
-        <li>"Paano naapektuhan ang araw-araw — trabaho/eskwela/relasyon?"</li>
-        <li>"Paano niyo kinakaya? May ginagawa kahit alam niyong hindi maganda?"</li>
-        <li>"Tuloy-tuloy ba ang symptoms, o may panahong nawawala?"</li>
-        <li>"Bakit po ngayon kayo nagpasyang magpa-konsulta?"</li>
+        <li>"Kailan po ba kayo unang nakaramdam na may hindi tama o nababagabag kayo? Ano pong nangyari noon — may pinagdaanan po ba kayo, may nag-trigger?"</li>
+      </ul>
+      <em>Anchor in time PTC — e.g., "5 years PTC", "7 months PTC". Trigger in 2–3 sentences.</em>
+
+      <br><br><strong>Effect on functioning:</strong>
+      <ul>
+        <li>"Paano po naapektuhan nito 'yung araw-araw niyo? Sa trabaho/eskwela? Sa relasyon niyo sa pamilya, partner, mga kaibigan?"</li>
+      </ul>
+
+      <strong>Coping:</strong>
+      <ul>
+        <li>"Ano po ang ginagawa niyo para makayanan ito? May mga bagay po bang nakakatulong — o may mga bagay po ba kayong ginagawa kahit alam niyong hindi maganda?"</li>
+      </ul>
+      <em>Include even maladaptive coping — alcohol, isolation, etc.</em>
+
+      <br><br><strong>Interim:</strong>
+      <ul>
+        <li>"Mula nu'ng nag-umpisa ito hanggang ngayon — tuloy-tuloy po ba 'yung symptoms, o may mga panahong nawawala at bumabalik kayo sa dating sarili niyo?"</li>
+        <li>"May pagkakataon po ba na sinubukan niyong saktan ang sarili niyo o tapusin ang buhay niyo?"</li>
+      </ul>
+
+      <strong>Most recent — bakit ngayon nagpa-konsulta:</strong>
+      <ul>
+        <li>"Ano po 'yung nangyari kamakailan na nagdala sa inyo dito ngayon? Bakit po ngayon kayo nagpasyang magpa-konsulta?"</li>
       </ul>
     </div>
 
@@ -594,7 +644,7 @@
     <div class="si-ladder">
       <ol>
         <li>
-          <em>Passive:</em> "Naisip niyo na po ba na sana hindi na lang kayo magising?"
+          <em>Passive (wish to die):</em> "Naisip niyo na po ba na sana, kung pwede lang, hindi na lang kayo magising sa umaga? O sana wala na lang kayo?"
           <div>
             <div class="toggle-group">
               <input type="radio" name="si-passive" id="si-passive-na" value="" data-field="hpi.si.passive" checked><label class="na" for="si-passive-na">—</label>
@@ -605,7 +655,7 @@
           </div>
         </li>
         <li>
-          <em>Active:</em> "Naisip niyo na po ba na saktan ang sarili o tapusin ang buhay?"
+          <em>Active SI (without plan):</em> "Naisip niyo na po ba na saktan ang sarili niyo o tapusin ang buhay niyo?"
           <div>
             <div class="toggle-group">
               <input type="radio" name="si-active" id="si-active-na" value="" data-field="hpi.si.active" checked><label class="na" for="si-active-na">—</label>
@@ -616,7 +666,7 @@
           </div>
         </li>
         <li>
-          <em>Method:</em> "Naisip niyo na kung paano?"
+          <em>Method:</em> "Naisip niyo na po ba kung paano niyo ito gagawin?"
           <div>
             <div class="toggle-group">
               <input type="radio" name="si-method" id="si-method-na" value="" data-field="hpi.si.method" checked><label class="na" for="si-method-na">—</label>
@@ -626,7 +676,7 @@
           </div>
         </li>
         <li>
-          <em>Intent:</em> "May balak po ba kayong gawin?"
+          <em>Intent:</em> "May balak o intensyon po ba kayong gawin talaga ito?"
           <div>
             <div class="toggle-group">
               <input type="radio" name="si-intent" id="si-intent-na" value="" data-field="hpi.si.intent" checked><label class="na" for="si-intent-na">—</label>
@@ -636,7 +686,7 @@
           </div>
         </li>
         <li>
-          <em>Plan:</em> "May plano na po ba — kailan, saan, paano?"
+          <em>Plan:</em> "May plano na po ba kayo — kailan, saan, paano?"
           <div>
             <div class="toggle-group">
               <input type="radio" name="si-plan" id="si-plan-na" value="" data-field="hpi.si.plan" checked><label class="na" for="si-plan-na">—</label>
@@ -647,7 +697,7 @@
           </div>
         </li>
         <li>
-          <em>Past attempts:</em> "May previous attempt na po ba?"
+          <em>Past attempts:</em> "Nagkaroon na po ba kayo ng previous na pagtatangka na saktan ang sarili niyo o tapusin ang buhay niyo?"
           <div>
             <div class="toggle-group">
               <input type="radio" name="si-past" id="si-past-na" value="" data-field="hpi.si.past" checked><label class="na" for="si-past-na">—</label>
@@ -676,9 +726,14 @@
   <h3><span class="num">§5</span> Past Psychiatric History <span class="badge">prior / separate episodes</span></h3>
   <div class="body">
     <p class="help" style="margin-bottom:8px">Skip what was already covered in HPI. This is for separate / prior episodes only. Mark each as denied or present; positives become "(+) …", negatives are auto-grouped as "Denies …" in the final note.</p>
+    <div class="ask">"Bukod po sa mga sinabi natin kanina, may mga panahon po ba dati na nakaranas kayo ng mga sumusunod?"</div>
 
     <div class="ros-row">
-      <div class="ros-label"><strong>Depressive sx</strong><small>Enduring depressed mood, anhedonia</small></div>
+      <div class="ros-label">
+        <strong>Depressive sx</strong>
+        <small>Enduring depressed mood, anhedonia</small>
+        <span class="prompt">"Tuloy-tuloy na lungkot o kawalan ng gana sa mga dating gusto niyo, na umabot ng higit dalawang linggo?"</span>
+      </div>
       <div>
         <div class="toggle-group">
           <input type="radio" name="ros-dep" id="ros-dep-na" value="" data-field="ros.dep.state" checked><label class="na" for="ros-dep-na">—</label>
@@ -690,7 +745,11 @@
     </div>
 
     <div class="ros-row">
-      <div class="ros-label"><strong>Anxiety sx</strong><small>Anxiety difficult to control</small></div>
+      <div class="ros-label">
+        <strong>Anxiety sx</strong>
+        <small>Anxiety difficult to control</small>
+        <span class="prompt">"Sobrang pag-aalala na mahirap kontrolin, na umabot ng ilang buwan?"</span>
+      </div>
       <div>
         <div class="toggle-group">
           <input type="radio" name="ros-anx" id="ros-anx-na" value="" data-field="ros.anx.state" checked><label class="na" for="ros-anx-na">—</label>
@@ -702,7 +761,11 @@
     </div>
 
     <div class="ros-row">
-      <div class="ros-label"><strong>Manic / Hypomanic</strong><small>Elevated or irritable mood, 4d–1wk</small></div>
+      <div class="ros-label">
+        <strong>Manic / Hypomanic</strong>
+        <small>Elevated or irritable mood, 4d–1wk</small>
+        <span class="prompt">"Panahon ba na sobrang taas ng energy niyo, kaunti lang ang tulog pero hindi pagod, parang lahat kaya niyong gawin — umabot ng 4 na araw o 1 linggo?"</span>
+      </div>
       <div>
         <div class="toggle-group">
           <input type="radio" name="ros-mania" id="ros-mania-na" value="" data-field="ros.mania.state" checked><label class="na" for="ros-mania-na">—</label>
@@ -714,7 +777,11 @@
     </div>
 
     <div class="ros-row">
-      <div class="ros-label"><strong>Psychotic sx</strong><small>Hallucinations, delusions</small></div>
+      <div class="ros-label">
+        <strong>Psychotic sx</strong>
+        <small>Hallucinations, delusions</small>
+        <span class="prompt">"May mga panahon po ba na may naririnig kayong ibang tao ang hindi naririnig, o may naniniwala kayong totoo na sinasabi ng iba na hindi naman?"</span>
+      </div>
       <div>
         <div class="toggle-group">
           <input type="radio" name="ros-psy" id="ros-psy-na" value="" data-field="ros.psy.state" checked><label class="na" for="ros-psy-na">—</label>
@@ -726,7 +793,11 @@
     </div>
 
     <div class="ros-row">
-      <div class="ros-label"><strong>Trauma sx</strong><small>Experienced or witnessed</small></div>
+      <div class="ros-label">
+        <strong>Trauma sx</strong>
+        <small>Experienced or witnessed</small>
+        <span class="prompt">"May naranasan po ba kayo o nasaksihan na matinding pananakit, banta sa buhay, o sexual abuse?"</span>
+      </div>
       <div>
         <div class="toggle-group">
           <input type="radio" name="ros-tr" id="ros-tr-na" value="" data-field="ros.tr.state" checked><label class="na" for="ros-tr-na">—</label>
@@ -738,7 +809,10 @@
     </div>
 
     <div class="ros-row">
-      <div class="ros-label"><strong>Previous dx / consults / meds</strong></div>
+      <div class="ros-label">
+        <strong>Previous dx / consults / meds</strong>
+        <span class="prompt">"Nakapag-consult na po ba kayo dati sa psychiatrist o psychologist? Anong diagnosis ang naibigay? Anong gamot ang ininom niyo? Bakit po tumigil?"</span>
+      </div>
       <div>
         <div class="toggle-group">
           <input type="radio" name="ros-prev" id="ros-prev-na" value="" data-field="ros.prev.state" checked><label class="na" for="ros-prev-na">—</label>
@@ -750,7 +824,10 @@
     </div>
 
     <div class="ros-row">
-      <div class="ros-label"><strong>Previous suicide attempts</strong></div>
+      <div class="ros-label">
+        <strong>Previous suicide attempts</strong>
+        <span class="prompt">"May mga previous attempt na po ba na hindi pa natin napag-usapan?"</span>
+      </div>
       <div>
         <div class="toggle-group">
           <input type="radio" name="ros-sa" id="ros-sa-na" value="" data-field="ros.sa.state" checked><label class="na" for="ros-sa-na">—</label>
@@ -767,7 +844,13 @@
 <section class="sx">
   <h3><span class="num">§6</span> Past Medical History</h3>
   <div class="body">
-    <div class="ask">"May mga sakit po ba kayo — DM, HTN, <strong>asthma, thyroid</strong>, puso? Naospital? Naopera? Allergy sa pagkain o gamot?"</div>
+    <div class="ask">
+      <ul>
+        <li>"May mga sakit po ba kayo — diabetes, high blood, <strong>asthma, thyroid problem</strong>, sakit sa puso?"</li>
+        <li>"Na-ospital na po ba kayo dati? Na-opera?"</li>
+        <li>"May allergy po ba kayo sa pagkain o gamot?"</li>
+      </ul>
+    </div>
     <label>Comorbidities</label>
     <input type="text" data-field="pmh.comorbid" placeholder="e.g., HTN, T2DM, asthma — or 'denies'">
     <div class="row cols-2">
@@ -783,7 +866,13 @@
 <section class="sx">
   <h3><span class="num">§7</span> Family Medical History</h3>
   <div class="body">
-    <div class="ask">"Sa pamilya niyo po — may HTN, DM, sakit sa puso, kanino? May depression, schizophrenia, bipolar? Sinubukang magpakamatay?"</div>
+    <div class="ask">
+      <ul>
+        <li>"Sa pamilya niyo po — may mga sakit po ba kayong alam? Hypertension, diabetes, sakit sa puso, kanino — Nanay? Tatay? Lolo/Lola? Mga kapatid?"</li>
+        <li>"May sakit po ba sa isip na alam niyo sa pamilya — depression, schizophrenia, bipolar?"</li>
+        <li>"May sinubukang magpakamatay po ba sa pamilya?"</li>
+      </ul>
+    </div>
     <label>Medical (with relations)</label>
     <input type="text" data-field="fmh.medical" placeholder="e.g., HTN — mother; T2DM — paternal grandfather">
     <label>Psychiatric (dx, relation)</label>
@@ -797,6 +886,15 @@
 <section class="sx">
   <h3><span class="num">§8</span> OB-GYN History <span class="badge">if applicable</span></h3>
   <div class="body">
+    <div class="ask">
+      <em>If female:</em>
+      <ul>
+        <li>"Kailan po 'yung huling regla niyo?"</li>
+        <li>"OB score po — ilang beses na po kayo nabuntis, nakapanganak?"</li>
+        <li>"MIDAS — menarche, interval, duration, amount, symptoms?"</li>
+        <li><em>(Optional)</em> "Napapansin niyo po ba ang pagbabago ng mood bago kayo magregla?"</li>
+      </ul>
+    </div>
     <div class="ob-toggle">
       <label class="inline" style="margin:0"><input type="checkbox" data-field="ob.na"> Not applicable (skip in final note)</label>
     </div>
@@ -815,6 +913,13 @@
 <section class="sx">
   <h3><span class="num">§9</span> Substance Use History</h3>
   <div class="body">
+    <div class="ask">
+      <ul>
+        <li>"Umiinom po ba kayo ng alak? Gaano kadalas? Hanggang lasing po ba?"</li>
+        <li>"Naninigarilyo po ba kayo? Ilang stick kada araw, ilang taon na?"</li>
+        <li>"Nakagamit na po ba kayo ng ipinagbabawal na gamot — marijuana, shabu, iba pa?"</li>
+      </ul>
+    </div>
     <label>Alcohol</label>
     <input type="text" data-field="sub.alcohol" placeholder="frequency, amount, last intake, intoxication? — or 'denies'">
     <label>Smoking</label>
@@ -829,14 +934,21 @@
   <h3><span class="num">§10</span> Anamnesis</h3>
   <div class="body">
     <div class="ask">
-      <strong>Ask:</strong>
+      "Konting questions na lang po tungkol sa paglaki niyo, para mas maintindihan ko 'yung background niyo."
       <ul>
         <li>"Pang-ilang anak po kayo sa magkakapatid?"</li>
-        <li>"Normal delivery o CS? Komplikasyon? Delays sa paglaki?"</li>
-        <li>"Sino ang nag-alaga sa inyo nu'ng bata pa? Relasyon sa pamilya?"</li>
-        <li>"Anong klaseng bata? Mabully ba kayo, naabuso (pisikal, verbal, sexual)?"</li>
-        <li>"Kumusta ang eskwela? SOGIE? Previous romantic relationships?"</li>
-        <li>"Sino kasama sa bahay? Sino takbuhan? Hobbies? Religion?"</li>
+        <li>"Normal delivery po ba o CS? May komplikasyon po ba sa pagbubuntis o panganganak ng nanay niyo sa inyo?"</li>
+        <li>"May delays po ba sa paglaki — sa pagsasalita, paglalakad, pag-aaral?"</li>
+        <li>"Sino po ang nag-alaga sa inyo nu'ng bata pa kayo — mga magulang, lola, iba?"</li>
+        <li>"Paano niyo po idi-describe 'yung relasyon niyo sa magulang at mga kapatid noon?"</li>
+        <li>"Anong klaseng bata po kayo — masunurin, makulit, mahiyain, magulo?"</li>
+        <li>"Naranasan niyo po bang mabully, o naabuso — pisikal, verbal, sexual — bilang bata?"</li>
+        <li>"Kumusta po 'yung eskwela — average, mataas, mababa ang grades?"</li>
+        <li>"Saan po kayo nakatira ngayon? Sino ang kasama niyo sa bahay?"</li>
+        <li>"Sino po ang takbuhan niyo kapag may problema?"</li>
+        <li>"Sa SOGIE — paano niyo po i-identify ang sarili niyo? Sino ang naa-attract sa inyo? Ilan po 'yung previous relationships?"</li>
+        <li>"Ano po 'yung hobbies niyo? Ano ang ginagawa niyo pag may problema?"</li>
+        <li>"Sa relihiyon — practicing po ba kayo, o nominal lang?"</li>
       </ul>
     </div>
 
@@ -904,7 +1016,19 @@
 
     <!-- SIGECAPS -->
     <div class="checklist-pane active" id="pane-mdd">
-      <div class="core-criterion"><strong>CORE:</strong> "Kalungkutan / kawalan ng hilig sa mga dating gusto — halos buong araw, halos araw-araw, mahigit dalawang linggo?" — ≥5/9, ≥2 wks.</div>
+      <div class="core-criterion"><strong>CORE:</strong> "Nakaranas ka na ba ng kalungkutan / kawalan ng hilig sa mga bagay na nagpapasaya naman sayo dati — halos buong araw, halos araw-araw, umabot ng mahigit dalawang linggo?" — ≥5/9, ≥2 wks, must include core.</div>
+      <div class="ask">
+        <ul>
+          <li><strong>Sleep:</strong> "Kumusta po 'yung tulog niyo nu'ng panahon na 'yon — sobrang dami, sobrang konti, o mahirap matulog/magising?"</li>
+          <li><strong>Guilt:</strong> "May nararamdaman po ba kayong labis na pagsisisi o pakiramdam na kasalanan niyo lahat?"</li>
+          <li><strong>Energy:</strong> "Madalas po ba kayong pagod kahit hindi naman gumagawa ng matrabaho?"</li>
+          <li><strong>Concentration:</strong> "Nahihirapan po ba kayong mag-focus o magdesisyon — kahit sa simpleng bagay?"</li>
+          <li><strong>Appetite:</strong> "Kumusta po 'yung gana sa pagkain — sobrang dami, sobrang konti? May pagbabago po ba sa timbang?"</li>
+          <li><strong>Psychomotor:</strong> "Napansin niyo po ba — o may nagsabi po ba — na mas mabagal kayong gumalaw o magsalita? O balisa kayo, hindi mapakali?"</li>
+          <li><strong>SI / thoughts of death:</strong> see §4 SI ladder above</li>
+        </ul>
+        <em>Also screen for psychotic features in severe depression.</em>
+      </div>
       <textarea data-field="cl.mdd.notes" placeholder="Findings (any details — feeds into HPI)"></textarea>
       <div class="checkboxes" style="margin-top:8px">
         <label><input type="checkbox" data-field="cl.mdd.core">Core: depressed mood / anhedonia</label>
@@ -922,7 +1046,19 @@
 
     <!-- DIGFAST -->
     <div class="checklist-pane" id="pane-mania">
-      <div class="core-criterion"><strong>CORE:</strong> "Sobrang saya o irita halos buong araw, halos araw-araw, umabot ng 4 araw / 1 linggo, hindi karaniwan sayo? May sobrang taas na energy? Kahit mag-isa sa bahay?" — Need 3 sx if euphoric, 4 if irritable only.</div>
+      <div class="core-criterion"><strong>CORE:</strong> "Nakaranas ka na ba ng sobrang kasiyahan o irita na halos buong araw, halos araw-araw na umabot ng 4 na araw o 1 linggo, na parang hindi karaniwan para sayo? May kasama ba 'tong sobrang taas na energy? Nangyayari ba 'to kahit nasa bahay ka lang at mag-isa?" — Need 3 sx if euphoric, 4 if irritable only.</div>
+      <div class="ask">
+        <ul>
+          <li><strong>Distractibility:</strong> "Madali ka bang ma-distract, hindi matapos ang ginagawa?"</li>
+          <li><strong>Impulsivity / Indiscretion:</strong> "Nakagawa ka ba ng mga bagay na hindi mo karaniwang gagawin — sobrang gastos, sobrang pagsusugal, risky na sex, biglaang travel?"</li>
+          <li><strong>Grandiosity:</strong> "Naramdaman mo ba na sobrang galing mo, may special na kakayahan ka na iba sa karaniwan?"</li>
+          <li><strong>Flight of ideas:</strong> "Parang nagrarace ba ang mga isip mo, hindi mahabol?"</li>
+          <li><strong>Activity ↑ goal-directed:</strong> "Sobrang dami mo bang ginawang projects nang sabay-sabay?"</li>
+          <li><strong>Sleep ↓ need:</strong> "Konti lang ang tulog mo pero hindi ka pagod — pakiramdam mo sapat na?" <em>(Hindi insomnia — distinction critical!)</em></li>
+          <li><strong>Talkativeness:</strong> "Sobra ka bang nagsasalita, mahirap pigilan?"</li>
+        </ul>
+        <em>Screen psychotic features. Check if mood-congruent grandiose delusions or mood-incongruent.</em>
+      </div>
       <textarea data-field="cl.mania.notes" placeholder="Findings (duration, severity, functional impact)"></textarea>
       <div class="checkboxes" style="margin-top:8px">
         <label><input type="checkbox" data-field="cl.mania.core">Core: elevated/irritable + ↑energy</label>
@@ -939,7 +1075,17 @@
 
     <!-- I CANT REST -->
     <div class="checklist-pane" id="pane-gad">
-      <div class="core-criterion"><strong>CORE:</strong> "Matinding pag-aalala na mahirap kontrolin, umabot ng 6 buwan?" — ≥3 sx, ≥6 mo.</div>
+      <div class="core-criterion"><strong>CORE:</strong> "Nakaranas ka na ba ng matinding pag-aalala na mahirap i-kontrol, sa maraming bagay o pangyayari, na umabot ng 6 na buwan o higit pa?" — ≥3 sx, ≥6 mo.</div>
+      <div class="ask">
+        <ul>
+          <li><strong>Irritability:</strong> "Madali ka bang ma-irita?"</li>
+          <li><strong>Concentration:</strong> "Nahihirapan ka bang mag-focus?"</li>
+          <li><strong>Tension:</strong> "Madalas ka bang sumakit ang ulo, leeg, balikat, likod?"</li>
+          <li><strong>Restlessness:</strong> "Hindi ka mapakali, kahit gusto mo magpahinga?"</li>
+          <li><strong>Energy loss:</strong> "Madali ka bang mapagod?"</li>
+          <li><strong>Sleep:</strong> "Mahirap ba matulog o panay gising sa gabi?"</li>
+        </ul>
+      </div>
       <textarea data-field="cl.gad.notes" placeholder="Findings"></textarea>
       <div class="checkboxes" style="margin-top:8px">
         <label><input type="checkbox" data-field="cl.gad.core">Excessive worry, hard to control</label>
@@ -955,7 +1101,16 @@
 
     <!-- PTSD -->
     <div class="checklist-pane" id="pane-ptsd">
-      <div class="core-criterion"><strong>TRAUMA:</strong> "Naranasan o nasaksihan na matinding pananakit, banta sa buhay, o sexual abuse?" — All 4 clusters, ≥1 mo.</div>
+      <div class="core-criterion"><strong>TRAUMA EXPOSURE:</strong> "Nakaranas o nakasaksi ka na ba ng matinding pang-aabuso, pisikal, sexual, o banta sa buhay?" — All 4 clusters, ≥1 mo.</div>
+      <div class="ask">
+        <ul>
+          <li><strong>Intrusion (≥1):</strong> "Bumabalik ba 'yung alaala kahit ayaw mo? May nightmares? Flashbacks na parang nangyayari ulit?"</li>
+          <li><strong>Avoidance (≥1):</strong> "Iniiwasan mo ba 'yung mga bagay, lugar, tao, o kahit isipin lang 'yung nangyari?"</li>
+          <li><strong>Negative cognitions/mood (≥2):</strong> "May parts ba na hindi mo na maalala? Negatibo ang tingin mo sa sarili, sa mundo? Nawalan ka ng interes? Naging detached sa mga tao?"</li>
+          <li><strong>Hyperarousal (≥2):</strong> "Madali kang magulat? Laging alerto, parang may bantay? Iritable, paputok ang init ng ulo? Mahirap mag-focus? Mahirap matulog?"</li>
+        </ul>
+        <em>Use PCL-C scale for completeness.</em>
+      </div>
       <label>Trauma event(s)</label>
       <input type="text" data-field="cl.ptsd.event" placeholder="type, when">
       <textarea data-field="cl.ptsd.notes" placeholder="Cluster findings"></textarea>
@@ -971,6 +1126,18 @@
     <!-- SCZ -->
     <div class="checklist-pane" id="pane-scz">
       <div class="core-criterion"><strong>CORE:</strong> ≥1 of hallucinations, delusions, disorganized speech.</div>
+      <div class="ask">
+        <ul>
+          <li><strong>Hallucinations:</strong> "May mga naririnig ba kayo na hindi naririnig ng iba — boses, ingay? May mga nakikita ba kayo na hindi nakikita ng iba?"
+            <br><em>If yes:</em> "Lumalabas ba sa tenga niyo o sa loob lang ng isip niyo? Anong sinasabi? Iisang boses o marami? Kilala niyo ba?"</li>
+          <li><strong>Delusions (paranoid):</strong> "Naniniwala ba kayo na may gustong manakit sa inyo — pero hindi paniwala ng ibang tao?"</li>
+          <li><strong>Delusions (referential):</strong> "Naniniwala ba kayo na kayo ang pinag-uusapan sa TV, radyo, o ng mga estranghero?"</li>
+          <li><strong>Delusions (grandiose):</strong> "May mga special power o mission ba kayo na ibinigay sa inyo ng higher being?"</li>
+          <li><strong>Delusions (thought insertion/withdrawal):</strong> "May iba bang nag-iinsert ng thoughts sa isip niyo, o kinukuha 'yung thoughts niyo?"</li>
+          <li><strong>Disorganized speech:</strong> <em>observe — derailment, word salad, tangentiality</em></li>
+          <li><strong>Negative symptoms (5 A's):</strong> <em>observe — anhedonia, avolition, asociality, alogia, affective flattening</em></li>
+        </ul>
+      </div>
       <textarea data-field="cl.scz.notes" placeholder="Hallucination details (modality, content, ego-dystonic vs syntonic), delusion type/content"></textarea>
       <div class="checkboxes" style="margin-top:8px">
         <label><input type="checkbox" data-field="cl.scz.hall">Hallucinations</label>
@@ -1195,6 +1362,35 @@
     <div class="row cols-2">
       <div><label>RIC</label><input type="text" data-field="plan.ric"></div>
       <div><label>Intern</label><input type="text" data-field="plan.intern"></div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCE: Closing + Redirects -->
+<section class="sx">
+  <h3><span class="num">§R</span> Closing &amp; Redirect Scripts <span class="badge">reference only</span></h3>
+  <div class="body">
+    <p class="help" style="margin-bottom:10px">Scripts only — no fields. Use during/after the interview as needed.</p>
+
+    <h4 style="margin:8px 0 4px;font-family:var(--font-display);font-size:14px;font-weight:600">Redirecting / Pacing (when patient becomes hyperproductive)</h4>
+    <div class="ask">
+      <ul>
+        <li>"Salamat po, importante 'yan — pero para po mahabol natin lahat ng tanong, balikan po natin 'yan mamaya. Pwede po bang magtanong muna ako ng isa pa?"</li>
+        <li>"Pasensya na po, kailangan ko po kayong i-redirect ng konti — kasi may ilan pa po tayong dapat ma-cover sa oras natin."</li>
+        <li>"Para po hindi tayo maubusan ng oras — mag-focus muna po tayo sa…"</li>
+        <li>"Naiintindihan ko po — pwede po ba 'yan mamayang dulo na lang natin pag-usapan, pag may time pa?"</li>
+      </ul>
+    </div>
+
+    <h4 style="margin:14px 0 4px;font-family:var(--font-display);font-size:14px;font-weight:600">Closing</h4>
+    <div class="ask">
+      <ul>
+        <li>"Okay po, malapit na po tayong matapos. May gusto pa po ba kayong idagdag na sa tingin niyo mahalaga pero hindi ko natanong?"</li>
+        <li><em>Then transition to plan:</em></li>
+        <li>"Base po sa nakuha natin, ito po 'yung iniisip kong diagnosis at plano…"</li>
+        <li><em>Brief psychoeducation. Safety planning if SI+. Discuss diagnostics, meds if indicated. Set follow-up.</em></li>
+        <li>"Salamat po sa pagtitiwala. Magkita po tayo ulit kay Dr. [consultant] sa [date, time]."</li>
+      </ul>
     </div>
   </div>
 </section>
