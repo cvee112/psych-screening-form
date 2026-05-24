@@ -839,7 +839,7 @@
 <section class="sx">
   <h3><span class="num">§5</span> Past Psychiatric History <span class="badge">prior / separate episodes</span></h3>
   <div class="body">
-    <p class="help" style="margin-bottom:8px">Skip what was already covered in HPI. This is for separate / prior episodes only. Mark each as denied or present; positives become "(+) …", negatives are auto-grouped as "Denies …" in the final note.</p>
+    <p class="help" style="margin-bottom:8px">Skip what was already covered in HPI. This is for separate / prior episodes only. Positives become individual <code>(+) …</code> lines with notes; denied symptom groups are auto-collapsed into <code>Denies …</code> in the final note, matching the PGH sample format.</p>
     <div class="ask">"Bukod po sa mga sinabi natin kanina, may mga panahon po ba dati na nakaranas kayo ng mga sumusunod?"</div>
 
     <div class="ros-row">
@@ -1110,6 +1110,16 @@
       <label>Childhood temperament</label>
       <span class="field-prompt">"Anong klaseng bata po kayo — masunurin, makulit, mahiyain, magulo?"</span>
       <input type="text" data-field="anam.temperament">
+    </div>
+
+    <div class="field">
+      <label>Peer relationships (growing up)</label>
+      <span class="field-prompt">"May mga close na kaibigan po ba kayo nu'ng bata pa kayo? Madali po ba kayong nakakahalubilo sa kapwa bata?"</span>
+      <select data-field="anam.peers">
+        <option value="">—</option>
+        <option>adequate</option>
+        <option>inadequate</option>
+      </select>
     </div>
 
     <div class="field">
@@ -1900,6 +1910,91 @@ function clearAll() {
 function v(f) { return getValue(f) || ''; }
 function chk(f) { return getValue(f) === true; }
 
+function assembleChecklists() {
+  // Build per-disorder lines for any checklist with at least one positive sx or notes
+  const blocks = [];
+
+  // SIGECAPS / MDD
+  const mddSx = [];
+  if (chk('cl.mdd.core')) mddSx.push('depressed mood / anhedonia');
+  if (chk('cl.mdd.s'))    mddSx.push('sleep disturbance');
+  if (chk('cl.mdd.i'))    mddSx.push('interest loss');
+  if (chk('cl.mdd.g'))    mddSx.push('guilt');
+  if (chk('cl.mdd.e'))    mddSx.push('low energy');
+  if (chk('cl.mdd.c'))    mddSx.push('concentration difficulty');
+  if (chk('cl.mdd.a'))    mddSx.push('appetite/weight change');
+  if (chk('cl.mdd.p'))    mddSx.push('psychomotor agitation/retardation');
+  if (chk('cl.mdd.si'))   mddSx.push('suicidality');
+  if (chk('cl.mdd.psy'))  mddSx.push('psychotic features');
+  if (mddSx.length || v('cl.mdd.notes')) {
+    let line = `(+) Depressive (SIGECAPS): ${mddSx.join(', ') || '—'}`;
+    if (v('cl.mdd.notes')) line += ` — ${v('cl.mdd.notes')}`;
+    blocks.push(line);
+  }
+
+  // DIGFAST / Mania
+  const manSx = [];
+  if (chk('cl.mania.core')) manSx.push('elevated/irritable mood + ↑energy');
+  if (chk('cl.mania.d')) manSx.push('distractibility');
+  if (chk('cl.mania.i')) manSx.push('impulsivity');
+  if (chk('cl.mania.g')) manSx.push('grandiosity');
+  if (chk('cl.mania.f')) manSx.push('flight of ideas');
+  if (chk('cl.mania.a')) manSx.push('increased goal-directed activity');
+  if (chk('cl.mania.s')) manSx.push('decreased need for sleep');
+  if (chk('cl.mania.t')) manSx.push('talkativeness');
+  if (chk('cl.mania.psy')) manSx.push('psychotic features');
+  if (manSx.length || v('cl.mania.notes')) {
+    let line = `(+) Manic/Hypomanic (DIGFAST): ${manSx.join(', ') || '—'}`;
+    if (v('cl.mania.notes')) line += ` — ${v('cl.mania.notes')}`;
+    blocks.push(line);
+  }
+
+  // I CANT REST / GAD
+  const gadSx = [];
+  if (chk('cl.gad.core')) gadSx.push('excessive worry, hard to control');
+  if (chk('cl.gad.i')) gadSx.push('irritability');
+  if (chk('cl.gad.c')) gadSx.push('concentration difficulty');
+  if (chk('cl.gad.t')) gadSx.push('somatic tension');
+  if (chk('cl.gad.r')) gadSx.push('restlessness');
+  if (chk('cl.gad.e')) gadSx.push('fatigue');
+  if (chk('cl.gad.s')) gadSx.push('sleep disturbance');
+  if (chk('cl.gad.time')) gadSx.push('≥6 mo duration');
+  if (gadSx.length || v('cl.gad.notes')) {
+    let line = `(+) Anxiety (I CANT REST): ${gadSx.join(', ') || '—'}`;
+    if (v('cl.gad.notes')) line += ` — ${v('cl.gad.notes')}`;
+    blocks.push(line);
+  }
+
+  // PTSD
+  const ptsdSx = [];
+  if (chk('cl.ptsd.intrusion')) ptsdSx.push('intrusion');
+  if (chk('cl.ptsd.avoid'))     ptsdSx.push('avoidance');
+  if (chk('cl.ptsd.negcog'))    ptsdSx.push('negative cognitions/mood');
+  if (chk('cl.ptsd.arousal'))   ptsdSx.push('hyperarousal');
+  if (chk('cl.ptsd.duration'))  ptsdSx.push('≥1 mo duration');
+  if (ptsdSx.length || v('cl.ptsd.event') || v('cl.ptsd.notes')) {
+    let line = `(+) Trauma/PTSD (IANA): ${ptsdSx.join(', ') || '—'}`;
+    if (v('cl.ptsd.event')) line += ` — trauma: ${v('cl.ptsd.event')}`;
+    if (v('cl.ptsd.notes')) line += `; ${v('cl.ptsd.notes')}`;
+    blocks.push(line);
+  }
+
+  // SCZ Spectrum
+  const sczSx = [];
+  if (chk('cl.scz.hall')) sczSx.push('hallucinations');
+  if (chk('cl.scz.del')) sczSx.push('delusions');
+  if (chk('cl.scz.dspeech')) sczSx.push('disorganized speech');
+  if (chk('cl.scz.dbehav')) sczSx.push('disorganized behavior');
+  if (chk('cl.scz.neg')) sczSx.push('negative symptoms (5 A\'s)');
+  if (sczSx.length || v('cl.scz.notes')) {
+    let line = `(+) Psychotic / SCZ Spectrum: ${sczSx.join(', ') || '—'}`;
+    if (v('cl.scz.notes')) line += ` — ${v('cl.scz.notes')}`;
+    blocks.push(line);
+  }
+
+  return blocks;
+}
+
 function assembleNote() {
   const d = collectData();
   const lines = [];
@@ -1959,30 +2054,44 @@ function assembleNote() {
   const allSiDenied = ['passive','active','method','intent','plan','past'].every(k => v('hpi.si.' + k) === 'no');
   if (siParts.length) lines.push('Currently with ' + siParts.join(', ') + '.');
   else if (allSiDenied) lines.push('Currently denies suicidal ideation.');
+
+  // Symptom Checklist findings (from §11) — fold into HPI per template guidance
+  const clBlocks = assembleChecklists();
+  if (clBlocks.length) {
+    lines.push('');
+    lines.push('Symptom screen:');
+    clBlocks.forEach(b => lines.push(b));
+  }
   lines.push('');
 
   // ROS
   lines.push('PAST PSYCHIATRIC HISTORY');
   const rosMap = [
-    {key:'dep', pos:'Enduring depressed mood, anhedonia', neg:'depressive'},
-    {key:'anx', pos:'Anxiety difficult to control', neg:'anxiety'},
-    {key:'mania', pos:'Enduring elevated or irritable mood', neg:'manic'},
-    {key:'psy', pos:'Hallucinations, delusions', neg:'psychotic'},
-    {key:'tr', pos:'Trauma experienced or witnessed', neg:'trauma'},
-    {key:'prev', pos:'Previous diagnosis / consults / medications', neg:''},
-    {key:'sa', pos:'Previous suicide attempts', neg:''},
+    {key:'dep',   label:'Enduring depressed mood, anhedonia (DEPRESSIVE SYMPTOMS)', short:'depressive'},
+    {key:'anx',   label:'Anxiety difficult to control (ANXIETY SYMPTOMS)',          short:'anxiety'},
+    {key:'mania', label:'Enduring elevated or irritable mood lasting 4 days to 1 week (MANIC/HYPOMANIC SYMPTOMS)', short:'manic'},
+    {key:'psy',   label:'Hallucinations, delusions (PSYCHOTIC SYMPTOMS)',           short:'psychotic'},
+    {key:'tr',    label:'Trauma experienced or witnessed (actual or threatened death, serious injury, or sexual violence) (TRAUMA SYMPTOMS)', short:'trauma'},
+    {key:'prev',  label:'Previous diagnosis / consults / medications',              short:''},
+    {key:'sa',    label:'Previous suicide attempts',                                short:''},
   ];
   const negatives = [];
+  const otherDenied = [];
   rosMap.forEach(r => {
     const state = v(`ros.${r.key}.state`);
     const note = v(`ros.${r.key}.note`);
     if (state === 'yes') {
-      lines.push(`(+) ${r.pos}${note ? ' — ' + note : ''}`);
-    } else if (state === 'no' && r.neg) {
-      negatives.push(r.neg);
+      // Drop the parenthesized category suffix from positives — only keep the descriptor
+      const cleanLabel = r.label.replace(/\s*\([A-Z/ ]+\s*SYMPTOMS\)\s*$/, '');
+      lines.push(`(+) ${cleanLabel}${note ? ' — ' + note : ''}`);
+    } else if (state === 'no' && r.short) {
+      negatives.push(r.short);
+    } else if (state === 'no' && !r.short) {
+      otherDenied.push(`Denies ${r.label.toLowerCase()}.`);
     }
   });
   if (negatives.length) lines.push(`Denies ${negatives.join(', ')} symptoms.`);
+  otherDenied.forEach(d => lines.push(d));
   lines.push('');
 
   lines.push('PAST MEDICAL HISTORY');
@@ -2017,13 +2126,15 @@ function assembleNote() {
   if (v('anam.paragraph')) {
     lines.push(v('anam.paragraph'));
   } else {
-    // Auto-build from fields
+    // Auto-build from fields — mirrors PGH sample note structure
     let p = '';
     if (v('anam.order')) p += `The patient is the ${v('anam.order')}, `;
     if (v('anam.delivery')) p += `born via ${v('anam.delivery')}, `;
     p += `with ${v('anam.complications') || 'no'} fetomaternal complications and ${v('anam.delays') || 'no'} developmental delays noted. `;
     if (v('anam.caregiver')) p += `The primary caregiver during the formative years was the ${v('anam.caregiver')}. `;
     if (v('anam.family')) p += `${v('anam.family')} `;
+    if (v('anam.temperament')) p += `Patient describes self as a ${v('anam.temperament')} child. `;
+    if (v('anam.peers')) p += `With ${v('anam.peers')} peer relationships growing up. `;
     if (v('anam.abuse')) p += `With ${v('anam.abuse')}. `;
     if (v('anam.scholastic')) p += `The patient had ${v('anam.scholastic')} scholastic performance. `;
     if (v('anam.sogie')) p += `Patient identifies as ${v('anam.sogie')}`;
@@ -2042,38 +2153,86 @@ function assembleNote() {
   lines.push('O>');
   lines.push('MSE');
   const mse = [];
+
+  // Sentence 1: Adult Filipino [sex] of [stat] stature and [bld] build.
   const sex = v('mse.sex'), stat = v('mse.stature'), bld = v('mse.build');
-  if (sex || stat || bld) mse.push(`Adult Filipino ${sex || '___'} of ${stat || '___'} stature and ${bld || '___'} build.`);
+  if (sex || stat || bld) {
+    mse.push(`Adult Filipino ${sex || '___'} of ${stat || '___'} stature and ${bld || '___'} build.`);
+  }
+
+  // Sentence 2: [kempt]-kempt, [dress] dressed.
   const kempt = v('mse.kempt'), dress = v('mse.dress');
-  if (kempt || dress) mse.push(`${cap(kempt) || '___'}-kempt, ${dress || '___'} dressed.`);
+  if (kempt || dress) {
+    mse.push(`${cap(kempt) || '___'}-kempt, ${dress || '___'} dressed.`);
+  }
+
+  // Sentence 3: [behavior], [coop], and with [eye] eye contact.
   const beh = v('mse.behavior'), coop = v('mse.coop'), eye = v('mse.eye');
   if (beh || coop || eye) {
-    const ec = eye ? `${eye} eye contact` : '___ eye contact';
-    mse.push(`${cap(beh) || '___'}, ${coop || '___'}, and with ${ec}.`);
+    mse.push(`${cap(beh) || '___'}, ${coop || '___'}, and with ${eye || '___'} eye contact.`);
   }
-  if (v('mse.pm')) mse.push(`${cap(v('mse.pm'))}.`);
-  const sp = [v('mse.speechProd'), v('mse.speechRate') ? v('mse.speechRate') + ' rate' : '', v('mse.speechVol') ? v('mse.speechVol') + ' volume' : '', v('mse.speechTone') ? v('mse.speechTone') + ' tone' : ''].filter(Boolean);
-  if (sp.length) mse.push(`${cap(sp[0])} speech${sp.length > 1 ? ' with ' + sp.slice(1).join(', ') : ''}.`);
+
+  // Sentence 4: psychomotor — match template (No/with, describe)
+  const pm = v('mse.pm');
+  if (pm === 'no psychomotor abnormalities') {
+    mse.push('No psychomotor agitation/retardation.');
+  } else if (pm === 'psychomotor agitation') {
+    mse.push('With psychomotor agitation.');
+  } else if (pm === 'psychomotor retardation') {
+    mse.push('With psychomotor retardation.');
+  }
+
+  // Sentence 5: Speech — [prod]productive speech with [rate] rate, [vol] volume, and [tone] tone.
+  const sProd = v('mse.speechProd'), sRate = v('mse.speechRate'), sVol = v('mse.speechVol'), sTone = v('mse.speechTone');
+  if (sProd || sRate || sVol || sTone) {
+    const parts = [];
+    if (sRate) parts.push(`${sRate} rate`);
+    if (sVol) parts.push(`${sVol} volume`);
+    if (sTone) parts.push(`${sTone} tone`);
+    let s = `${cap(sProd) || '___productive'} speech`;
+    if (parts.length === 1) s += ` with ${parts[0]}`;
+    else if (parts.length === 2) s += ` with ${parts[0]} and ${parts[1]}`;
+    else if (parts.length === 3) s += ` with ${parts[0]}, ${parts[1]}, and ${parts[2]}`;
+    mse.push(s + '.');
+  }
+
+  // Sentence 6: Mood + affect — [mood] mood with mood-[cong] [range] affect.
   const mood = v('mse.mood'), aCong = v('mse.affectCong'), aRng = v('mse.affectRange');
   if (mood || aCong || aRng) {
     let s = `${cap(mood) || '___'} mood`;
-    if (aCong || aRng) s += ` with ${aCong || '___'} ${aRng || '___'} affect`;
+    if (aCong || aRng) {
+      s += ` with ${aCong || 'mood-___'} ${aRng || '___'} affect`;
+    }
     mse.push(s + '.');
   }
-  if (v('mse.tp')) mse.push(`${cap(v('mse.tp'))} responses.`);
+
+  // Sentence 7: Thought process responses
+  if (v('mse.tp')) {
+    mse.push(`${cap(v('mse.tp'))} responses.`);
+  }
+
+  // Sentence 8: Thought process abnormalities — always list all 3 per template format
   const tpAbs = [];
   if (chk('mse.tpBlocking')) tpAbs.push('thought blocking');
   if (chk('mse.tpFOI')) tpAbs.push('flight of ideas');
   if (chk('mse.tpPerseveration')) tpAbs.push('perseverations');
-  if (tpAbs.length) mse.push(`(+) ${tpAbs.join(', ')}.`);
-  else if (v('mse.tp')) mse.push('(−) thought blocking, flight of ideas, perseverations.');
-  // SI
+  if (tpAbs.length) {
+    mse.push(`(+) ${tpAbs.join(', ')}.`);
+  } else if (v('mse.tp')) {
+    mse.push('(−) thought blocking, flight of ideas, perseverations.');
+  }
+
+  // Sentence 9: SI
   const siType = v('mse.siType');
   if (siType === 'none') mse.push('(−) Current suicidal, self-harm ideations.');
-  else if (siType) mse.push(`(+) Current ${siType} suicidal ideations.`);
+  else if (siType === 'passive') mse.push('(+) Current passive suicidal, self-harm ideations.');
+  else if (siType === 'active') mse.push('(+) Current active suicidal, self-harm ideations.');
+
+  // Sentence 10: HI
   if (v('mse.hi') === 'present') mse.push('(+) Current homicidal ideations.');
   else if (v('mse.hi') === 'denied') mse.push('(−) Current homicidal ideations.');
-  // Delusions
+
+  // Sentence 11: Delusions — match template format
   const delTypes = [];
   if (chk('mse.delParanoid')) delTypes.push('paranoid');
   if (chk('mse.delGrand')) delTypes.push('grandiose');
@@ -2082,17 +2241,27 @@ function assembleNote() {
   if (chk('mse.delSomatic')) delTypes.push('somatic');
   if (chk('mse.delControl')) delTypes.push('control');
   if (chk('mse.delInsertion')) delTypes.push('thought insertion/withdrawal');
-  if (delTypes.length) mse.push(`(+) delusions (${delTypes.join(', ')}).`);
-  else if (chk('mse.delNone')) mse.push('(−) delusions.');
-  // Perceptual
+  if (delTypes.length) {
+    mse.push(`(+) delusions (${delTypes.join(', ')}).`);
+  } else if (chk('mse.delNone')) {
+    mse.push('(−) delusions (paranoid, grandiose, erotomanic, jealous, somatic, control, thought insertion/withdrawal).');
+  }
+
+  // Sentence 12: Perceptual disturbances
   const percTypes = [];
   if (chk('mse.percAud')) percTypes.push('auditory');
   if (chk('mse.percVis')) percTypes.push('visual');
   if (chk('mse.percTact')) percTypes.push('tactile');
   if (chk('mse.percOlf')) percTypes.push('olfactory');
-  if (percTypes.length) mse.push(`(+) perceptual disturbances (${percTypes.join(', ')}).`);
-  else if (chk('mse.percNone')) mse.push('(−) perceptual disturbances.');
+  if (percTypes.length) {
+    mse.push(`(+) perceptual disturbances (${percTypes.join(', ')}).`);
+  } else if (chk('mse.percNone')) {
+    mse.push('(−) perceptual disturbances (auditory, visual, tactile, olfactory).');
+  }
+
+  // Sentence 13: Insight
   if (v('mse.insight')) mse.push(`${cap(v('mse.insight'))} insight.`);
+
   lines.push(mse.join(' '));
 
   if (chk('mse.ncdInclude')) {
