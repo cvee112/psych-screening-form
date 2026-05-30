@@ -547,6 +547,162 @@
     .modal-body pre { font-size: 10.5px; padding: 12px; }
     .field-prompt { font-size: 11.5px; }
   }
+
+  /* === SCALE CALCULATORS === */
+  .scale-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background: #fffefa;
+    overflow: hidden;
+  }
+  .scale-header {
+    background: var(--surface-2);
+    padding: 10px 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+    border-bottom: 1px solid transparent;
+  }
+  .scale-header.open {
+    border-bottom-color: var(--border);
+  }
+  .scale-header h4 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    flex: 1;
+  }
+  .scale-header .scale-meta {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+  }
+  .scale-header .scale-score {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: var(--ink);
+    color: var(--surface);
+    min-width: 50px;
+    text-align: center;
+  }
+  .scale-header .scale-score.empty {
+    background: transparent;
+    color: var(--muted);
+    border: 1px dashed var(--border-strong);
+  }
+  .scale-header .toggle-icon {
+    color: var(--muted);
+    font-family: var(--font-mono);
+    width: 14px;
+    text-align: center;
+    transition: transform 0.15s;
+  }
+  .scale-header.open .toggle-icon { transform: rotate(90deg); }
+  .scale-body { display: none; padding: 12px 14px 14px; }
+  .scale-body.open { display: block; }
+  .scale-intro {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  .scale-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px 12px;
+    padding: 7px 0;
+    border-bottom: 1px dotted var(--border);
+    align-items: center;
+  }
+  .scale-item:last-of-type { border-bottom: none; }
+  .scale-item .item-text {
+    font-size: 12.5px;
+    line-height: 1.35;
+  }
+  .scale-item .item-text small {
+    display: block;
+    color: var(--accent);
+    font-style: italic;
+    font-size: 11px;
+    margin-top: 1px;
+  }
+  .scale-options { display: flex; gap: 2px; }
+  .scale-options label {
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 500;
+    color: var(--muted);
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 4px 8px;
+    font-size: 11px;
+    cursor: pointer;
+    min-width: 26px;
+    text-align: center;
+    border-radius: 2px;
+    transition: background 0.1s, color 0.1s;
+  }
+  .scale-options input[type="radio"] { display: none; }
+  .scale-options input[type="radio"]:checked + label {
+    background: var(--ink);
+    color: var(--surface);
+    border-color: var(--ink);
+    font-weight: 600;
+  }
+  .scale-options.yesno label { min-width: 40px; }
+  .scale-result {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 3px 3px 0;
+    font-size: 12.5px;
+  }
+  .scale-result strong { color: var(--accent); }
+  .scale-result .severity {
+    display: inline-block;
+    padding: 2px 8px;
+    background: var(--accent);
+    color: white;
+    border-radius: 2px;
+    font-weight: 600;
+    margin-left: 6px;
+    font-size: 11.5px;
+  }
+  .scale-options-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+  .scale-options-grid label {
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 500;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 6px 8px;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 2px;
+    text-align: center;
+  }
+  .scale-options-grid input { margin-right: 4px; }
+  @media (max-width: 700px) {
+    .scale-item { grid-template-columns: 1fr; gap: 4px; }
+    .scale-options { flex-wrap: wrap; }
+    .scale-options-grid { grid-template-columns: repeat(2, 1fr); }
+  }
 </style>
 </head>
 <body>
@@ -835,363 +991,11 @@
   </div>
 </section>
 
-<!-- §5 PAST PSYCH HX -->
-<section class="sx">
-  <h3><span class="num">§5</span> Past Psychiatric History <span class="badge">prior / separate episodes</span></h3>
-  <div class="body">
-    <p class="help" style="margin-bottom:8px">Skip what was already covered in HPI. This is for separate / prior episodes only. Positives become individual <code>(+) …</code> lines with notes; denied symptom groups are auto-collapsed into <code>Denies …</code> in the final note, matching the PGH sample format.</p>
-    <div class="ask">"Bukod po sa mga sinabi natin kanina, may mga panahon po ba dati na nakaranas kayo ng mga sumusunod?"</div>
-
-    <div class="ros-row">
-      <div class="ros-label">
-        <strong>Depressive sx</strong>
-        <small>Enduring depressed mood, anhedonia</small>
-        <span class="prompt">"Tuloy-tuloy na lungkot o kawalan ng gana sa mga dating gusto niyo, na umabot ng higit dalawang linggo?"</span>
-      </div>
-      <div>
-        <div class="toggle-group">
-          <input type="radio" name="ros-dep" id="ros-dep-na" value="" data-field="ros.dep.state" checked><label class="na" for="ros-dep-na">—</label>
-          <input type="radio" name="ros-dep" id="ros-dep-no" value="no" data-field="ros.dep.state"><label class="neg" for="ros-dep-no">denied</label>
-          <input type="radio" name="ros-dep" id="ros-dep-yes" value="yes" data-field="ros.dep.state"><label class="pos" for="ros-dep-yes">present</label>
-        </div>
-        <input type="text" class="ros-input" placeholder="if present: when, duration, severity" data-field="ros.dep.note">
-      </div>
-    </div>
-
-    <div class="ros-row">
-      <div class="ros-label">
-        <strong>Anxiety sx</strong>
-        <small>Anxiety difficult to control</small>
-        <span class="prompt">"Sobrang pag-aalala na mahirap kontrolin, na umabot ng ilang buwan?"</span>
-      </div>
-      <div>
-        <div class="toggle-group">
-          <input type="radio" name="ros-anx" id="ros-anx-na" value="" data-field="ros.anx.state" checked><label class="na" for="ros-anx-na">—</label>
-          <input type="radio" name="ros-anx" id="ros-anx-no" value="no" data-field="ros.anx.state"><label class="neg" for="ros-anx-no">denied</label>
-          <input type="radio" name="ros-anx" id="ros-anx-yes" value="yes" data-field="ros.anx.state"><label class="pos" for="ros-anx-yes">present</label>
-        </div>
-        <input type="text" class="ros-input" placeholder="if present: when, duration" data-field="ros.anx.note">
-      </div>
-    </div>
-
-    <div class="ros-row">
-      <div class="ros-label">
-        <strong>Manic / Hypomanic</strong>
-        <small>Elevated or irritable mood, 4d–1wk</small>
-        <span class="prompt">"Panahon ba na sobrang taas ng energy niyo, kaunti lang ang tulog pero hindi pagod, parang lahat kaya niyong gawin — umabot ng 4 na araw o 1 linggo?"</span>
-      </div>
-      <div>
-        <div class="toggle-group">
-          <input type="radio" name="ros-mania" id="ros-mania-na" value="" data-field="ros.mania.state" checked><label class="na" for="ros-mania-na">—</label>
-          <input type="radio" name="ros-mania" id="ros-mania-no" value="no" data-field="ros.mania.state"><label class="neg" for="ros-mania-no">denied</label>
-          <input type="radio" name="ros-mania" id="ros-mania-yes" value="yes" data-field="ros.mania.state"><label class="pos" for="ros-mania-yes">present</label>
-        </div>
-        <input type="text" class="ros-input" placeholder="if present: when, duration, sx" data-field="ros.mania.note">
-      </div>
-    </div>
-
-    <div class="ros-row">
-      <div class="ros-label">
-        <strong>Psychotic sx</strong>
-        <small>Hallucinations, delusions</small>
-        <span class="prompt">"May mga panahon po ba na may naririnig kayong ibang tao ang hindi naririnig, o may naniniwala kayong totoo na sinasabi ng iba na hindi naman?"</span>
-      </div>
-      <div>
-        <div class="toggle-group">
-          <input type="radio" name="ros-psy" id="ros-psy-na" value="" data-field="ros.psy.state" checked><label class="na" for="ros-psy-na">—</label>
-          <input type="radio" name="ros-psy" id="ros-psy-no" value="no" data-field="ros.psy.state"><label class="neg" for="ros-psy-no">denied</label>
-          <input type="radio" name="ros-psy" id="ros-psy-yes" value="yes" data-field="ros.psy.state"><label class="pos" for="ros-psy-yes">present</label>
-        </div>
-        <input type="text" class="ros-input" placeholder="if present: type, content" data-field="ros.psy.note">
-      </div>
-    </div>
-
-    <div class="ros-row">
-      <div class="ros-label">
-        <strong>Trauma sx</strong>
-        <small>Experienced or witnessed</small>
-        <span class="prompt">"May naranasan po ba kayo o nasaksihan na matinding pananakit, banta sa buhay, o sexual abuse?"</span>
-      </div>
-      <div>
-        <div class="toggle-group">
-          <input type="radio" name="ros-tr" id="ros-tr-na" value="" data-field="ros.tr.state" checked><label class="na" for="ros-tr-na">—</label>
-          <input type="radio" name="ros-tr" id="ros-tr-no" value="no" data-field="ros.tr.state"><label class="neg" for="ros-tr-no">denied</label>
-          <input type="radio" name="ros-tr" id="ros-tr-yes" value="yes" data-field="ros.tr.state"><label class="pos" for="ros-tr-yes">present</label>
-        </div>
-        <input type="text" class="ros-input" placeholder="if present: type, when" data-field="ros.tr.note">
-      </div>
-    </div>
-
-    <div class="ros-row">
-      <div class="ros-label">
-        <strong>Previous dx / consults / meds</strong>
-        <span class="prompt">"Nakapag-consult na po ba kayo dati sa psychiatrist o psychologist? Anong diagnosis ang naibigay? Anong gamot ang ininom niyo? Bakit po tumigil?"</span>
-      </div>
-      <div>
-        <div class="toggle-group">
-          <input type="radio" name="ros-prev" id="ros-prev-na" value="" data-field="ros.prev.state" checked><label class="na" for="ros-prev-na">—</label>
-          <input type="radio" name="ros-prev" id="ros-prev-no" value="no" data-field="ros.prev.state"><label class="neg" for="ros-prev-no">denied</label>
-          <input type="radio" name="ros-prev" id="ros-prev-yes" value="yes" data-field="ros.prev.state"><label class="pos" for="ros-prev-yes">present</label>
-        </div>
-        <input type="text" class="ros-input" placeholder="dx, meds, reason for D/C" data-field="ros.prev.note">
-      </div>
-    </div>
-
-    <div class="ros-row">
-      <div class="ros-label">
-        <strong>Previous suicide attempts</strong>
-        <span class="prompt">"May mga previous attempt na po ba na hindi pa natin napag-usapan?"</span>
-      </div>
-      <div>
-        <div class="toggle-group">
-          <input type="radio" name="ros-sa" id="ros-sa-na" value="" data-field="ros.sa.state" checked><label class="na" for="ros-sa-na">—</label>
-          <input type="radio" name="ros-sa" id="ros-sa-no" value="no" data-field="ros.sa.state"><label class="neg" for="ros-sa-no">denied</label>
-          <input type="radio" name="ros-sa" id="ros-sa-yes" value="yes" data-field="ros.sa.state"><label class="pos" for="ros-sa-yes">present</label>
-        </div>
-        <input type="text" class="ros-input" placeholder="when, how, outcome, hospitalized?" data-field="ros.sa.note">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- §6 PMH -->
-<section class="sx">
-  <h3><span class="num">§6</span> Past Medical History</h3>
-  <div class="body">
-    <div class="field">
-      <label>Comorbidities</label>
-      <span class="field-prompt">"May mga sakit po ba kayo — diabetes, high blood, asthma, thyroid problem, sakit sa puso?"</span>
-      <input type="text" data-field="pmh.comorbid" placeholder="e.g., HTN, T2DM, asthma — or 'denies'">
-    </div>
-    <div class="row cols-2">
-      <div>
-        <label>Previous hospitalizations</label>
-        <span class="field-prompt">"Na-ospital na po ba kayo dati?"</span>
-        <input type="text" data-field="pmh.hosp" placeholder="year, reason">
-      </div>
-      <div>
-        <label>Previous surgeries</label>
-        <span class="field-prompt">"Na-opera na po ba kayo?"</span>
-        <input type="text" data-field="pmh.surg">
-      </div>
-    </div>
-    <div class="field">
-      <label>Allergies (food / medications)</label>
-      <span class="field-prompt">"May allergy po ba kayo sa pagkain o gamot?"</span>
-      <input type="text" data-field="pmh.allergy" placeholder="or NKA">
-    </div>
-  </div>
-</section>
-
-<!-- §7 FMH -->
-<section class="sx">
-  <h3><span class="num">§7</span> Family Medical History</h3>
-  <div class="body">
-    <div class="field">
-      <label>Medical (with relations)</label>
-      <span class="field-prompt">"Sa pamilya niyo po — may mga sakit po ba kayong alam? Hypertension, diabetes, sakit sa puso, kanino — Nanay? Tatay? Lolo/Lola? Mga kapatid?"</span>
-      <input type="text" data-field="fmh.medical" placeholder="e.g., HTN — mother; T2DM — paternal grandfather">
-    </div>
-    <div class="field">
-      <label>Psychiatric (dx, relation)</label>
-      <span class="field-prompt">"May sakit po ba sa isip na alam niyo sa pamilya — depression, schizophrenia, bipolar?"</span>
-      <input type="text" data-field="fmh.psych">
-    </div>
-    <div class="field">
-      <label>Family suicide attempts</label>
-      <span class="field-prompt">"May sinubukang magpakamatay po ba sa pamilya?"</span>
-      <input type="text" data-field="fmh.suicide">
-    </div>
-  </div>
-</section>
-
-<!-- §8 OB-GYN -->
-<section class="sx">
-  <h3><span class="num">§8</span> OB-GYN History <span class="badge">if applicable</span></h3>
-  <div class="body">
-    <div class="ob-toggle">
-      <label class="inline" style="margin:0"><input type="checkbox" data-field="ob.na"> Not applicable (skip in final note)</label>
-    </div>
-    <div class="row cols-2">
-      <div>
-        <label>LMP</label>
-        <span class="field-prompt">"Kailan po 'yung huling regla niyo?"</span>
-        <input type="text" data-field="ob.lmp">
-      </div>
-      <div>
-        <label>OB Score</label>
-        <span class="field-prompt">"OB score po — ilang beses na po kayo nabuntis, nakapanganak?"</span>
-        <input type="text" data-field="ob.score" placeholder="G__P__ (__-__-__-__)">
-      </div>
-    </div>
-    <div class="field">
-      <label>MIDAS</label>
-      <span class="field-prompt">"MIDAS — menarche, interval, duration, amount, symptoms?"</span>
-      <input type="text" data-field="ob.midas" placeholder="Menarche __; Interval __; Duration __; Amount __; Symptoms __">
-    </div>
-    <div class="field">
-      <label>Premenstrual mood changes <em style="font-weight:400;color:var(--muted);font-size:11px">(optional)</em></label>
-      <span class="field-prompt">"Napapansin niyo po ba ang pagbabago ng mood bago kayo magregla?"</span>
-      <input type="text" data-field="ob.pms" placeholder="(+/−) details">
-    </div>
-  </div>
-</section>
-
-<!-- §9 SUBSTANCE -->
-<section class="sx">
-  <h3><span class="num">§9</span> Substance Use History</h3>
-  <div class="body">
-    <div class="field">
-      <label>Alcohol</label>
-      <span class="field-prompt">"Umiinom po ba kayo ng alak? Gaano kadalas? Hanggang lasing po ba?"</span>
-      <input type="text" data-field="sub.alcohol" placeholder="frequency, amount, last intake, intoxication? — or 'denies'">
-    </div>
-    <div class="field">
-      <label>Smoking</label>
-      <span class="field-prompt">"Naninigarilyo po ba kayo? Ilang stick kada araw, ilang taon na?"</span>
-      <input type="text" data-field="sub.smoking" placeholder="sticks/day × years; pack-years — or 'denies'">
-    </div>
-    <div class="field">
-      <label>Illicit drugs</label>
-      <span class="field-prompt">"Nakagamit na po ba kayo ng ipinagbabawal na gamot — marijuana, shabu, iba pa?"</span>
-      <input type="text" data-field="sub.illicit" placeholder="substance, route, frequency, last use — or 'denies'">
-    </div>
-  </div>
-</section>
-
-<!-- §10 ANAMNESIS -->
-<section class="sx">
-  <h3><span class="num">§10</span> Anamnesis</h3>
-  <div class="body">
-    <p class="help" style="margin-bottom:10px">"Konting questions na lang po tungkol sa paglaki niyo, para mas maintindihan ko 'yung background niyo."</p>
-
-    <div class="row cols-2">
-      <div>
-        <label>Birth order</label>
-        <span class="field-prompt">"Pang-ilang anak po kayo sa magkakapatid?"</span>
-        <input type="text" data-field="anam.order" placeholder="e.g., eldest of 3, only child">
-      </div>
-      <div>
-        <label>Delivery</label>
-        <span class="field-prompt">"Normal delivery po ba o CS?"</span>
-        <select data-field="anam.delivery">
-          <option value="">—</option>
-          <option>normal spontaneous vaginal delivery (SVD)</option>
-          <option>caesarean section (CS)</option>
-        </select>
-      </div>
-    </div>
-    <div class="row cols-2">
-      <div>
-        <label>Fetomaternal complications</label>
-        <span class="field-prompt">"May komplikasyon po ba sa pagbubuntis o panganganak ng nanay niyo sa inyo?"</span>
-        <input type="text" data-field="anam.complications" placeholder="or 'no'">
-      </div>
-      <div>
-        <label>Developmental delays</label>
-        <span class="field-prompt">"May delays po ba sa paglaki — sa pagsasalita, paglalakad, pag-aaral?"</span>
-        <input type="text" data-field="anam.delays" placeholder="or 'no'">
-      </div>
-    </div>
-
-    <div class="field">
-      <label>Primary caregiver during formative years</label>
-      <span class="field-prompt">"Sino po ang nag-alaga sa inyo nu'ng bata pa kayo — mga magulang, lola, iba?"</span>
-      <input type="text" data-field="anam.caregiver">
-    </div>
-
-    <div class="field">
-      <label>Family description (relationship to parents/siblings)</label>
-      <span class="field-prompt">"Paano niyo po idi-describe 'yung relasyon niyo sa magulang at mga kapatid noon?"</span>
-      <textarea data-field="anam.family"></textarea>
-    </div>
-
-    <div class="field">
-      <label>Childhood temperament</label>
-      <span class="field-prompt">"Anong klaseng bata po kayo — masunurin, makulit, mahiyain, magulo?"</span>
-      <input type="text" data-field="anam.temperament">
-    </div>
-
-    <div class="field">
-      <label>Peer relationships (growing up)</label>
-      <span class="field-prompt">"May mga close na kaibigan po ba kayo nu'ng bata pa kayo? Madali po ba kayong nakakahalubilo sa kapwa bata?"</span>
-      <select data-field="anam.peers">
-        <option value="">—</option>
-        <option>adequate</option>
-        <option>inadequate</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Bullying / abuse / neglect</label>
-      <span class="field-prompt">"Naranasan niyo po bang mabully, o naabuso — pisikal, verbal, sexual — bilang bata?"</span>
-      <input type="text" data-field="anam.abuse" placeholder="(+/−) physical, verbal, sexual, neglect details">
-    </div>
-
-    <div class="field">
-      <label>Scholastic performance</label>
-      <span class="field-prompt">"Kumusta po 'yung eskwela — average, mataas, mababa ang grades?"</span>
-      <select data-field="anam.scholastic">
-        <option value="">—</option>
-        <option>poor</option><option>average</option><option>above-average</option>
-      </select>
-    </div>
-
-    <div class="row cols-2">
-      <div>
-        <label>SOGIE</label>
-        <span class="field-prompt">"Sa SOGIE — paano niyo po i-identify ang sarili niyo? Sino ang naa-attract sa inyo?"</span>
-        <input type="text" data-field="anam.sogie" placeholder="e.g., heterosexual male attracted to women">
-      </div>
-      <div>
-        <label>Previous relationships</label>
-        <span class="field-prompt">"Ilan po 'yung previous relationships?"</span>
-        <input type="text" data-field="anam.relationships" placeholder="number, quality">
-      </div>
-    </div>
-
-    <div class="field">
-      <label>Current living arrangement</label>
-      <span class="field-prompt">"Saan po kayo nakatira ngayon? Sino ang kasama niyo sa bahay?"</span>
-      <input type="text" data-field="anam.living" placeholder="who, where">
-    </div>
-
-    <div class="field">
-      <label>Primary social supports</label>
-      <span class="field-prompt">"Sino po ang takbuhan niyo kapag may problema?"</span>
-      <input type="text" data-field="anam.supports">
-    </div>
-
-    <div class="field">
-      <label>Coping mechanisms</label>
-      <span class="field-prompt">"Ano ang ginagawa niyo pag may problema?"</span>
-      <input type="text" data-field="anam.coping">
-    </div>
-
-    <div class="field">
-      <label>Hobbies</label>
-      <span class="field-prompt">"Ano po 'yung hobbies niyo?"</span>
-      <input type="text" data-field="anam.hobbies">
-    </div>
-
-    <div class="field">
-      <label>Religion (practicing or nominal)</label>
-      <span class="field-prompt">"Sa relihiyon — practicing po ba kayo, o nominal lang?"</span>
-      <input type="text" data-field="anam.religion" placeholder="e.g., Roman Catholic, does not consider self particularly religious">
-    </div>
-
-    <hr class="soft">
-
-    <label>Anamnesis Paragraph (synthesize from above)</label>
-    <textarea class="paragraph" data-field="anam.paragraph" placeholder="Compose the anamnesis paragraph here, mirroring the PGH template structure…"></textarea>
-  </div>
-</section>
-
 <!-- §11 SYMPTOM CHECKLISTS -->
 <section class="sx">
-  <h3><span class="num">§11</span> Symptom Checklists <span class="badge">feeds into HPI / Past Psych</span></h3>
+  <h3><span class="num">§11</span> Symptom Checklists <span class="badge">branches from HPI core</span></h3>
   <div class="body">
-    <p class="help">Use whichever applies to the core symptom. Findings feed into the HPI paragraph or Past Psych Hx — not output as a separate section.</p>
+    <p class="help">Use whichever applies to the core symptom you identified in §4 HPI. Positive findings auto-fold into the HPI section of the final note.</p>
     <div class="checklist-tabs">
       <button class="checklist-tab active" onclick="switchTab(event,'mdd')">SIGECAPS · MDD</button>
       <button class="checklist-tab" onclick="switchTab(event,'mania')">DIGFAST · Mania</button>
@@ -1544,6 +1348,420 @@
   </div>
 </section>
 
+<!-- §5 PAST PSYCH HX -->
+<section class="sx">
+  <h3><span class="num">§5</span> Past Psychiatric History <span class="badge">prior / separate episodes</span></h3>
+  <div class="body">
+    <p class="help" style="margin-bottom:8px">Skip what was already covered in HPI. This is for separate / prior episodes only. Positives become individual <code>(+) …</code> lines with notes; denied symptom groups are auto-collapsed into <code>Denies …</code> in the final note, matching the PGH sample format.</p>
+    <div class="ask">"Bukod po sa mga sinabi natin kanina, may mga panahon po ba dati na nakaranas kayo ng mga sumusunod?"</div>
+
+    <div class="ros-row">
+      <div class="ros-label">
+        <strong>Depressive sx</strong>
+        <small>Enduring depressed mood, anhedonia</small>
+        <span class="prompt">"Tuloy-tuloy na lungkot o kawalan ng gana sa mga dating gusto niyo, na umabot ng higit dalawang linggo?"</span>
+      </div>
+      <div>
+        <div class="toggle-group">
+          <input type="radio" name="ros-dep" id="ros-dep-na" value="" data-field="ros.dep.state" checked><label class="na" for="ros-dep-na">—</label>
+          <input type="radio" name="ros-dep" id="ros-dep-no" value="no" data-field="ros.dep.state"><label class="neg" for="ros-dep-no">denied</label>
+          <input type="radio" name="ros-dep" id="ros-dep-yes" value="yes" data-field="ros.dep.state"><label class="pos" for="ros-dep-yes">present</label>
+        </div>
+        <input type="text" class="ros-input" placeholder="if present: when, duration, severity" data-field="ros.dep.note">
+      </div>
+    </div>
+
+    <div class="ros-row">
+      <div class="ros-label">
+        <strong>Anxiety sx</strong>
+        <small>Anxiety difficult to control</small>
+        <span class="prompt">"Sobrang pag-aalala na mahirap kontrolin, na umabot ng ilang buwan?"</span>
+      </div>
+      <div>
+        <div class="toggle-group">
+          <input type="radio" name="ros-anx" id="ros-anx-na" value="" data-field="ros.anx.state" checked><label class="na" for="ros-anx-na">—</label>
+          <input type="radio" name="ros-anx" id="ros-anx-no" value="no" data-field="ros.anx.state"><label class="neg" for="ros-anx-no">denied</label>
+          <input type="radio" name="ros-anx" id="ros-anx-yes" value="yes" data-field="ros.anx.state"><label class="pos" for="ros-anx-yes">present</label>
+        </div>
+        <input type="text" class="ros-input" placeholder="if present: when, duration" data-field="ros.anx.note">
+      </div>
+    </div>
+
+    <div class="ros-row">
+      <div class="ros-label">
+        <strong>Manic / Hypomanic</strong>
+        <small>Elevated or irritable mood, 4d–1wk</small>
+        <span class="prompt">"Panahon ba na sobrang taas ng energy niyo, kaunti lang ang tulog pero hindi pagod, parang lahat kaya niyong gawin — umabot ng 4 na araw o 1 linggo?"</span>
+      </div>
+      <div>
+        <div class="toggle-group">
+          <input type="radio" name="ros-mania" id="ros-mania-na" value="" data-field="ros.mania.state" checked><label class="na" for="ros-mania-na">—</label>
+          <input type="radio" name="ros-mania" id="ros-mania-no" value="no" data-field="ros.mania.state"><label class="neg" for="ros-mania-no">denied</label>
+          <input type="radio" name="ros-mania" id="ros-mania-yes" value="yes" data-field="ros.mania.state"><label class="pos" for="ros-mania-yes">present</label>
+        </div>
+        <input type="text" class="ros-input" placeholder="if present: when, duration, sx" data-field="ros.mania.note">
+      </div>
+    </div>
+
+    <div class="ros-row">
+      <div class="ros-label">
+        <strong>Psychotic sx</strong>
+        <small>Hallucinations, delusions</small>
+        <span class="prompt">"May mga panahon po ba na may naririnig kayong ibang tao ang hindi naririnig, o may naniniwala kayong totoo na sinasabi ng iba na hindi naman?"</span>
+      </div>
+      <div>
+        <div class="toggle-group">
+          <input type="radio" name="ros-psy" id="ros-psy-na" value="" data-field="ros.psy.state" checked><label class="na" for="ros-psy-na">—</label>
+          <input type="radio" name="ros-psy" id="ros-psy-no" value="no" data-field="ros.psy.state"><label class="neg" for="ros-psy-no">denied</label>
+          <input type="radio" name="ros-psy" id="ros-psy-yes" value="yes" data-field="ros.psy.state"><label class="pos" for="ros-psy-yes">present</label>
+        </div>
+        <input type="text" class="ros-input" placeholder="if present: type, content" data-field="ros.psy.note">
+      </div>
+    </div>
+
+    <div class="ros-row">
+      <div class="ros-label">
+        <strong>Trauma sx</strong>
+        <small>Experienced or witnessed</small>
+        <span class="prompt">"May naranasan po ba kayo o nasaksihan na matinding pananakit, banta sa buhay, o sexual abuse?"</span>
+      </div>
+      <div>
+        <div class="toggle-group">
+          <input type="radio" name="ros-tr" id="ros-tr-na" value="" data-field="ros.tr.state" checked><label class="na" for="ros-tr-na">—</label>
+          <input type="radio" name="ros-tr" id="ros-tr-no" value="no" data-field="ros.tr.state"><label class="neg" for="ros-tr-no">denied</label>
+          <input type="radio" name="ros-tr" id="ros-tr-yes" value="yes" data-field="ros.tr.state"><label class="pos" for="ros-tr-yes">present</label>
+        </div>
+        <input type="text" class="ros-input" placeholder="if present: type, when" data-field="ros.tr.note">
+      </div>
+    </div>
+
+    <div class="ros-row">
+      <div class="ros-label">
+        <strong>Previous dx / consults / meds</strong>
+        <span class="prompt">"Nakapag-consult na po ba kayo dati sa psychiatrist o psychologist? Anong diagnosis ang naibigay? Anong gamot ang ininom niyo? Bakit po tumigil?"</span>
+      </div>
+      <div>
+        <div class="toggle-group">
+          <input type="radio" name="ros-prev" id="ros-prev-na" value="" data-field="ros.prev.state" checked><label class="na" for="ros-prev-na">—</label>
+          <input type="radio" name="ros-prev" id="ros-prev-no" value="no" data-field="ros.prev.state"><label class="neg" for="ros-prev-no">denied</label>
+          <input type="radio" name="ros-prev" id="ros-prev-yes" value="yes" data-field="ros.prev.state"><label class="pos" for="ros-prev-yes">present</label>
+        </div>
+        <input type="text" class="ros-input" placeholder="dx, meds, reason for D/C" data-field="ros.prev.note">
+      </div>
+    </div>
+
+    <div class="ros-row">
+      <div class="ros-label">
+        <strong>Previous suicide attempts</strong>
+        <span class="prompt">"May mga previous attempt na po ba na hindi pa natin napag-usapan?"</span>
+      </div>
+      <div>
+        <div class="toggle-group">
+          <input type="radio" name="ros-sa" id="ros-sa-na" value="" data-field="ros.sa.state" checked><label class="na" for="ros-sa-na">—</label>
+          <input type="radio" name="ros-sa" id="ros-sa-no" value="no" data-field="ros.sa.state"><label class="neg" for="ros-sa-no">denied</label>
+          <input type="radio" name="ros-sa" id="ros-sa-yes" value="yes" data-field="ros.sa.state"><label class="pos" for="ros-sa-yes">present</label>
+        </div>
+        <input type="text" class="ros-input" placeholder="when, how, outcome, hospitalized?" data-field="ros.sa.note">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §6 PMH -->
+<section class="sx">
+  <h3><span class="num">§6</span> Past Medical History</h3>
+  <div class="body">
+    <div class="field">
+      <label>Comorbidities</label>
+      <span class="field-prompt">"May mga sakit po ba kayo — diabetes, high blood, asthma, thyroid problem, sakit sa puso?"</span>
+      <input type="text" data-field="pmh.comorbid" placeholder="e.g., HTN, T2DM, asthma — or 'denies'">
+    </div>
+    <div class="row cols-2">
+      <div>
+        <label>Previous hospitalizations</label>
+        <span class="field-prompt">"Na-ospital na po ba kayo dati?"</span>
+        <input type="text" data-field="pmh.hosp" placeholder="year, reason">
+      </div>
+      <div>
+        <label>Previous surgeries</label>
+        <span class="field-prompt">"Na-opera na po ba kayo?"</span>
+        <input type="text" data-field="pmh.surg">
+      </div>
+    </div>
+    <div class="field">
+      <label>Allergies (food / medications)</label>
+      <span class="field-prompt">"May allergy po ba kayo sa pagkain o gamot?"</span>
+      <input type="text" data-field="pmh.allergy" placeholder="or NKA">
+    </div>
+  </div>
+</section>
+
+<!-- §7 FMH -->
+<section class="sx">
+  <h3><span class="num">§7</span> Family Medical History</h3>
+  <div class="body">
+    <div class="field">
+      <label>Medical (with relations)</label>
+      <span class="field-prompt">"Sa pamilya niyo po — may mga sakit po ba kayong alam? Hypertension, diabetes, sakit sa puso, kanino — Nanay? Tatay? Lolo/Lola? Mga kapatid?"</span>
+      <input type="text" data-field="fmh.medical" placeholder="e.g., HTN — mother; T2DM — paternal grandfather">
+    </div>
+    <div class="field">
+      <label>Psychiatric (dx, relation)</label>
+      <span class="field-prompt">"May sakit po ba sa isip na alam niyo sa pamilya — depression, schizophrenia, bipolar?"</span>
+      <input type="text" data-field="fmh.psych">
+    </div>
+    <div class="field">
+      <label>Family suicide attempts</label>
+      <span class="field-prompt">"May sinubukang magpakamatay po ba sa pamilya?"</span>
+      <input type="text" data-field="fmh.suicide">
+    </div>
+  </div>
+</section>
+
+<!-- §8 OB-GYN -->
+<section class="sx">
+  <h3><span class="num">§8</span> OB-GYN History <span class="badge">if applicable</span></h3>
+  <div class="body">
+    <div class="ob-toggle">
+      <label class="inline" style="margin:0"><input type="checkbox" data-field="ob.na"> Not applicable (skip in final note)</label>
+    </div>
+    <div class="row cols-2">
+      <div>
+        <label>LMP</label>
+        <span class="field-prompt">"Kailan po 'yung huling regla niyo?"</span>
+        <input type="text" data-field="ob.lmp">
+      </div>
+      <div>
+        <label>OB Score</label>
+        <span class="field-prompt">"OB score po — ilang beses na po kayo nabuntis, nakapanganak?"</span>
+        <input type="text" data-field="ob.score" placeholder="G__P__ (__-__-__-__)">
+      </div>
+    </div>
+    <div class="field">
+      <label>MIDAS</label>
+      <span class="field-prompt">"MIDAS — menarche, interval, duration, amount, symptoms?"</span>
+      <input type="text" data-field="ob.midas" placeholder="Menarche __; Interval __; Duration __; Amount __; Symptoms __">
+    </div>
+    <div class="field">
+      <label>Premenstrual mood changes <em style="font-weight:400;color:var(--muted);font-size:11px">(optional)</em></label>
+      <span class="field-prompt">"Napapansin niyo po ba ang pagbabago ng mood bago kayo magregla?"</span>
+      <input type="text" data-field="ob.pms" placeholder="(+/−) details">
+    </div>
+  </div>
+</section>
+
+<!-- §9 SUBSTANCE -->
+<section class="sx">
+  <h3><span class="num">§9</span> Substance Use History</h3>
+  <div class="body">
+    <div class="field">
+      <label>Alcohol</label>
+      <span class="field-prompt">"Umiinom po ba kayo ng alak? Gaano kadalas? Hanggang lasing po ba?"</span>
+      <input type="text" data-field="sub.alcohol" placeholder="frequency, amount, last intake, intoxication? — or 'denies'">
+    </div>
+    <div class="field">
+      <label>Smoking</label>
+      <span class="field-prompt">"Naninigarilyo po ba kayo? Ilang stick kada araw, ilang taon na?"</span>
+      <input type="text" data-field="sub.smoking" placeholder="sticks/day × years; pack-years — or 'denies'">
+    </div>
+    <div class="field">
+      <label>Illicit drugs</label>
+      <span class="field-prompt">"Nakagamit na po ba kayo ng ipinagbabawal na gamot — marijuana, shabu, iba pa?"</span>
+      <input type="text" data-field="sub.illicit" placeholder="substance, route, frequency, last use — or 'denies'">
+    </div>
+  </div>
+</section>
+
+<!-- §10 ANAMNESIS -->
+<section class="sx">
+  <h3><span class="num">§10</span> Anamnesis</h3>
+  <div class="body">
+    <p class="help" style="margin-bottom:10px">"Konting questions na lang po tungkol sa paglaki niyo, para mas maintindihan ko 'yung background niyo."</p>
+
+    <div class="row cols-2">
+      <div>
+        <label>Birth order</label>
+        <span class="field-prompt">"Pang-ilang anak po kayo sa magkakapatid?"</span>
+        <input type="text" data-field="anam.order" placeholder="e.g., eldest, only, 2nd">
+      </div>
+      <div>
+        <label>Brood size (siblings incl. self)</label>
+        <input type="text" data-field="anam.broodSize" placeholder="e.g., 3, or '1 (only child)'">
+      </div>
+    </div>
+    <div class="row cols-2">
+      <div>
+        <label>Delivery</label>
+        <span class="field-prompt">"Normal delivery po ba o CS?"</span>
+        <select data-field="anam.delivery">
+          <option value="">—</option>
+          <option>normal spontaneous vaginal delivery</option>
+          <option>caesarean section</option>
+        </select>
+      </div>
+      <div>
+        <label>Fetomaternal complications</label>
+        <span class="field-prompt">"May komplikasyon po ba sa pagbubuntis o panganganak ng nanay niyo sa inyo?"</span>
+        <select data-field="anam.complications">
+          <option value="">—</option>
+          <option>no</option>
+          <option value="+">with complications (specify in notes below)</option>
+        </select>
+      </div>
+    </div>
+    <div class="row cols-2">
+      <div>
+        <label>Developmental delays</label>
+        <span class="field-prompt">"May delays po ba sa paglaki — sa pagsasalita, paglalakad, pag-aaral?"</span>
+        <select data-field="anam.delays">
+          <option value="">—</option>
+          <option>no</option>
+          <option value="+">with delays (specify in notes below)</option>
+        </select>
+      </div>
+      <div>
+        <label>Pregnancy / delivery / delay details (if any)</label>
+        <input type="text" data-field="anam.perinatalNotes" placeholder="optional — only if (+) above">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Primary caregiver during formative years</label>
+      <span class="field-prompt">"Sino po ang nag-alaga sa inyo nu'ng bata pa kayo — mga magulang, lola, iba?"</span>
+      <input type="text" data-field="anam.caregiver">
+    </div>
+
+    <div class="field">
+      <label>Family description</label>
+      <span class="field-prompt">"Paano niyo po idi-describe 'yung relasyon niyo sa magulang at mga kapatid noon?"</span>
+      <textarea data-field="anam.family" placeholder="e.g., close-knit, distant, conflict-laden — relationships to parents and siblings"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Childhood temperament</label>
+      <span class="field-prompt">"Anong klaseng bata po kayo — masunurin, makulit, mahiyain, magulo?"</span>
+      <input type="text" data-field="anam.temperament">
+    </div>
+
+    <div class="field">
+      <label>Peer relationships (growing up)</label>
+      <span class="field-prompt">"May mga close na kaibigan po ba kayo nu'ng bata pa kayo? Madali po ba kayong nakakahalubilo sa kapwa bata?"</span>
+      <select data-field="anam.peers">
+        <option value="">—</option>
+        <option>adequate</option>
+        <option>inadequate</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Bullying / abuse / neglect</label>
+      <span class="field-prompt">"Naranasan niyo po bang mabully, o naabuso — pisikal, verbal, sexual — bilang bata?"</span>
+      <select data-field="anam.abuseState">
+        <option value="">—</option>
+        <option value="no">No reports of bullying, abuse, or neglect</option>
+        <option value="yes">With reports (specify details)</option>
+      </select>
+      <input type="text" data-field="anam.abuse" placeholder="if (+): type, perpetrator, age, etc." style="margin-top:4px">
+    </div>
+
+    <div class="field">
+      <label>Scholastic performance</label>
+      <span class="field-prompt">"Kumusta po 'yung eskwela — average, mataas, mababa ang grades?"</span>
+      <select data-field="anam.scholastic">
+        <option value="">—</option>
+        <option>poor</option><option>average</option><option>above-average</option>
+      </select>
+    </div>
+
+    <div class="row cols-3">
+      <div>
+        <label>Sexual orientation</label>
+        <span class="field-prompt">"Sa SOGIE — paano niyo po i-identify ang sarili niyo?"</span>
+        <select data-field="anam.orientation">
+          <option value="">—</option>
+          <option>heterosexual</option>
+          <option>homosexual</option>
+          <option>bisexual</option>
+          <option>asexual</option>
+          <option>other (specify in notes)</option>
+        </select>
+      </div>
+      <div>
+        <label>Gender identity</label>
+        <select data-field="anam.gender">
+          <option value="">—</option>
+          <option>male</option>
+          <option>female</option>
+          <option>nonbinary</option>
+          <option>other (specify in notes)</option>
+        </select>
+      </div>
+      <div>
+        <label>Attracted to</label>
+        <span class="field-prompt">"Sino ang naa-attract sa inyo?"</span>
+        <select data-field="anam.attracted">
+          <option value="">—</option>
+          <option>men</option>
+          <option>women</option>
+          <option>both men and women</option>
+          <option>no one (asexual)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Previous romantic relationships</label>
+      <span class="field-prompt">"Ilan po 'yung previous relationships?"</span>
+      <input type="text" data-field="anam.relationships" placeholder="number, brief quality">
+    </div>
+
+    <div class="field">
+      <label>Current living arrangement</label>
+      <span class="field-prompt">"Saan po kayo nakatira ngayon? Sino ang kasama niyo sa bahay?"</span>
+      <input type="text" data-field="anam.living" placeholder="e.g., house with mother, stepfather, and 2 siblings in Malabon">
+    </div>
+
+    <div class="field">
+      <label>Primary social supports</label>
+      <span class="field-prompt">"Sino po ang takbuhan niyo kapag may problema?"</span>
+      <input type="text" data-field="anam.supports" placeholder="e.g., friends, sister, partner">
+    </div>
+
+    <div class="field">
+      <label>Coping mechanisms</label>
+      <span class="field-prompt">"Ano ang ginagawa niyo pag may problema?"</span>
+      <input type="text" data-field="anam.coping" placeholder="e.g., going out with friends, listening to music, journaling">
+    </div>
+
+    <div class="field">
+      <label>Hobbies</label>
+      <span class="field-prompt">"Ano po 'yung hobbies niyo?"</span>
+      <input type="text" data-field="anam.hobbies">
+    </div>
+
+    <div class="row cols-2">
+      <div>
+        <label>Religion</label>
+        <span class="field-prompt">"Sa relihiyon — practicing po ba kayo, o nominal lang?"</span>
+        <input type="text" data-field="anam.religion" placeholder="e.g., Roman Catholic, Born-Again Christian, Muslim">
+      </div>
+      <div>
+        <label>Religious / spiritual stance</label>
+        <select data-field="anam.religiousStance">
+          <option value="">—</option>
+          <option value="does">considers self particularly religious/spiritual</option>
+          <option value="does not">does not consider self particularly religious nor spiritual</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="soft">
+
+    <label>Anamnesis Paragraph (synthesize from above)</label>
+    <textarea class="paragraph" data-field="anam.paragraph" placeholder="Compose the anamnesis paragraph here, mirroring the PGH template structure…"></textarea>
+  </div>
+</section>
+
 <!-- §12 MSE -->
 <section class="sx">
   <h3><span class="num">§12</span> Mental Status Examination</h3>
@@ -1690,16 +1908,144 @@
 
     <hr class="soft">
 
-    <h4 style="margin:10px 0 6px;font-family:var(--font-display);font-size:14px;font-weight:600">Scales</h4>
-    <div class="row cols-4">
-      <div><label>PHQ-9 (/27)</label><input type="text" data-field="scale.phq9" placeholder="score · severity"></div>
-      <div><label>GAD-7 (/21)</label><input type="text" data-field="scale.gad7" placeholder="score · severity"></div>
-      <div><label>BSDS</label><input type="text" data-field="scale.bsds" placeholder="score · probability"></div>
-      <div><label>MDQ</label><input type="text" data-field="scale.mdq" placeholder="pos/neg"></div>
+    <h4 style="margin:10px 0 6px;font-family:var(--font-display);font-size:14px;font-weight:600">Scales <span style="font-size:11px;font-weight:400;color:var(--muted)">— click to expand and fill</span></h4>
+
+    <!-- Hidden canonical values for assembly (auto-populated by calculator logic) -->
+    <input type="hidden" data-field="scale.phq9">
+    <input type="hidden" data-field="scale.gad7">
+    <input type="hidden" data-field="scale.mdq">
+    <input type="hidden" data-field="scale.bsds">
+    <input type="hidden" data-field="scale.pclc">
+
+    <!-- PHQ-9 -->
+    <div class="scale-card" id="card-phq9">
+      <div class="scale-header" onclick="toggleScale('phq9')">
+        <span class="toggle-icon">▶</span>
+        <h4>PHQ-9</h4>
+        <span class="scale-meta">Depression · /27</span>
+        <span class="scale-score empty" id="score-phq9">—</span>
+      </div>
+      <div class="scale-body" id="body-phq9">
+        <p class="scale-intro">Over the last 2 weeks, how often has the patient been bothered by any of the following?<br>
+        0 = Not at all · 1 = Several days · 2 = More than half the days · 3 = Nearly every day</p>
+        <div id="phq9-items"></div>
+        <div class="scale-result" id="result-phq9" style="display:none">
+          <strong>PHQ-9:</strong> <span id="phq9-total">—</span> <span class="severity" id="phq9-severity">—</span>
+          <div style="margin-top:4px;font-size:11.5px" id="phq9-interp"></div>
+        </div>
+      </div>
     </div>
-    <div class="row cols-2">
-      <div><label>PCL-C</label><input type="text" data-field="scale.pclc"></div>
-      <div><label>Other</label><input type="text" data-field="scale.other"></div>
+
+    <!-- GAD-7 -->
+    <div class="scale-card" id="card-gad7">
+      <div class="scale-header" onclick="toggleScale('gad7')">
+        <span class="toggle-icon">▶</span>
+        <h4>GAD-7</h4>
+        <span class="scale-meta">Anxiety · /21</span>
+        <span class="scale-score empty" id="score-gad7">—</span>
+      </div>
+      <div class="scale-body" id="body-gad7">
+        <p class="scale-intro">Over the last 2 weeks, how often has the patient been bothered by any of the following?<br>
+        0 = Not at all · 1 = Several days · 2 = More than half the days · 3 = Nearly every day</p>
+        <div id="gad7-items"></div>
+        <div class="scale-result" id="result-gad7" style="display:none">
+          <strong>GAD-7:</strong> <span id="gad7-total">—</span> <span class="severity" id="gad7-severity">—</span>
+          <div style="margin-top:4px;font-size:11.5px" id="gad7-interp"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MDQ -->
+    <div class="scale-card" id="card-mdq">
+      <div class="scale-header" onclick="toggleScale('mdq')">
+        <span class="toggle-icon">▶</span>
+        <h4>MDQ</h4>
+        <span class="scale-meta">Bipolar screen · 13 items + 2 Qs</span>
+        <span class="scale-score empty" id="score-mdq">—</span>
+      </div>
+      <div class="scale-body" id="body-mdq">
+        <p class="scale-intro">"Has there ever been a period of time when you were not your usual self and…" — Yes/No for each.</p>
+        <div id="mdq-items"></div>
+        <div style="margin-top:14px;padding-top:10px;border-top:1px solid var(--border)">
+          <div class="scale-item">
+            <div class="item-text">
+              <strong>Q2.</strong> If you checked YES to more than one of the above, have several of these ever happened during the same period of time?
+            </div>
+            <div class="scale-options yesno">
+              <input type="radio" name="mdq-q2" id="mdq-q2-yes" value="yes" data-field="scale.mdqq.q2"><label for="mdq-q2-yes">Yes</label>
+              <input type="radio" name="mdq-q2" id="mdq-q2-no" value="no" data-field="scale.mdqq.q2"><label for="mdq-q2-no">No</label>
+            </div>
+          </div>
+          <div class="scale-item">
+            <div class="item-text">
+              <strong>Q3.</strong> How much of a problem did any of these cause you (e.g., work, family, legal, financial trouble)?
+            </div>
+            <div class="scale-options">
+              <input type="radio" name="mdq-q3" id="mdq-q3-0" value="none" data-field="scale.mdqq.q3"><label for="mdq-q3-0">None</label>
+              <input type="radio" name="mdq-q3" id="mdq-q3-1" value="minor" data-field="scale.mdqq.q3"><label for="mdq-q3-1">Minor</label>
+              <input type="radio" name="mdq-q3" id="mdq-q3-2" value="moderate" data-field="scale.mdqq.q3"><label for="mdq-q3-2">Moderate</label>
+              <input type="radio" name="mdq-q3" id="mdq-q3-3" value="serious" data-field="scale.mdqq.q3"><label for="mdq-q3-3">Serious</label>
+            </div>
+          </div>
+        </div>
+        <div class="scale-result" id="result-mdq" style="display:none">
+          <strong>MDQ:</strong> <span id="mdq-total">—</span> <span class="severity" id="mdq-severity">—</span>
+          <div style="margin-top:4px;font-size:11.5px" id="mdq-interp"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BSDS -->
+    <div class="scale-card" id="card-bsds">
+      <div class="scale-header" onclick="toggleScale('bsds')">
+        <span class="toggle-icon">▶</span>
+        <h4>BSDS</h4>
+        <span class="scale-meta">Bipolar Spectrum · /25</span>
+        <span class="scale-score empty" id="score-bsds">—</span>
+      </div>
+      <div class="scale-body" id="body-bsds">
+        <p class="scale-intro">A descriptive narrative — have the patient read the whole passage first, then check which sentences fit. Each check = 1 pt.</p>
+        <div class="scale-narrative" id="bsds-narrative">
+          <p>"Some individuals notice that their <strong>mood and/or energy levels shift drastically from time to time</strong>. These individuals notice that, at times, their <strong>mood and/or energy level is very low</strong>, and at other times, very high. During their 'low' phases, these individuals often feel a lack of energy; a need to stay in bed or get extra sleep; and little or no motivation to do things they need to do. They often put on weight during these periods. During their low phases, these individuals often feel 'blue', sad all the time, or depressed. Sometimes, during these low phases, they feel helpless or even suicidal. Their ability to function at work or socially is impaired. Typically, these low phases last for a few weeks, but sometimes they last only a few days. Individuals with this type of pattern may experience a period of 'normal' mood in between mood swings, during which their mood and energy level feels 'right' and their ability to function is not disturbed. They may then notice a marked shift or 'switch' in the way they feel. <strong>Their energy increases above what is normal for them</strong>, and they often get many things done they would not ordinarily be able to do. Sometimes, during these 'high' periods, these individuals feel as if they have too much energy or feel 'hyper'. Some individuals, during these high periods, may feel irritable, 'on edge', or aggressive. Some individuals, during these high periods, take on too many activities at once. During these high periods, some individuals may spend money in ways that cause them trouble. They may be more talkative, outgoing, or sexual during these periods. Sometimes, their behavior during these high periods seems strange or annoying to others. Sometimes, these individuals get into difficulty with co-workers or the police, during these high periods. Sometimes, they increase their alcohol or non-prescription drug use during the high periods."</p>
+        </div>
+        <p style="font-size:12px;font-weight:600;margin:8px 0 4px">Check each sentence the patient endorses:</p>
+        <div class="scale-narrative-items" id="bsds-items"></div>
+        <p style="font-size:12px;font-weight:600;margin:12px 0 4px">Q20. How well does this story describe the patient?</p>
+        <div class="scale-options-grid">
+          <label><input type="radio" name="bsds-fit" value="6" data-field="scale.bsds.fit">6 pts — fits very well / almost perfectly</label>
+          <label><input type="radio" name="bsds-fit" value="4" data-field="scale.bsds.fit">4 pts — fits fairly well</label>
+          <label><input type="radio" name="bsds-fit" value="2" data-field="scale.bsds.fit">2 pts — fits to some degree, but not in most respects</label>
+          <label><input type="radio" name="bsds-fit" value="0" data-field="scale.bsds.fit">0 pts — does not describe me at all</label>
+        </div>
+        <div class="scale-result" id="result-bsds" style="display:none">
+          <strong>BSDS:</strong> <span id="bsds-total">—</span> <span class="severity" id="bsds-severity">—</span>
+          <div style="margin-top:4px;font-size:11.5px" id="bsds-interp"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PCL-C -->
+    <div class="scale-card" id="card-pclc">
+      <div class="scale-header" onclick="toggleScale('pclc')">
+        <span class="toggle-icon">▶</span>
+        <h4>PCL-C</h4>
+        <span class="scale-meta">PTSD · 17–85</span>
+        <span class="scale-score empty" id="score-pclc">—</span>
+      </div>
+      <div class="scale-body" id="body-pclc">
+        <p class="scale-intro">In the past month, how much has the patient been bothered by each problem?<br>
+        1 = Not at all · 2 = A little bit · 3 = Moderately · 4 = Quite a bit · 5 = Extremely</p>
+        <div id="pclc-items"></div>
+        <div class="scale-result" id="result-pclc" style="display:none">
+          <strong>PCL-C:</strong> <span id="pclc-total">—</span> <span class="severity" id="pclc-severity">—</span>
+          <div style="margin-top:4px;font-size:11.5px" id="pclc-interp"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Other scale notes</label>
+      <input type="text" data-field="scale.other" placeholder="e.g., MMSE 28/30, AUDIT 12, optional">
     </div>
   </div>
 </section>
@@ -2126,26 +2472,104 @@ function assembleNote() {
   if (v('anam.paragraph')) {
     lines.push(v('anam.paragraph'));
   } else {
-    // Auto-build from fields — mirrors PGH sample note structure
-    let p = '';
-    if (v('anam.order')) p += `The patient is the ${v('anam.order')}, `;
-    if (v('anam.delivery')) p += `born via ${v('anam.delivery')}, `;
-    p += `with ${v('anam.complications') || 'no'} fetomaternal complications and ${v('anam.delays') || 'no'} developmental delays noted. `;
-    if (v('anam.caregiver')) p += `The primary caregiver during the formative years was the ${v('anam.caregiver')}. `;
-    if (v('anam.family')) p += `${v('anam.family')} `;
-    if (v('anam.temperament')) p += `Patient describes self as a ${v('anam.temperament')} child. `;
-    if (v('anam.peers')) p += `With ${v('anam.peers')} peer relationships growing up. `;
-    if (v('anam.abuse')) p += `With ${v('anam.abuse')}. `;
-    if (v('anam.scholastic')) p += `The patient had ${v('anam.scholastic')} scholastic performance. `;
-    if (v('anam.sogie')) p += `Patient identifies as ${v('anam.sogie')}`;
-    if (v('anam.relationships')) p += `, with ${v('anam.relationships')} previous romantic relationship/s`;
-    if (v('anam.sogie') || v('anam.relationships')) p += '. ';
-    if (v('anam.living')) p += `Currently lives ${v('anam.living')}. `;
-    if (v('anam.supports')) p += `Identifies ${v('anam.supports')} as primary social support/s. `;
-    if (v('anam.coping')) p += `When faced with stressful situations, copes by ${v('anam.coping')}. `;
-    if (v('anam.hobbies')) p += `Hobbies include ${v('anam.hobbies')}. `;
-    if (v('anam.religion')) p += `Identifies as ${v('anam.religion')}.`;
-    lines.push(p || '[Anamnesis not yet composed]');
+    // Auto-build from fields — mirrors PGH template sample structure
+    // Para 1: birth/order/development/family/peers/abuse
+    let p1 = '';
+    const order = v('anam.order'), brood = v('anam.broodSize');
+    if (order && brood) {
+      p1 += `The patient is the ${order} in a brood of ${brood}`;
+    } else if (order) {
+      p1 += `The patient is the ${order}`;
+    }
+    if (v('anam.delivery')) {
+      p1 += p1 ? `, born via ${v('anam.delivery')}` : `Born via ${v('anam.delivery')}`;
+    }
+    // Complications + delays
+    const complications = v('anam.complications');
+    const delays = v('anam.delays');
+    if (complications || delays) {
+      const cText = complications === '+' ? (v('anam.perinatalNotes') ? `(+) fetomaternal complications (${v('anam.perinatalNotes')})` : '(+) fetomaternal complications')
+                  : complications === 'no' ? 'no fetomaternal complications'
+                  : '';
+      const dText = delays === '+' ? '(+) developmental delays'
+                  : delays === 'no' ? 'no developmental delays'
+                  : '';
+      if (cText && dText) {
+        p1 += `, with ${cText} and ${dText} noted.`;
+      } else if (cText) {
+        p1 += `, with ${cText} noted.`;
+      } else if (dText) {
+        p1 += `, with ${dText} noted.`;
+      } else {
+        p1 += '.';
+      }
+    } else if (p1) {
+      p1 += '.';
+    }
+
+    if (v('anam.caregiver')) {
+      p1 += ` The primary caregiver during the formative years was the ${v('anam.caregiver')}.`;
+    }
+    if (v('anam.family')) {
+      p1 += ` The patient describes the family as ${v('anam.family')}.`;
+    }
+    if (v('anam.temperament')) {
+      p1 += ` Patient describes self as a ${v('anam.temperament')} child.`;
+    }
+    if (v('anam.peers')) {
+      p1 += ` Growing up, the patient had ${v('anam.peers')} peer relationships.`;
+    }
+    const abState = v('anam.abuseState');
+    if (abState === 'no') {
+      p1 += ' No reports of bullying and physical/psychological violence, sexual harassment, maltreatment, or neglect.';
+    } else if (abState === 'yes') {
+      p1 += ` With ${v('anam.abuse') || 'reports of bullying/abuse/neglect (unspecified)'}.`;
+    }
+
+    // Para 2: school, SOGIE, relationships, living, supports, coping, hobbies, religion
+    let p2 = '';
+    if (v('anam.scholastic')) {
+      p2 += `The patient had ${v('anam.scholastic')} scholastic performance.`;
+    }
+
+    const orient = v('anam.orientation'), gend = v('anam.gender'), attr = v('anam.attracted');
+    if (orient || gend || attr) {
+      let id = ' The patient identifies as a';
+      if (orient) id += ` ${orient}`;
+      if (gend) id += ` ${gend}`;
+      if (attr) id += ` attracted to ${attr}`;
+      if (v('anam.relationships')) {
+        id += `, and has had ${v('anam.relationships')} previous romantic relationship/s`;
+      }
+      p2 += id + '.';
+    } else if (v('anam.relationships')) {
+      p2 += ` The patient has had ${v('anam.relationships')} previous romantic relationship/s.`;
+    }
+
+    if (v('anam.living')) {
+      p2 += ` Currently, the patient lives in ${v('anam.living')}.`;
+    }
+    if (v('anam.supports')) {
+      p2 += ` The patient identifies ${v('anam.supports')} as primary social supports.`;
+    }
+    if (v('anam.coping')) {
+      p2 += ` When faced with stressful situations, copes by ${v('anam.coping')}.`;
+    }
+    if (v('anam.hobbies')) {
+      p2 += ` Hobbies include ${v('anam.hobbies')}.`;
+    }
+    if (v('anam.religion') || v('anam.religiousStance')) {
+      const rel = v('anam.religion') || '___';
+      const stance = v('anam.religiousStance');
+      if (stance) {
+        p2 += ` The patient identifies as a ${rel} although ${stance} consider self particularly religious nor spiritual.`;
+      } else {
+        p2 += ` The patient identifies as a ${rel}.`;
+      }
+    }
+
+    const finalPara = [p1.trim(), p2.trim()].filter(Boolean).join('\n\n');
+    lines.push(finalPara || '[Anamnesis not yet composed]');
   }
   lines.push('');
 
@@ -2388,10 +2812,303 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2200);
 }
 
+// === SCALE CALCULATORS ===
+
+const SCALES = {
+  phq9: {
+    items: [
+      ['Little interest or pleasure in doing things', 'Walang interes o sigla sa mga bagay'],
+      ['Feeling down, depressed, or hopeless', 'Pakiramdam na malungkot, down, o walang pag-asa'],
+      ['Trouble falling or staying asleep, or sleeping too much', 'Hirap matulog, panay gising, o sobrang dami ng tulog'],
+      ['Feeling tired or having little energy', 'Pagod o walang energy'],
+      ['Poor appetite or overeating', 'Walang gana o sobrang dami ng kain'],
+      ['Feeling bad about yourself — or that you are a failure or have let yourself or your family down', 'Pakiramdam na ikaw ay pabigat o nabigo ka sa sarili o pamilya'],
+      ['Trouble concentrating on things, such as reading the newspaper or watching television', 'Hirap mag-focus sa pagbabasa o nanonood'],
+      ['Moving or speaking so slowly that other people could have noticed — or the opposite, being so fidgety or restless that you have been moving around a lot more than usual', 'Mas mabagal o mas mabilis ang galaw / pagsasalita kesa sa nakasanayan'],
+      ['Thoughts that you would be better off dead or of hurting yourself in some way', 'Mga iniisip na mas mabuti kung patay ka na, o saktan ang sarili'],
+    ],
+    max: 3,
+    labels: ['0','1','2','3'],
+    score: (v) => v.reduce((a,b) => a + (b||0), 0),
+    interpret: (s) => {
+      if (s <= 4) return { band: 'Minimal', note: 'Minimal or no depression. None–monitoring.' };
+      if (s <= 9) return { band: 'Mild', note: 'Mild depression. Watchful waiting; repeat at follow-up.' };
+      if (s <= 14) return { band: 'Moderate', note: 'Moderate depression. Treatment plan considering counseling, follow-up, and/or pharmacotherapy.' };
+      if (s <= 19) return { band: 'Mod. Severe', note: 'Moderately severe depression. Active treatment with pharmacotherapy and/or psychotherapy.' };
+      return { band: 'Severe', note: 'Severe depression. Immediate initiation of pharmacotherapy and, if severe impairment or poor response, expedited referral.' };
+    }
+  },
+  gad7: {
+    items: [
+      ['Feeling nervous, anxious, or on edge', 'Kinakabahan, nababagabag, o on edge'],
+      ['Not being able to stop or control worrying', 'Hindi mapigilan ang pag-aalala'],
+      ['Worrying too much about different things', 'Sobrang pag-aalala sa iba\'t ibang bagay'],
+      ['Trouble relaxing', 'Hirap mag-relax'],
+      ['Being so restless that it is hard to sit still', 'Hindi mapakali, hirap umupo nang tahimik'],
+      ['Becoming easily annoyed or irritable', 'Madaling ma-irita'],
+      ['Feeling afraid as if something awful might happen', 'Takot na may masamang mangyayari'],
+    ],
+    max: 3,
+    labels: ['0','1','2','3'],
+    score: (v) => v.reduce((a,b) => a + (b||0), 0),
+    interpret: (s) => {
+      if (s <= 4) return { band: 'Minimal', note: 'Minimal anxiety.' };
+      if (s <= 9) return { band: 'Mild', note: 'Mild anxiety.' };
+      if (s <= 14) return { band: 'Moderate', note: 'Moderate anxiety. Further evaluation recommended.' };
+      return { band: 'Severe', note: 'Severe anxiety. Active treatment is probably warranted.' };
+    }
+  },
+  mdq: {
+    items: [
+      ['…you felt so good or so hyper that other people thought you were not your normal self, or you were so hyper that you got into trouble?'],
+      ['…you were so irritable that you shouted at people or started fights or arguments?'],
+      ['…you felt much more self-confident than usual?'],
+      ['…you got much less sleep than usual and found you didn\'t really miss it?'],
+      ['…you were much more talkative or spoke much faster than usual?'],
+      ['…thoughts raced through your head or you couldn\'t slow your mind down?'],
+      ['…you were so easily distracted by things around you that you had trouble concentrating or staying on track?'],
+      ['…you had much more energy than usual?'],
+      ['…you were much more active or did many more things than usual?'],
+      ['…you were much more social or outgoing than usual, for example you telephoned friends in the middle of the night?'],
+      ['…you were much more interested in sex than usual?'],
+      ['…you did things that were unusual for you or that other people might have thought were excessive, foolish, or risky?'],
+      ['…spending money got you or your family into trouble?'],
+    ],
+    yesNo: true,
+    score: (v) => v.filter(x => x === 1).length,
+    interpret: (s, fields) => {
+      const items7plus = s >= 7;
+      const q2 = fields['scale.mdqq.q2'] === 'yes';
+      const q3 = fields['scale.mdqq.q3'] === 'moderate' || fields['scale.mdqq.q3'] === 'serious';
+      if (items7plus && q2 && q3) return { band: 'POSITIVE', note: `Positive screen: ${s}/13 items + Q2 yes + Q3 ${fields['scale.mdqq.q3']}. Further clinical evaluation for bipolar spectrum disorder recommended.` };
+      const reasons = [];
+      if (!items7plus) reasons.push(`only ${s}/13 items endorsed (need ≥7)`);
+      if (!q2 && fields['scale.mdqq.q2']) reasons.push('Q2 not "Yes"');
+      if (!q3 && fields['scale.mdqq.q3']) reasons.push(`Q3 = ${fields['scale.mdqq.q3']} (need moderate/serious)`);
+      return { band: 'Negative', note: reasons.length ? `Negative screen — ${reasons.join('; ')}.` : `Incomplete — ${s}/13 items endorsed so far.` };
+    }
+  },
+  bsds: {
+    items: [
+      'Mood/energy levels shift drastically from time to time',
+      'At times, mood/energy level is very low; at other times, very high',
+      'During "low" phases, lacks energy / needs to stay in bed / extra sleep',
+      'Little or no motivation to do things they need to do during lows',
+      'Often gains weight during low periods',
+      'Often feels "blue", sad all the time, or depressed during low phases',
+      'Sometimes during lows, feels helpless or even suicidal',
+      'Ability to function at work or socially is impaired during lows',
+      'Low phases typically last a few weeks, but sometimes a few days',
+      'Experiences periods of normal mood between mood swings',
+      'May notice marked shift or "switch" in mood',
+      'Energy increases above what is normal for them',
+      'Gets many things done during "high" periods that they would not ordinarily',
+      'Sometimes feels as if they have too much energy or "hyper" during highs',
+      'Some feel irritable, "on edge", or aggressive during highs',
+      'Some take on too many activities at once during highs',
+      'During highs, some spend money in ways that cause trouble',
+      'More talkative, outgoing, or sexual during these periods',
+      'Sometimes increase alcohol or non-prescription drug use during highs',
+    ],
+    narrative: true,
+    score: (v, fields) => {
+      const itemScore = v.filter(x => x === 1).length;
+      const fitScore = parseInt(fields['scale.bsds.fit'] || '0', 10);
+      return itemScore + fitScore;
+    },
+    interpret: (s) => {
+      if (s <= 6) return { band: 'Unlikely', note: 'Bipolar spectrum disorder highly unlikely.' };
+      if (s <= 12) return { band: 'Low', note: 'Low probability of bipolar spectrum disorder.' };
+      if (s <= 18) return { band: 'Moderate', note: 'Moderate probability of bipolar spectrum disorder (≥13 is positive screen).' };
+      return { band: 'High', note: 'High probability of bipolar spectrum disorder.' };
+    }
+  },
+  pclc: {
+    items: [
+      // B: Re-experiencing (1-5)
+      ['Repeated, disturbing memories, thoughts, or images of a stressful experience'],
+      ['Repeated, disturbing dreams of a stressful experience'],
+      ['Suddenly acting or feeling as if a stressful experience were happening again (as if reliving it)'],
+      ['Feeling very upset when something reminded you of a stressful experience'],
+      ['Having physical reactions (e.g., heart pounding, trouble breathing, sweating) when something reminded you of a stressful experience'],
+      // C: Avoidance (6-12)
+      ['Avoiding thinking about or talking about a stressful experience or avoiding having feelings related to it'],
+      ['Avoiding activities or situations because they reminded you of a stressful experience'],
+      ['Trouble remembering important parts of a stressful experience'],
+      ['Loss of interest in activities that you used to enjoy'],
+      ['Feeling distant or cut off from other people'],
+      ['Feeling emotionally numb or being unable to have loving feelings for those close to you'],
+      ['Feeling as if your future will somehow be cut short'],
+      // D: Hyperarousal (13-17)
+      ['Trouble falling or staying asleep'],
+      ['Feeling irritable or having angry outbursts'],
+      ['Having difficulty concentrating'],
+      ['Being "super-alert" or watchful or on guard'],
+      ['Feeling jumpy or easily startled'],
+    ],
+    max: 5,
+    minVal: 1,
+    labels: ['1','2','3','4','5'],
+    score: (v) => v.reduce((a,b) => a + (b||0), 0),
+    interpret: (s, fields, values) => {
+      // DSM cluster check (values ≥3 = symptomatic)
+      const bItems = values.slice(0, 5);
+      const cItems = values.slice(5, 12);
+      const dItems = values.slice(12, 17);
+      const bCount = bItems.filter(x => x >= 3).length;
+      const cCount = cItems.filter(x => x >= 3).length;
+      const dCount = dItems.filter(x => x >= 3).length;
+      const dsmPositive = bCount >= 1 && cCount >= 3 && dCount >= 2;
+      let band, note;
+      if (s < 30) band = 'Sub-threshold';
+      else if (s < 44) band = 'Possible PTSD';
+      else band = 'Probable PTSD';
+      note = `B-cluster ≥3: ${bCount}/5 (need ≥1) · C-cluster ≥3: ${cCount}/7 (need ≥3) · D-cluster ≥3: ${dCount}/5 (need ≥2). ` +
+             `DSM clusters: ${dsmPositive ? 'MET' : 'not met'}. ` +
+             `Cutoff ≥44 commonly used for civilian PTSD diagnosis (≥30–35 for screening).`;
+      return { band, note };
+    }
+  }
+};
+
+function buildScale(key) {
+  const s = SCALES[key];
+  const container = document.getElementById(`${key}-items`);
+  if (!container) return;
+
+  if (s.narrative) {
+    // BSDS: checkboxes for each narrative sentence
+    container.innerHTML = s.items.map((item, i) => `
+      <label>
+        <input type="checkbox" data-field="scale.${key}.i${i}"> ${i+1}. ${item}
+      </label>
+    `).join('');
+  } else if (s.yesNo) {
+    // MDQ: yes/no per item
+    container.innerHTML = s.items.map((item, i) => `
+      <div class="scale-item">
+        <div class="item-text">${i+1}. ${item[0]}</div>
+        <div class="scale-options yesno">
+          <input type="radio" name="${key}-i${i}" id="${key}-i${i}-y" value="1" data-field="scale.${key}.i${i}"><label for="${key}-i${i}-y">Yes</label>
+          <input type="radio" name="${key}-i${i}" id="${key}-i${i}-n" value="0" data-field="scale.${key}.i${i}"><label for="${key}-i${i}-n">No</label>
+        </div>
+      </div>
+    `).join('');
+  } else {
+    // Likert (PHQ-9, GAD-7, PCL-C)
+    const startVal = s.minVal || 0;
+    container.innerHTML = s.items.map((item, i) => {
+      const text = item[0];
+      const prompt = item[1];
+      const opts = s.labels.map((lbl, j) => {
+        const val = startVal + j;
+        return `<input type="radio" name="${key}-i${i}" id="${key}-i${i}-${val}" value="${val}" data-field="scale.${key}.i${i}"><label for="${key}-i${i}-${val}">${lbl}</label>`;
+      }).join('');
+      return `
+        <div class="scale-item">
+          <div class="item-text">${i+1}. ${text}${prompt ? `<small>"${prompt}"</small>` : ''}</div>
+          <div class="scale-options">${opts}</div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Attach listeners + recompute on any change
+  container.querySelectorAll('input').forEach(el => {
+    el.addEventListener('change', () => { computeScale(key); debouncedSave(); });
+  });
+}
+
+function computeScale(key) {
+  const s = SCALES[key];
+  if (!s) return;
+
+  // Collect item values
+  const fields = collectData();
+  const values = s.items.map((_, i) => {
+    if (s.narrative) {
+      return fields[`scale.${key}.i${i}`] ? 1 : 0;
+    }
+    const raw = fields[`scale.${key}.i${i}`];
+    return raw === undefined || raw === '' ? null : parseInt(raw, 10);
+  });
+
+  let answered;
+  if (s.narrative) {
+    // BSDS: count checked items + bsds.fit
+    const checkedItems = s.items.filter((_, i) => fields[`scale.${key}.i${i}`]).length;
+    const hasFit = fields['scale.bsds.fit'] !== undefined && fields['scale.bsds.fit'] !== '';
+    answered = checkedItems + (hasFit ? 1 : 0);
+  } else {
+    answered = values.filter(x => x !== null && x !== undefined).length;
+  }
+
+  const total = s.score(values.map(x => x === null ? 0 : x), fields);
+
+  const scoreEl = document.getElementById(`score-${key}`);
+  const resultEl = document.getElementById(`result-${key}`);
+  const totalEl = document.getElementById(`${key}-total`);
+  const sevEl = document.getElementById(`${key}-severity`);
+  const interpEl = document.getElementById(`${key}-interp`);
+
+  if (answered === 0) {
+    scoreEl.textContent = '—';
+    scoreEl.classList.add('empty');
+    resultEl.style.display = 'none';
+    setValue(`scale.${key}`, '');
+    return;
+  }
+
+  scoreEl.classList.remove('empty');
+  scoreEl.textContent = `${total}/${s.narrative ? 25 : (s.yesNo ? 13 : s.items.length * (s.max - (s.minVal || 0) + (s.minVal ? 0 : 1)))}`;
+  // Cleaner max calc:
+  let maxScore;
+  if (key === 'phq9') maxScore = 27;
+  else if (key === 'gad7') maxScore = 21;
+  else if (key === 'mdq') maxScore = 13;
+  else if (key === 'bsds') maxScore = 25;
+  else if (key === 'pclc') maxScore = 85;
+  scoreEl.textContent = `${total}/${maxScore}`;
+
+  const interp = s.interpret(total, fields, values);
+  totalEl.textContent = `${total}/${maxScore}`;
+  sevEl.textContent = interp.band;
+  interpEl.textContent = interp.note;
+  resultEl.style.display = 'block';
+
+  // Write canonical text into scale.{key} for backward-compat note assembly
+  setValue(`scale.${key}`, `${total}/${maxScore} · ${interp.band}`);
+}
+
+function toggleScale(key) {
+  const header = document.querySelector(`#card-${key} .scale-header`);
+  const body = document.getElementById(`body-${key}`);
+  header.classList.toggle('open');
+  body.classList.toggle('open');
+}
+
+function initScales() {
+  ['phq9', 'gad7', 'mdq', 'bsds', 'pclc'].forEach(k => {
+    buildScale(k);
+    // Listen for radio changes too (for MDQ Q2/Q3 and BSDS fit)
+  });
+  // MDQ Q2/Q3 and BSDS fit recompute
+  document.querySelectorAll('[data-field="scale.mdqq.q2"], [data-field="scale.mdqq.q3"]').forEach(el => {
+    el.addEventListener('change', () => { computeScale('mdq'); debouncedSave(); });
+  });
+  document.querySelectorAll('[data-field="scale.bsds.fit"]').forEach(el => {
+    el.addEventListener('change', () => { computeScale('bsds'); debouncedSave(); });
+  });
+  // Recompute all after load (in case saved data exists)
+  ['phq9', 'gad7', 'mdq', 'bsds', 'pclc'].forEach(k => computeScale(k));
+}
+
 // Init
+initScales();  // Build scale items first so loadData can populate them
 loadData();
 updateSIWarning();
-// Default examiner from memory? Leave blank — user fills.
+// Recompute scales after data loads
+['phq9', 'gad7', 'mdq', 'bsds', 'pclc'].forEach(k => computeScale(k));
 </script>
 
 </body>
